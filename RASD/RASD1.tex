@@ -1,5 +1,12 @@
 \documentclass[a4paper,12pt]{book} 
 \usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+}
 
 
 
@@ -19,7 +26,7 @@
 
 \mainmatter
 
-\chapter{Introduction} \label{introduction}
+\chapter{Introduction} \label{C1:Introduction}
 
 \section{Purpose}
 This document is Requirement Analysis and Specification Document(RASD). The main purpose of this document is the following points
@@ -87,32 +94,30 @@ Customers Line-up(CLup) is an user-friendly application, it has two main goals.
 	\end{tabular}
 \end{center}
 
-\subsection{Goals}
-\begin{center}
-	\begin{tabular}{ c|c } 
-		\hline
-		$G_1$ & cell \\ 
-		\hline
-		$G_2$ & cell \\ 
-		\hline
-		$G_3$ & cell \\ 
-		\hline
-	\end{tabular}
-\end{center}
-
 
 \section{Definitions, acronyms, abbreviations}
-
-\subsection{Definitions}
+\subsection{Definitions}\label{Definitions}
 \begin{itemize}
-	\item Customer:
-	\item QR code:
-	\item Store Manager:
+	\item Click Customer : The customer has the required technology to access the store. I.e a smartphone. They can use the customer terminal software.
+	\item Brick Customer : The customer doesn't have the required technology to access the store, they have to hand out “tickets” on the spot.
+	\item Store Manager : They have to manage the Store System, include the software and hardware.
+	\item Ticket: The ticket is a document which contains three key information: QR Code, the estimated departure time, the queue number. To the click customer, it's E-ticket and to the brick customer, it doesn't contain the estimated departure time.
+	\item QR Code : When customer booked a visit, they will received a QR Code.
+	\item QR Code Scanned Machine : A hardware, the Click Customer can use this machine scan their QR code.
+	\item Tickets Hand-Out Machine : A hardware, the Brick Customer can use it retrieve their Ticket.
+	\item Store Path Map : A store map that includes a finer way which is recommended form Store System.
+	\item Digital Counterpart : A hardware, it with show the queue number.
+	\item Store Back-End System : A software, as the back-end manages all stuffs.
+	\item On-Time Store Data : A dataset that includes the store's on-time date.
+	\begin{itemize}
+		\item Customer Enter Speed: Dimension: p/h, How many numbers will be called every hour on the digital counterpart
+		\item Total Number of Customers: Real-time total number of customers in the store
+	\end{itemize}
+	\item Long-Term Customers : The customers with the high average duration of the visit, we set the threshold value to 1 hour.
 \end{itemize}
 
 
 \subsection{Acronyms}
-
 \begin{itemize}
 	\item RASD – Requirement Analysis and Specification Document
 	\item CLup - Customers Line-up
@@ -120,15 +125,12 @@ Customers Line-up(CLup) is an user-friendly application, it has two main goals.
 \end{itemize}
 
 \subsection{Abbreviations}
-
 \begin{itemize}
 	\item  $WP_n$ : n-th world phenomena
 	\item  $SP_n$ : n-th shared phenomena
 	\item  $G_n$ : n-th goal
 	\item  $D_n$ : n-th domain assumption
-	\item  $R_n$ : n-th functional requirement
 \end{itemize}
-
 
 \section{Reference documents}
 
@@ -141,14 +143,12 @@ Customers Line-up(CLup) is an user-friendly application, it has two main goals.
 \section{Overview}
 The RASD document consists of five chapters.
 
-\textbf{Chapter \ref{introduction}} is the introduction chapter, it's an overview of the RASD and project, 
+\textbf{Chapter \ref{C1:Introduction}} is the introduction chapter, it's an overview of the RASD and project, 
 it describes the purpose of the CLup.
 
-\textbf{Chapter \ref{OverallDescription}} 
+\textbf{Chapter \ref{C2:OverallDescription}} 
 
-\textbf{Chapter \ref{SpecificRequirements}} 
-
-
+\textbf{Chapter \ref{C3:SpecificRequirements}} 
 
 
 
@@ -157,21 +157,95 @@ it describes the purpose of the CLup.
 
 
 
+\chapter{Overall Description} \label{C2:OverallDescription}
 
 
-
-
-
-
-
-\chapter{Overall Description} \label{OverallDescription}
 \section{Product perspective}
+Because we consider that going out to pick up the number and wait until the scheduled time to come to the supermarket will significantly increase the number of outings, so we did not set up a booking process on the machine.
+
+
 \section{Product functions}
+\subsection{Functional Requirements}
+\begin{itemize}
+	\item Each \hyperref[Definitions]{Click Customer} shall be able to: 
+	\begin{itemize}
+		\item Sign-up 
+		\item Login
+		\item Book a visit,to complete it, they have to indicate the following data
+		\begin{itemize}
+			\item Indicate the date and time
+			\item Indicate the approximate expected duration of the visit
+			\item Indicate the categories of items that they intend to buy
+			\item Indicate or give by GPS the place they want to depart to the shop
+		\end{itemize}
+		\item Received the \hyperref[Definitions]{E-Ticket} with QR Code, the estimated departure time and the queue number.
+		\item Received a \hyperref[Definitions]{Store Path Map}.	
+		\item The customer can scan the QR Code at \hyperref[Definitions]{QR Code scanned machine} when they enter \textbf{and} leave the store.
+	\end{itemize}
+
+	\item Each \hyperref[Definitions]{Brick Customer} shall be able to
+	\begin{itemize}
+		\item Retrieve the \hyperref[Definitions]{Ticket} from \hyperref[Definitions]{Tickets Hand-Out Machine} and wait the \hyperref[Definitions]{Digital Counterpart} call them.
+		\item Scan the QR Code at \hyperref[Definitions]{QR Code Scanned Machine} when they enter \textbf{and} leave the store.
+	\end{itemize}
+
+	\item \hyperref[Definitions]{Store Manager} shall be able to: 
+	\begin{itemize}
+		\item Login
+		\item Check out the \hyperref[Definitions]{On-Time Store Data}
+		\item Adjust the \hyperref[Definitions]{Customer Entry Speed}
+	\end{itemize}
+
+	\item The \hyperref[Definitions]{Store Back-End System} shall be able to:
+	\begin{itemize}
+		\item Send the available time/date to the the click customers.
+		\item Received and schedule the click customers' book, the scheduling have to refer the duration time of each customer.
+		\item Calculate the time from the click customer's departure place to the store.
+		\item Send the \hyperref[Definitions]{E-Ticket} to the click customers.
+		\item Plan the Store Path Map for each customer.
+		\item Store the customer's data,include:
+		\begin{itemize}
+			\item Username
+			\item Password
+			\item Booked data
+			\item History visit date and time
+			\item Is long-term customers
+		\end{itemize}
+		\item Store the average duration of the personal visit for each customer.
+		\item Analysis the average duration data and sign the long-term customers.
+		\item Calculate and store the \hyperref[Definitions]{On-Time Store Data}.
+		\item Schedule the query from click customer's book and brick customer's retrieved ticket.
+		\item Control the \hyperref[Definitions]{Digital Counterpart} and display the query number.
+		\item Receive the information from the \hyperref[Definitions]{QR Code Scanned Machine}.
+		\item Receive the information from the \hyperref[Definitions]{Tickets Hand-Out Machine}.
+	\end{itemize}
+\end{itemize}
+
+
+\subsection{Non-Functional Requirements}
+\begin{itemize}
+	\item The time from the click customer's departure place to the store that calculate from the \hyperref[Definitions]{Store Back-End System} must enough precise to avoid the customer arriving at the the store too early/late.
+	\item The Store Back-End System must schedule the query reasonably to minimize the wait time.
+	\item The Store Back-End System must mix the book and brick customer's retrieved ticket reasonably to allow the click customers enter the store near the book time, by the way avoid making the brick customers wait too long.
+	\item Cause of everyone needs to do grocery shopping, the software for the click customer should be enough simple to use,.
+\end{itemize}
+
 \section{User characteristics}
 \section{Constraints}
-\section{Assumptions and Dependencies}
+\section{Assumptions, Dependencies}
+\subsection{Domain Assumptions}
+\begin{itemize}
+	\item $D_1$
+\end{itemize}
 
-\chapter{Specific Requirements} \label{SpecificRequirements}
+\subsection{Goals}
+\begin{itemize}
+	\item $G_1$
+\end{itemize}
+
+
+
+\chapter{Specific Requirements} \label{C3:SpecificRequirements}
 \section{External Interface Requirements}
 \subsection{User Interfaces}
 \subsection{Hardware Interfaces}
@@ -204,8 +278,46 @@ it describes the purpose of the CLup.
 \newpage
 \section{Other Requirements}
 
+\chapter{Formal Analysis Using Alloy}
+
+
+\chapter{Effort Spent}
+
+\begin{itemize}
+	\item Kong Xiangyi
+	\begin{center}
+		\begin{tabular}{ |c|c|c| } 
+			\hline
+			Date & Task & Hours \\
+			\hline
+			\hline
+			2020/10/10 & Group discussion project plan & 4h \\ 
+			\hline
+			2020/10/31 & Modified the purpose and scope of the RASD & 2h \\ 
+			\hline
+		\end{tabular}
+	\end{center}
+
+	\item Zhang Yuedong
+	\begin{center}
+		\begin{tabular}{ |c|c|c| } 
+			\hline
+			Date & Task & Hours \\
+			\hline
+			\hline
+			2020/10/10 & Group discussion project plan & 4h \\ 
+			\hline
+			2020/10/19 & Added the project's architecture & 1h \\ 
+			\hline
+			2020/10/30 & Added the purpose and scope of the RASD & 2h \\ 
+			\hline
+			2020/11/16 & Write the product functions part & 4h \\ 
+			\hline
+		\end{tabular}
+	\end{center}
+\end{itemize}
+
 
 \backmatter
-
 
 \end{document}
