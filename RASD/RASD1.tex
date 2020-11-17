@@ -1,6 +1,8 @@
 \documentclass[a4paper,12pt]{book} 
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{graphicx}
+\graphicspath{{./Images/}}
 \hypersetup{
 	colorlinks=true,
 	linkcolor=blue,
@@ -61,14 +63,8 @@ In the supermarket, In order to meet these strict rules, many challenges have ar
 
 So, this project appeared - Customers Line-up(CLup).
 
-
-Customers Line-up(CLup) is an user-friendly application, it has two main goals. 
-\begin{itemize}
-	\item  First of all, the CLup have to allow store managers to regulate the influx of people in the building.
-	\item  And then, it will help people to avoid lining outside of stores for hours.	
-\end{itemize}
-
 \subsection{World Phenomena}
+
 \begin{center}
 	\begin{tabular}{ c|c } 
 		\hline
@@ -101,11 +97,11 @@ Customers Line-up(CLup) is an user-friendly application, it has two main goals.
 	\item Click Customer : The customer has the required technology to access the store. I.e a smartphone. They can use the customer terminal software.
 	\item Brick Customer : The customer doesn't have the required technology to access the store, they have to hand out “tickets” on the spot.
 	\item Store Manager : They have to manage the Store System, include the software and hardware.
-	\item Ticket: The ticket is a document which contains three key information: QR Code, the estimated departure time, the queue number. To the click customer, it's E-ticket and to the brick customer, it doesn't contain the estimated departure time.
+	\item Ticket: The ticket is a document which contains three key information: QR Code, the estimated departure time, the queue number, and the Store Planned Roadmap. To the click customer, it's \textbf{E-ticket} but to the brick customer,it's \textbf{Paper Ticket},and doesn't contain the estimated departure time, and just a General Store Map without the Planned Road.
 	\item QR Code : When customer booked a visit, they will received a QR Code.
 	\item QR Code Scanned Machine : A hardware, the Click Customer can use this machine scan their QR code.
 	\item Tickets Hand-Out Machine : A hardware, the Brick Customer can use it retrieve their Ticket.
-	\item Store Path Map : A store map that includes a finer way which is recommended form Store System.
+	\item Store Planned Roadmap: A store map that includes a finer way which is recommended form Store System.
 	\item Digital Counterpart : A hardware, it with show the queue number.
 	\item Store Back-End System : A software, as the back-end manages all stuffs.
 	\item On-Time Store Data : A dataset that includes the store's on-time date.
@@ -122,6 +118,10 @@ Customers Line-up(CLup) is an user-friendly application, it has two main goals.
 	\item RASD – Requirement Analysis and Specification Document
 	\item CLup - Customers Line-up
 	\item UI - User Interface
+	\item IOS - iPhone OS
+	\item PC - Personal Computer
+	\item IaaS - Infrastructure as a Service
+	\item CRM - Customer Relationship Management
 \end{itemize}
 
 \subsection{Abbreviations}
@@ -132,12 +132,13 @@ Customers Line-up(CLup) is an user-friendly application, it has two main goals.
 	\item  $D_n$ : n-th domain assumption
 \end{itemize}
 
-\section{Reference documents}
-
+\section{Reference documents} \label{Reference documents}
 \begin{itemize}
 	\item Specification Document: "R\&DD Assignment A.Y. 2020-2021"
 	\item Slides of the "Software Engineering 2" course A.Y. 2020-2021
 	\item IEEE Recommended Practice for Software Requirements Specifications - IEEE Std 830-1998
+	\item  Fondamenti di Sistemi informativi per il Settore dell’Informazione - 7 settembre 2018
+	\item Poste Italiane - \url{www.poste.it}
 \end{itemize}
 	
 \section{Overview}
@@ -155,13 +156,31 @@ it describes the purpose of the CLup.
 
 
 
-
-
 \chapter{Overall Description} \label{C2:OverallDescription}
-
-
 \section{Product perspective}
-Because we consider that going out to pick up the number and wait until the scheduled time to come to the supermarket will significantly increase the number of outings, so we did not set up a booking process on the machine.
+
+The CLup – Customers Line-up system can divide into three parts. Three client ends and a server end, The client ends are divided into consumer end and store manager end according to the object-oriented. And we have divided consumers into two groups according to their characteristics, according to the Business direction's click and brick concept of information system, we named it as "click and brick customer", the click customer will use the application, and the brick customer will use the \hyperref[Definitions]{Tickets Hand-Out Machine} at the store.
+
+The application for the click customer can install in the Android and IOS operation system, to make this app simple enough for everyone to use, we just design two main functions, Sign-up/in, Booking Function,when they book a visit, they have to input four information, that are visit date/time, the approximate expected duration of the visit, the categories of items that they intend to buy, and the place they depart from, for the depart place, if the depart place is the same as the current place and the GPS is available, the place information will input automatically by the application, by the way, if the customer does not want the application to get the GPS authority, he can also input manually, It can even be a fuzzy address, as long as it does not affect the calculation of the time to arrive the store, after they have booked a visit, they will receive the \hyperref[Definitions]{E-Ticket} with for data, QR Code, Query Number, the estimated departure time and the \hyperref[Definitions]{Store Planned Roadmap}.
+
+The Tickets Hand-Out Machine is usually placed at the entrance of the store,we just design only one button, that is retrieve a Ticket,no book a visit function, because we consider that the customer going out to pick up the number and wait until the book time to re-come to the store will significantly increase the number of outings,so we did not set up a booking process on the machine, otherwise, we mix the query of two kind of customer through the \hyperref[Definitions]{Store Back-End System's} query schedule function to try to best to reduce the wait time.
+
+\textbf{The manager end} is a software can install in a simple PC, the manager can use it to monitor the number of people in the store in real time, if something unexpected happens,there are more people in the store than expected, the manager has two ways to regulate the influx of people, first of all, he can reduce the \hyperref[Definitions]{Customer Entry Speed} to let the \hyperref[Definitions]{Digital Counterpart} call the customers slowly, on the other hand, if the first method still does not reduce the query length, he can reschedule the customer's book, and the back-end  will send a notification and new E-Ticket to customer to remind them depart later from their place. Otherwise when there are few people in the store but the query is long, the manage also can increase the Customer Entry Speed. In conclusion these two functions form a very useful mechanism, integrated with domain assumption, can achieve the requirements completeness, so that \textbf{R and D   $\models$   G}.
+
+The most important part of this system is the server end, the server end is implemented the \hyperref[Definitions]{Store Back-End System}, this system have to communicate with all other ends and control the Digital Counterpart. It contains three function, Booking Schedule Function, Query Schedule Function, \hyperref[Reference documents]{Customer Relationship Management System}. The Booking Schedule Function have to communicate with CRM, take the booking data, schedule the booking and put the enter time for each book to CRM system. For the Query Schedule, We refer to the queuing mode of the \hyperref[Reference documents]{Poste Italiane} that has been practiced very maturely. To the Poste Italiane, you can book your visit on the Ufficio Postale App, or just retrieve the ticket on the Machine, the back-end system will mix two query reasonable. To our Query Schedule Function, In order to achieve the goal $G_2$ we have higher requirements, that is we must have a better mechanism so that both types of customers do not need to queue for too long, thereby reducing risk. Finally The CRM System, this sub-system have to store customer's information, analysis the customer's history duration to sign if this customer is a \hyperref[Definitions]{Long-Term Customers}, received the booking,and communicate with Booking/Query Schedule function, calculate the  estimated departure time, plan the \hyperref[Definitions]{Store Planned Roadmap}, generation query number/QR code and put those all in the E-Ticket, by the way, when the Store Manager reschedule the booking, re-generation E-Ticket and send notification to the Customer.
+
+\subsection{Class Diagram and State Diagram}
+The Class Diagram model as shown in Fig.\ref{Class Diagram}, These classes implement the three functions of the Store Back-End System,the Customer Relationship Management sub-System composed by the  Customer class, Booking, Ticket, and CRM class, Among them, the CRM class is responsible for communicating with other ends,and it can control customer class's status,the Customer data will store in Database. The BookSchedule class implement the Booking Schedule Function, all booking data will store in database, and this class and control them. The last class is QuerySchedule class, it will implement the Query Schedule Function, it will take booking information and get Brick Customer's ticket information to schedule the query, the store manager can check the length of the query and the total number in store, when he want, he can control the enter speed, the CallNextCustomer method will control the \hyperref[Definitions]{Digital Counterpart} to make it display the next customer's query number according to the enter speed attribute.
+
+The //TODO state diagram model as show in //TODO
+
+
+\begin{figure} \label{Class Diagram}
+	\includegraphics[scale=0.3]{class_diagram.png}
+	\caption{CLup Class Diagram}
+	\centering
+\end{figure}
+
 
 
 \section{Product functions}
@@ -179,40 +198,41 @@ Because we consider that going out to pick up the number and wait until the sche
 			\item Indicate or give by GPS the place they want to depart to the shop
 		\end{itemize}
 		\item Received the \hyperref[Definitions]{E-Ticket} with QR Code, the estimated departure time and the queue number.
-		\item Received a \hyperref[Definitions]{Store Path Map}.	
+		\item Received a \hyperref[Definitions]{Store Planned Roadmap}.	
+		\item Received the notification and the new E-ticket from store manager when their book is rescheduled.
 		\item The customer can scan the QR Code at \hyperref[Definitions]{QR Code scanned machine} when they enter \textbf{and} leave the store.
 	\end{itemize}
 
 	\item Each \hyperref[Definitions]{Brick Customer} shall be able to
 	\begin{itemize}
 		\item Retrieve the \hyperref[Definitions]{Ticket} from \hyperref[Definitions]{Tickets Hand-Out Machine} and wait the \hyperref[Definitions]{Digital Counterpart} call them.
-		\item Scan the QR Code at \hyperref[Definitions]{QR Code Scanned Machine} when they enter \textbf{and} leave the store.
+		\item Scan the QR Code at QR Code Scanned Machine when they enter \textbf{and} leave the store.
 	\end{itemize}
 
 	\item \hyperref[Definitions]{Store Manager} shall be able to: 
 	\begin{itemize}
-		\item Login
 		\item Check out the \hyperref[Definitions]{On-Time Store Data}
 		\item Adjust the \hyperref[Definitions]{Customer Entry Speed}
+		\item Reschedule the click customers' book
 	\end{itemize}
 
 	\item The \hyperref[Definitions]{Store Back-End System} shall be able to:
 	\begin{itemize}
 		\item Send the available time/date to the the click customers.
 		\item Received and schedule the click customers' book, the scheduling have to refer the duration time of each customer.
-		\item Calculate the time from the click customer's departure place to the store.
-		\item Send the \hyperref[Definitions]{E-Ticket} to the click customers.
-		\item Plan the Store Path Map for each customer.
+		\item Calculate the time from the click customer's departure place to the store,and put the estimated departure time on the E-Ticket.
+		\item Plan and put the Store Planned Roadmap on the \hyperref[Definitions]{E-Ticket}
+		\item Send the  E-Ticket to the click customers.
+		\item Send a notification and new E-Ticket to the customer when their book is rescheduled.
 		\item Store the customer's data,include:
 		\begin{itemize}
 			\item Username
 			\item Password
-			\item Booked data
-			\item History visit date and time
+			\item Valid Booking data
+			\item History duration data
 			\item Is long-term customers
 		\end{itemize}
-		\item Store the average duration of the personal visit for each customer.
-		\item Analysis the average duration data and sign the long-term customers.
+		\item Analysis the history duration data and sign the \hyperref[Definitions]{Long-Term Customers}.
 		\item Calculate and store the \hyperref[Definitions]{On-Time Store Data}.
 		\item Schedule the query from click customer's book and brick customer's retrieved ticket.
 		\item Control the \hyperref[Definitions]{Digital Counterpart} and display the query number.
@@ -231,19 +251,34 @@ Because we consider that going out to pick up the number and wait until the sche
 \end{itemize}
 
 \section{User characteristics}
+
 \section{Constraints}
+There are not many constraints on customer's device, only need a smart phone with Android or IOS operation system, when they book a visit, the smartphone has to connect with internet, at other time, no need for a stable internet connection,only need to be able to connect to the Internet discontinuously to receive reminders that may appear.
+The manager needs a PC with stable network connection.
+For the \hyperref[Definitions]{Store Back-End System}, we buy a Amazon EC2 IaaS to implement this system.
+
+
 \section{Assumptions, Dependencies}
+
 \subsection{Domain Assumptions}
 \begin{itemize}
-	\item $D_1$
+	\item $D_1$ : Everyone will leave the departure place at the departure time indicated by the system.
+	\item $D_2$ : Everyone who leaves on time can arrive at the store on time.
+	\item $D_3$ : Everyone can leave the store in time according to their estimated time.
+	\item $D_4$ : If something unexpected happens, the store manager can reschedule the customer's book reasonably.
+	\item $D_5$ : If someone’s book is rescheduled, he can find the notification in time and set off according to the new ticket.
+	\item $D_6$ : Everyone can consciously scan the QR code at the entrance and exit.
+	\item $D_7$ : Everyone can follow the \hyperref[Definitions]{Planned Roadmap} in the store.
+	\item $D_8$ : If is possible, everyone tries to best book the visit by the software(be a \hyperref[Definitions]{Click Customer}) instead of picking up tickets on the spot(not be a \hyperref[Definitions]{Brick Customer}).
 \end{itemize}
 
 \subsection{Goals}
+There are only three main goals of this system.
 \begin{itemize}
-	\item $G_1$
+	\item $G_1$ : Allows store managers to regulate the influx of people in the building.
+	\item $G_2$ : Saves people from having to line up and stand outside of stores for hours on end.
+	\item $G_3$ : The application plan visits in a finer way to allow more people in the store, at the same time, let the customer occupy different spaces in the store to keep enough distance between them.
 \end{itemize}
-
-
 
 \chapter{Specific Requirements} \label{C3:SpecificRequirements}
 \section{External Interface Requirements}
@@ -280,11 +315,10 @@ Because we consider that going out to pick up the number and wait until the sche
 
 \chapter{Formal Analysis Using Alloy}
 
-
 \chapter{Effort Spent}
 
 \begin{itemize}
-	\item Kong Xiangyi
+	\item \textbf{Kong Xiangyi}
 	\begin{center}
 		\begin{tabular}{ |c|c|c| } 
 			\hline
@@ -297,8 +331,7 @@ Because we consider that going out to pick up the number and wait until the sche
 			\hline
 		\end{tabular}
 	\end{center}
-
-	\item Zhang Yuedong
+	\item \textbf{Zhang Yuedong}
 	\begin{center}
 		\begin{tabular}{ |c|c|c| } 
 			\hline
@@ -311,7 +344,9 @@ Because we consider that going out to pick up the number and wait until the sche
 			\hline
 			2020/10/30 & Added the purpose and scope of the RASD & 2h \\ 
 			\hline
-			2020/11/16 & Write the product functions part & 4h \\ 
+			2020/11/16 & Wrote the product functions part & 4h \\ 
+			\hline
+			2020/11/17 & Drawn the class diagram in the Section 2.1.1  & 2h \\ 
 			\hline
 		\end{tabular}
 	\end{center}
