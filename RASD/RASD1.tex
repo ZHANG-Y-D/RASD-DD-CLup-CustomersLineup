@@ -161,7 +161,8 @@ it describes the purpose of the CLup.
 
 
 \section{Product perspective}
-Because we consider that going out to pick up the number and wait until the scheduled time to come to the supermarket will significantly increase the number of outings, so we did not set up a booking process on the machine.
+Considering queuing outside the store to pick up the number and wait until the availability to enter the supermarket will significantly increase the risk of COVID-19, so we want to develop an easy-to-use application, aims to navigate the challenges created by the imposed restrictions.
+
 
 
 \section{Product functions}
@@ -173,12 +174,12 @@ Because we consider that going out to pick up the number and wait until the sche
 		\item Login
 		\item Book a visit,to complete it, they have to indicate the following data
 		\begin{itemize}
-			\item Indicate the date and time
+			\item Indicate the desired date and time
 			\item Indicate the approximate expected duration of the visit
 			\item Indicate the categories of items that they intend to buy
-			\item Indicate or give by GPS the place they want to depart to the shop
+			\item Indicate or given by GPS the current place they want to depart to the shop
 		\end{itemize}
-		\item Received the \hyperref[Definitions]{E-Ticket} with QR Code, the estimated departure time and the queue number.
+		\item Received the \hyperref[Definitions]{E-Ticket} with QR Code, the expected departure time and the queue number.
 		\item Received a \hyperref[Definitions]{Store Path Map}.	
 		\item The customer can scan the QR Code at \hyperref[Definitions]{QR Code scanned machine} when they enter \textbf{and} leave the store.
 	\end{itemize}
@@ -192,6 +193,7 @@ Because we consider that going out to pick up the number and wait until the sche
 	\item \hyperref[Definitions]{Store Manager} shall be able to: 
 	\begin{itemize}
 		\item Login
+		\item Monitor the entrance QR Code
 		\item Check out the \hyperref[Definitions]{On-Time Store Data}
 		\item Adjust the \hyperref[Definitions]{Customer Entry Speed}
 	\end{itemize}
