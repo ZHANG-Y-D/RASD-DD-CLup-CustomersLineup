@@ -1,0 +1,74 @@
+@startuml
+class Customer <<abstract>>
+class Customer{
+Ticket ValidTicket
+}
+
+class ClickCustomer{
+String username
+String password
+Booking ValidBooking
+ArrayList<Booking> HistoryBooking
+Boolean IsLongTermCustomer
+}
+
+class BrickCustomer{
+
+}
+
+class Booking{
+DateTime  BookedVisitTime
+Time ExpectedVisitDuration
+ArrayList<ItemToBuy> CategoriesIntendBuy
+String PlaceDepartureFrom
+Time ActualVisitedDuration
+}
+
+class Ticket{
+String QRCode
+String EstimatedDepartureTime
+Int QueryNumber
+String StorePlannedRoadmap
+GenerateQRCode()
+GenerateQueryNumber()
+CalculateTheDepartureTime()
+}
+
+
+class QuerySchedule{
+ArrayList<Customer> CurrentQuery
+ArrayList<Customer> CustomerInStore
+Int EnterSpeed
+CallNextCustomer()
+ScheduleQueryFromBooking()
+ScheduleForBrickCustomer()
+CustomerCheckIn()
+CustomerCheckOut()
+ModifyEnterSpeed()
+}
+
+class BookSchedule{
+TakeAvailableTime()
+AddBook()
+RescheduleBook()
+GenerateRoadMapForSameTimeCustomers()
+}
+
+class CRM{
+RegistryNewClickCustomer()
+CheckOutAClickCustomerData()
+ReceiveAndInsertANewBook()
+AnalysisIsTheLongTermCustomer()
+SendTicketToCustomer()
+SendNotifyToCustomer()
+}
+
+ClickCustomer o-- Booking
+Customer <|-- ClickCustomer
+Customer <|-- BrickCustomer
+CRM --- BookSchedule
+BookSchedule "1 " --- "1 " QuerySchedule
+CRM "1  " --- "1..*" Customer
+Customer o--- Ticket
+
+@enduml
