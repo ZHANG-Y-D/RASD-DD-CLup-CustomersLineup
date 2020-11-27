@@ -22,6 +22,7 @@ Time ExpectedVisitDuration
 ArrayList<ItemToBuy> CategoriesIntendBuy
 String PlaceDepartureFrom
 Time ActualVisitedDuration
+UpdateTheActualVisitedDuration()
 }
 
 class Ticket{
@@ -32,19 +33,21 @@ String StorePlannedRoadmap
 GenerateQRCode()
 GenerateQueryNumber()
 CalculateTheDepartureTime()
+ReceiveTheRoadMapFromBookSchedule()
 }
 
 
 class QuerySchedule{
 ArrayList<Customer> CurrentQuery
 ArrayList<Customer> CustomerInStore
-Int EnterSpeed
+Int MaximumNumberInTheStore
 CallNextCustomer()
 ScheduleQueryFromBooking()
-ScheduleForBrickCustomer()
+ScheduleQueryForBrickCustomer()
 CustomerCheckIn()
 CustomerCheckOut()
-ModifyEnterSpeed()
+AdjustTheQueryOrder()
+ModifyMaximumNumber()
 }
 
 class BookSchedule{
@@ -61,6 +64,7 @@ ReceiveAndInsertANewBook()
 AnalysisIsTheLongTermCustomer()
 SendTicketToCustomer()
 SendNotifyToCustomer()
+UpdateTicketForCustomer()
 }
 
 ClickCustomer o-- Booking
