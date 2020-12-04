@@ -28,25 +28,25 @@ UpdateTheActualVisitedDuration()
 class Ticket{
 String QRCode
 String EstimatedDepartureTime
-Int QueryNumber
+Int QueueNumber
 String StorePlannedRoadmap
 GenerateQRCode()
-GenerateQueryNumber()
+GenerateQueueNumber()
 CalculateTheDepartureTime()
 ReceiveTheRoadMapFromBookSchedule()
 }
 
 
-class QuerySchedule{
-ArrayList<Customer> CurrentQuery
+class QueueSchedule{
+ArrayList<Customer> CurrentQueue
 ArrayList<Customer> CustomerInStore
 Int MaximumNumberInTheStore
 CallNextCustomer()
-ScheduleQueryFromBooking()
-ScheduleQueryForBrickCustomer()
+ScheduleQueueFromBooking()
+ScheduleQueueForBrickCustomer()
 CustomerCheckIn()
 CustomerCheckOut()
-AdjustTheQueryOrder()
+AdjustTheQueueOrder()
 ModifyMaximumNumber()
 }
 
@@ -71,7 +71,7 @@ ClickCustomer o-- Booking
 Customer <|-- ClickCustomer
 Customer <|-- BrickCustomer
 CRM --- BookSchedule
-BookSchedule "1 " --- "1 " QuerySchedule
+BookSchedule "1 " --- "1 " QueueSchedule
 CRM "1  " --- "1..*" Customer
 Customer o--- Ticket
 

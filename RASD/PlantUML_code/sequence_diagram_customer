@@ -1,0 +1,26 @@
+@startuml
+actor "Click Customer" as click #red
+participant "CRM System" as CRM
+participant "Booking schedule" as booking
+participant "Queue schedule" as queue
+actor "Brick Customer" as brick #blue
+
+
+click->CRM: Sign-up
+click->CRM: Log-in
+click->CRM: Send a Booking
+CRM->booking: Register the booking
+booking->CRM: Send back the conformed booking
+CRM->click: Send the E-Ticket
+...
+queue->booking: Query the booking at the current time period
+booking->queue: Send back the booking
+brick-[#DEB39C]>queue: Retrieve the Ticket
+queue->queue: Calculate the queue
+queue->click: Call their queue number
+queue-[#DEB39C]>brick: Call their queue number
+
+click->queue: Scan the QRCode
+brick-[#DEB39C]>queue: Scan the QRCode
+
+@enduml

@@ -1,0 +1,43 @@
+@startuml
+actor "Store Manager" as manager
+participant "Queue schedule" as queue
+participant "Booking schedule" as booking
+participant "CRM System" as CRM
+actor "Click Customer" as customer
+
+...
+group Check On-Time Store Data
+manager->queue: Check on the On-Time Store Data
+activate queue
+queue->manager: Send the On-Time Store Data
+deactivate queue
+end
+
+...
+group Modify the queue order
+manager->queue: Modify the queue order
+activate queue
+queue->manager: Confirm and send back the updated On-Time Store Data
+deactivate queue
+end
+
+...
+group Modify the maximum number in the store
+manager->queue: Modify the maximum number in the store
+activate queue
+queue->manager: Confirm and send back the updated On-Time Store Data
+deactivate queue
+end
+
+...
+
+group Reschedule the booking
+manager->booking: Reschedule the booking
+activate booking
+booking->CRM: Send modified booking and customers
+booking->manager: Confirm and send back the updated booking schedule
+deactivate booking
+CRM->customer: Send the notification and update the E-Ticket
+end
+
+@enduml

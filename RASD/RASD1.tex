@@ -1,17 +1,17 @@
-\documentclass[a4paper,12pt]{book} 
+\documentclass[a4paper,12pt]{report} 
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{float}
+
+
+\pagestyle{headings}
 \graphicspath{{./Images/}}
 \hypersetup{
 	colorlinks=true,
 	linkcolor=blue,
-	filecolor=magenta,      
+	filecolor=magenta,
 	urlcolor=cyan,
 }
-
-
-
 
 \begin{document} 
 	
@@ -19,14 +19,12 @@
 \author{KONG XIANGYI\and ZHANG YUEDONG}
 \date{\today}
 
-
-\frontmatter
 \maketitle
 
 
 \tableofcontents
 
-\mainmatter
+
 
 \chapter{Introduction} \label{C1:Introduction}
 
@@ -106,7 +104,7 @@ So, this project appeared - Customers Line-up(CLup).
 	\item Store Back-End System : A software, as the back-end manages all stuffs.
 	\item On-Time Store Data : A dataset that includes the store's on-time date.
 	\begin{itemize}
-	\item The current Query 
+	\item The current queue 
 	\item The customers in the store
 	\item The maximum number of people in the store.
 	\end{itemize}
@@ -129,6 +127,7 @@ So, this project appeared - Customers Line-up(CLup).
 \begin{itemize}
 	\item  $WP_n$ : n-th world phenomena
 	\item  $SP_n$ : n-th shared phenomena
+	\item  $R_n$ : n-th requirement
 	\item  $G_n$ : n-th goal
 	\item  $D_n$ : n-th domain assumption
 \end{itemize}
@@ -153,26 +152,23 @@ it describes the purpose of the CLup.
 \textbf{Chapter \ref{C3:SpecificRequirements}} 
 
 
-
-
-
-
 \chapter{Overall Description} \label{C2:OverallDescription}
 \section{Product perspective}
 
 The CLup – Customers Line-up system can be divided into three parts. Three client ends and a server end, The client ends are divided into consumer end and store manager end according to the object-oriented. And we have divided consumers into two groups according to their characteristics, we referred to the the Business direction's click and brick concept of information system, and decided to name it "click and brick customer", the click customer will use the mobile application, and the brick customer will use the \hyperref[Definitions]{Tickets Hand-Out Machine} in the store.
 
-The mobile application for the click customer can install in the Android and IOS operation system, to make this app simple enough for everyone, we just design two main functions : Sign-up/in and Booking Function. when they book a visit, they have to input four information, that are visit date/time, the approximate expected duration of the visit, the categories of items that they intend to buy, and the place they depart from, for the depart place, if the depart place is the same as the current place and the GPS is available, the place information will input automatically by the application, by the way, if the customer does not want the application to get the GPS authority, he can also input manually, It can even be a fuzzy address, as long as it does not affect the calculation of the time to arrive the store. After they have booked a visit and the back-end system confirmed it, they will receive the \hyperref[Definitions]{E-Ticket} with four data, QR Code, Query Number, the estimated departure time and the \hyperref[Definitions]{Store Planned Roadmap}. The recommended route on the map may only be displayed when they depart.
+The mobile application for the click customer can install in the Android and IOS operation system, to make this app simple enough for everyone, we just design two main functions : Sign-up/in and Booking Function. when they book a visit, they have to input four information, that are visit date/time, the approximate expected duration of the visit, the categories of items that they intend to buy, and the place they depart from, for the depart place, if the depart place is the same as the current place and the GPS is available, the place information will input automatically by the application, by the way, if the customer does not want the application to get the GPS authority, he can also input manually, It can even be a fuzzy address, as long as it does not affect the calculation of the time to arrive the store. After they have booked a visit and the back-end system confirmed it, they will receive the \hyperref[Definitions]{E-Ticket} with four data, QR Code, 
+ Number, the estimated departure time and the \hyperref[Definitions]{Store Planned Roadmap}. The recommended route on the map may only be displayed when they depart.
 
-The Tickets Hand-Out Machine is usually placed at the entrance of the store,we just design only one button, that is retrieve a Ticket,no book a visit function, because we consider that the customer going out to pick up the number and wait until the book time to re-come to the store will significantly increase the number of outings,so we did not set up a booking process on the machine, otherwise, we mix the query of two kind of customer through the \hyperref[Definitions]{Store Back-End System's} query schedule function to try to best to reduce the wait time.
+The Tickets Hand-Out Machine is usually placed at the entrance of the store,we just design only one button, that is retrieve a Ticket,no book a visit function, because we consider that the customer going out to pick up the number and wait until the book time to re-come to the store will significantly increase the number of outings,so we did not set up a booking process on the machine, otherwise, we mix the queue of two kind of customer through the \hyperref[Definitions]{Store Back-End System's} queue schedule function to try to best to reduce the wait time.
 
-\textbf{The manager end} is a software can install in a simple PC, the manager can use it to monitor the number of people in the store in real-time, if something unexpected happens,for example, there are too many people in the store or too many people in one area, The store manager can solve this problem in two ways, first of all, he can lower the maximum people value in the store, so that the customer in the query will enter more slow, on the other hand, for an overcrowded area, he can adjust the customers who need to enter this area in the queue and let them enter the store later. After all,if the queue is too long due to these problem, he also can reschedule customers’ book, but \textbf{only the book of customers before the departure time can be rescheduled}. 
+\textbf{The manager end} is a software can install in a simple PC, the manager can use it to monitor the number of people in the store in real-time, if something unexpected happens,for example, there are too many people in the store or too many people in one area, The store manager can solve this problem in two ways, first of all, he can lower the maximum people value in the store, so that the customer in the queue will enter more slow, on the other hand, for an overcrowded area, he can adjust the customers who need to enter this area in the queue and let them enter the store later. After all,if the queue is too long due to these problem, he also can reschedule customers’ book, but \textbf{only the book of customers before the departure time can be rescheduled}. 
 
-The most important part of this system is the server end, the server end is implemented the \hyperref[Definitions]{Store Back-End System}, this system have to communicate with all other ends and control the Digital Counterpart. It contains three function, Booking Schedule Function, Query Schedule Function, \hyperref[Reference documents]{Customer Relationship Management System}. The Booking Schedule Function have to communicate with CRM, take the booking data, schedule the booking and put the enter time for each book to CRM system. For the Query Schedule, We refer to the queuing mode of the \hyperref[Reference documents]{Poste Italiane} that has been practiced very maturely. To the Poste Italiane, you can book your visit on the Ufficio Postale App, or just retrieve the ticket on the Machine, the back-end system will mix two query reasonable. For our Query Schedule Function, In order to achieve the goal $G_2$ we have higher requirements, that is we must have a better mechanism so that both types of customers do not need to queue for too long, thereby reducing risk. Finally the CRM System, this sub-system have to store customer's information, analysis the customer's history duration to make if this customer is a \hyperref[Definitions]{Long-Term Customers}, received the booking, communicate with Booking/Query Schedule function, calculate the  estimated departure time, plan the \hyperref[Definitions]{Store Planned Roadmap}, generation query number/QR code and put those all in the E-Ticket, by the way, when the Store Manager reschedule the booking,send notification and update the E-Ticket for the Customer.
+The most important part of this system is the server end, the server end is implemented the \hyperref[Definitions]{Store Back-End System}, this system have to communicate with all other ends and control the Digital Counterpart. It contains three function, Booking Schedule Function, Queue Schedule Function, \hyperref[Reference documents]{Customer Relationship Management System}. The Booking Schedule Function have to communicate with CRM, take the booking data, schedule the booking and put the enter time for each book to CRM system. For the Queue Schedule, We refer to the queuing mode of the \hyperref[Reference documents]{Poste Italiane} that has been practiced very maturely. To the Poste Italiane, you can book your visit on the Ufficio Postale App, or just retrieve the ticket on the Machine, the back-end system will mix two queue reasonable. For our Queue Schedule Function, In order to achieve the goal $G_2$ we have higher requirements, that is we must have a better mechanism so that both types of customers do not need to queue for too long, thereby reducing risk. Finally the CRM System, this sub-system have to store customer's information, analysis the customer's history duration to make if this customer is a \hyperref[Definitions]{Long-Term Customers}, received the booking, communicate with Booking/Queue Schedule function, calculate the  estimated departure time, plan the \hyperref[Definitions]{Store Planned Roadmap}, generation queue number/QR code and put those all in the E-Ticket, by the way, when the Store Manager reschedule the booking,send notification and update the E-Ticket for the Customer.
 
 \subsection{Class Diagram and State Diagram}
 \subsubsection{Class Diagram}
-The Class Diagram model as shown in Fig.\ref{Class Diagram}, These classes implement the three functions of the Store Back-End System,the Customer Relationship Management sub-System composed by the  Customer class, Booking, Ticket, and CRM class, Among them, the CRM class is responsible for communicating with other ends,and it can control customer class's status,the Customer data will store in Database. The BookSchedule class implement the Booking Schedule Function, all booking data will store in database, and this class can control them. The last class is the QuerySchedule class, it will implement the Query Schedule Function, it will take booking information and get Brick Customer's ticket information to schedule the query, the store manager can check the length of the query and the maximum number of customer in-store, when he found that somewhere in the store was too crowded, he can lower the maximum value. The CallNextCustomer method will control the \hyperref[Definitions]{Digital Counterpart} to make it display the next customer's query number according to the maximum number allowed in the store. In summary, these functions form a set of effective mechanisms to achieve the goals.
+The Class Diagram model as shown in Fig.\ref{Class Diagram}, These classes implement the three functions of the Store Back-End System,the Customer Relationship Management sub-System composed by the  Customer class, Booking, Ticket, and CRM class, Among them, the CRM class is responsible for communicating with other ends,and it can control customer class's status,the Customer data will store in Database. The BookSchedule class implement the Booking Schedule Function, all booking data will store in database, and this class can control them. The last class is the QueueSchedule class, it will implement the Queue Schedule Function, it will take booking information and get Brick Customer's ticket information to schedule the queue, the store manager can check the length of the queue and the maximum number of customer in-store, when he found that somewhere in the store was too crowded, he can lower the maximum value. The CallNextCustomer method will control the \hyperref[Definitions]{Digital Counterpart} to make it display the next customer's queue number according to the maximum number allowed in the store. In summary, these functions form a set of effective mechanisms to achieve the goals.
 
 
 
@@ -181,11 +177,12 @@ The State diagram Fig.\ref{State Diagram 1} illustrated the processing of a cust
 
 The State diagram Fig.\ref{State Diagram 2} showed us how the manager monitors the entry and exit of the store and helps some customers who do not have access to the required technology.
 
-The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed various requirements. It receive the data from customers and store manager, analyzed customer data and make the best solution. For longterm customers, system will according to previous visits to estimate the shopping time. Meanwhile, system will based on the categories of items that customer desired to buy, to allow more people to enter the store, due to they will occupy different spaces in the store when they shopping and also satisfy the enough distance between each customer.
+The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed various requirements. It receive the data from customers and store manager, analyzed customer data and make the best solution. For long-term customers, system will according to previous visits to estimate the shopping time. Meanwhile, system will based on the categories of items that customer desired to buy, to allow more people to enter the store, due to they will occupy different spaces in the store when they shopping and also satisfy the enough distance between each customer.
 
 
 
-\begin{figure}[H]
+
+\begin{figure}[H] 
 	\centering
 	\includegraphics[scale=0.28]{class_diagram.png}
 	\caption{CLup Class Diagram}
@@ -213,9 +210,7 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed va
 	\label{State Diagram 3}
 \end{figure}
 
-
 \newpage
-
 
 \section{Product functions}
 \subsection{Functional Requirements}
@@ -223,7 +218,7 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed va
 	\item Each \hyperref[Definitions]{Click Customer} shall be able to: 
 	\begin{itemize}
 		\item Sign-up 
-		\item Login
+		\item Log-in
 		\item Book a visit,to complete it, they have to indicate the following data
 		\begin{itemize}
 			\item Indicate the desired date and time
@@ -231,8 +226,8 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed va
 			\item Indicate the categories of items that they intend to buy
 			\item Indicate or given by GPS the current place they want to depart to the shop
 		\end{itemize}
-		\item Receive the \hyperref[Definitions]{E-Ticket} 
-		\item Received the notification and update the E-ticket from store manager when their book is rescheduled.
+		\item Check on the \hyperref[Definitions]{E-Ticket} 
+		\item Check on the notification from store manager when their book is rescheduled.
 		\item The customer can scan the QR Code at \hyperref[Definitions]{QR Code scanned machine} when they enter \textbf{and} leave the store.
 	\end{itemize}
 
@@ -246,7 +241,7 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed va
 	\begin{itemize}
 		\item Check out the \hyperref[Definitions]{On-Time Store Data}.
 		\item Adjust the maximum number of people in the store.
-		\item Adjust the order of the query.
+		\item Adjust the order of the queue.
 		\item Check and reschedule the booking.
 	\end{itemize}
 
@@ -268,8 +263,8 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed va
 		\end{itemize}
 		\item Analysis the history visit data and mark the \hyperref[Definitions]{Long-Term Customers}.
 		\item Calculate and store the \hyperref[Definitions]{On-Time Store Data}.
-		\item Schedule or reschedule the order of query from click customer's book and brick customer's retrieved ticket.
-		\item Control the \hyperref[Definitions]{Digital Counterpart} and display the query number.
+		\item Schedule or reschedule the order of queue from click customer's book and brick customer's retrieved ticket.
+		\item Control the \hyperref[Definitions]{Digital Counterpart} and display the queue number.
 		\item Receive the information from the \hyperref[Definitions]{QR Code Scanned Machine}.
 		\item Receive the information from the \hyperref[Definitions]{Tickets Hand-Out Machine}.
 	\end{itemize}
@@ -278,7 +273,7 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed va
 \subsection{Non-Functional Requirements}
 \begin{itemize}
 	\item The time from the click customer's departure place to the store that calculate from the \hyperref[Definitions]{Store Back-End System} must enough precise to avoid the customer arriving at the the store too early/late.
-	\item The Store Back-End System must schedule the query reasonably to minimize the wait time.
+	\item The Store Back-End System must schedule the queue reasonably to minimize the wait time.
 	\item The Store Back-End System must mix the book and brick customer's retrieved ticket reasonably to allow the click customers enter the store near the book time, by the way avoid making the brick customers wait too long.
 	\item Make sure that the supermarket is not overcrowded in each area, and the queue is not too long.
 	\item Cause of everyone needs to do grocery shopping, the software for the click customer should be enough simple to use,.
@@ -305,7 +300,7 @@ For the \hyperref[Definitions]{Store Back-End System}, we buy a Amazon EC2 IaaS 
 	\item $D_1$ : Everyone will leave the departure place at the departure time indicated by the system.
 	\item $D_2$ : Everyone who leaves on time can arrive at the store on time.
 	\item $D_3$ : Everyone can leave the store in time according to their estimated time.
-	\item $D_4$ : If something unexpected happens, the store manager can adjust the maximum number of people in the store or reschedule the query \& customer's book reasonably.
+	\item $D_4$ : If something unexpected happens, the store manager can adjust the maximum number of people in the store or reschedule the queue \& customer's book reasonably.
 	\item $D_5$ : If someone’s book is rescheduled, he can find the notification in time and set off according to the updated E-Ticket.
 	\item $D_6$ : Everyone can consciously scan the QR code at the entrance and exit.
 	\item $D_7$ : Everyone can follow the \hyperref[Definitions]{Planned Roadmap} in the store.
@@ -320,29 +315,329 @@ There are only three main goals of this system.
 	\item $G_3$ : The application plan visits in a finer way to allow more people in the store, at the same time, let the customer occupy different spaces in the store to keep enough distance between them.
 \end{itemize}
 
+
 \chapter{Specific Requirements} \label{C3:SpecificRequirements}
+
 \section{External Interface Requirements}
 \subsection{User Interfaces}
 \subsection{Hardware Interfaces}
 \subsection{Software  Interfaces}
 \subsection{Communication Interfaces}
 
-\newpage
-\section{Functional Requirements}
-\subsection{User Class 1}
-\subsubsection{Functional Requirement 1.1}
-\subsection{User Class 2}
-\subsubsection{Functional Requirement 2.1}
 
-\newpage
+
+
+\section{Functional Requirements}
+\subsection{Use Cases}
+
+\begin{figure}
+	\includegraphics[angle=90,scale=0.17]{usecase_diagram.png}
+	\centering
+	\caption{CLup Use Case Diagram}
+	\label{Use Case}
+\end{figure}
+
+\subsubsection{Click Customer’s perspective}
+The following tables describe the use cases from the perspective of the  \hyperref[Definitions]{Click Customer}.
+\begin{center}
+	\begin{tabular}{p{0.22\textwidth}|p{0.78\textwidth}}
+		\multicolumn{2}{c}{\large \textbf{Sign-up}} \\[3mm] 
+		\hline \\
+		Actors &  Unregistered Click Customer \\[3mm]
+		Description & A new customer who wants to visit the store by booking, can register himself using the application  \\[3mm] 
+		Pre-Condition & The  customer has a smart phone with Android or IOS system \\[3mm]
+		Flow of events & 
+		\begin{enumerate}
+			\item The customer download and install the CLup application
+			\item The customer open the Clup application and click the "Register" button
+			\item The CLup application show a form with username, password, confirm password fields and a submit button
+			\item The customer fill in the form and click the submit button
+			\item The back-end system validates data and restore this data in the CRM database.
+			\item The CLup application turns back automatically to the log-in page. 
+		\end{enumerate}  \\[3mm]
+	
+		Post-Conditions & The customer now is registered in system, can do the following operations. \\[3mm]
+		Exceptions & If the data inserted are not correct, the flow of events will restart from point 3.\\[3mm] 
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{p{0.22\textwidth}|p{0.78\textwidth}}
+		\multicolumn{2}{c}{\large \textbf{Log-in}} \\[3mm] 
+		\hline \\
+		Actors &  Click Customer \\[3mm] 
+		Description &  If the Click Customer want to do following operation, they have to log-in first  \\[3mm]  
+		Pre-Condition &  The Click Customer have already registered, and input their username and password correctly \\[3mm] 
+		Flow of events & 
+		\begin{enumerate}
+			\item The Click Customer open the CLup application.
+			\item The system will show a form with username and password fields.
+			\item The customer completes this form with the correct information and clicks the Log-in button.
+			\item After the back-end system validated the account, the system will enter the main page automatically.
+		\end{enumerate}
+		\\[3mm] 
+		Post-Conditions & The Click Customer is logged-in the app, and he can do the following operations.\\[3mm] 
+		Exceptions & If the account info is not correct, the flow of events will restart from point 2.\\[3mm] 
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{p{0.22\textwidth}|p{0.78\textwidth}}
+		\multicolumn{2}{c}{\large \textbf{Send a booking}} \\[3mm] 
+		\hline \\
+		Actors &  Click Customer \\[3mm] 
+		Description &   After the Log-in, the Click Customer can use this function to book their visit.\\[3mm]  
+		Pre-Condition &  Already Logged-in. \\[3mm] 
+		Flow of events & 
+		\begin{enumerate}
+			\item The customer clicks on the book button on the main page.
+			\item The system will show a form with the available visit date/time, the approximate expected duration of the visit, the categories of items they intend to buy, and the Current Place fields.
+			\item The customer completes this form with the correct information. For the Current Place field, if they want, they can click on the button near the fields so that the GPS model will provide the Current Place information. 
+			\item The customer clicks on the Submit button.
+			\item After the back-end system validated the information, the system will store this booking on the booking schedule database and go back to the main page.
+		\end{enumerate}
+		\\[3mm] 
+		Post-Conditions & After the booking schedule system complete the schedule, the customer can check on this E-Ticket and the notifications about this..\\[3mm] 
+		Exceptions & If this booking is not successful, the customer has to redo all this operation.\\[3mm] 
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{p{0.22\textwidth}|p{0.78\textwidth}}
+		\multicolumn{2}{c}{\large \textbf{Check on the E-Tickets}} \\[3mm] 
+		\hline \\
+		Actors &  The Click Customer \\[3mm] 
+		Description &  The customer can click on the "Check on the E-Ticket" button at all times to check on their bookings. \\[3mm]  
+		Pre-Condition &  They have to log-in first.\\[3mm] 
+		Flow of events & 
+		\begin{enumerate}
+			\item The customer clicks on the "Check on the E-Ticket" button on the main page.
+			\item This page shows all valid E-Ticket and the historical no valid E-ticket.
+			\item The customer clicks on the E-Ticket they are interested in.
+			\item The E-Ticket is in PDF format, the application will jump to the PDF reader to open it.
+		\end{enumerate}
+		\\[3mm] 
+		Post-Conditions & After reading it, the system will still stop on the E-Ticket page.
+		\\[3mm] 
+		Exceptions & If they did not book any visit,  this page would show the "No booking yet" field.\\[3mm] 
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{p{0.22\textwidth}|p{0.78\textwidth}}
+		\multicolumn{2}{c}{\large \textbf{Check on the Notifications}} \\[3mm] 
+		\hline \\
+		Actors &  The Click Customer \\[3mm] 
+		Description &  The customer can click on the "Check on the Notification" button at all times.  \\[3mm]  
+		Pre-Condition &  They have to log-in first.\\[3mm] 
+		Flow of events & 
+		\begin{enumerate}
+			\item The customer clicks on the "Check on the Notification" button on the main page.
+			\item This page shows all notifications, and the unread notifications will mark with a little red icon.
+			\item The customer clicks on the notification they are interested in. If they read an unread notification, the little red icon will cancel.
+		\end{enumerate}
+		\\[3mm] 
+		Post-Conditions & After reading it, the system will still stop on this page, and if they clicked on all unread notifications so that there is no unread notification, the "Check on the Notification" button on the main page will become the standard color.\\[3mm] 
+		Exceptions & If they did have any notifications,  this page would show the "No notification yet" field.  \\[3mm] 
+	\end{tabular}
+\end{center}
+
+
+\subsubsection{Brick Customer’s perspective}
+The following table describe the use cases from the perspective of the  \hyperref[Definitions]{Brick Customer}.
+\begin{center}
+	\begin{tabular}{p{0.22\textwidth}|p{0.78\textwidth}}
+		\multicolumn{2}{c}{\large \textbf{Retrieve a Ticket}} \\[3mm] 
+		\hline \\
+		Actors &  The Brick Customerw \\[3mm] 
+		Description & The Brick Customer has to go to the store and retrieve the paper Ticket on the \hyperref[Definitions]{Tickets Hand-Out Machine}.   \\[3mm]  
+		Pre-Condition &  The Tickets Hand-Out Machine is available.\\[3mm] 
+		Flow of events & 
+		\begin{enumerate}
+			\item The Brick Customer goes to the store and finds the Tickets Hand-Out Machine.
+			\item Click on the "Retrieve the Ticket" button on the machine.
+			\item After the Back-End system schedule it in the Queue Schedule system, the machine prints the Ticket.
+			\item The Brick Customer retrieves the Ticket.
+		\end{enumerate}
+		\\[3mm] 
+		Post-Conditions & \\[3mm] 
+		Exceptions & \\[3mm] 
+	\end{tabular}
+\end{center}
+
+
+\subsubsection{Customer's perspective}
+All kinds of customers have to do this operation.
+\begin{center}
+	\begin{tabular}{p{0.22\textwidth}|p{0.78\textwidth}}
+		\multicolumn{2}{c}{\large \textbf{Scan the QRCode}} \\[3mm] 
+		\hline \\
+		Actors &   The Click  \& Brick Customer \\[3mm] 
+		Description & All customers have to scan the QRCode when they enter and exit the store.\\[3mm]  
+		Pre-Condition &  They hold the Ticket.\\[3mm] 
+		Flow of events & 
+		\begin{enumerate}
+			\item The customer shows the QRCode in the Ticket.
+			\item Scan it on the \hyperref[Definitions]{QR Code Scanned Machine} when they enter the store.
+			\item Scan it on the QR Code Scanned Machine when they leave the store.
+		\end{enumerate}
+		\\[3mm] 
+		Post-Conditions & After they scan the QR Code when they leave, the QRCode is invalid. \\[3mm] 
+		Exceptions & \\[3mm] 
+	\end{tabular}
+\end{center}
+
+
+
+\subsubsection{Store Manager’s perspective}
+The following tables describe the use cases from the perspective of the \hyperref[Definitions]{Store Manager}.
+
+\begin{center}
+	\begin{tabular}{p{0.22\textwidth}|p{0.78\textwidth}}
+		\multicolumn{2}{c}{\large \textbf{Check out the On-Time Store Data}} \\[3mm] 
+		\hline \\
+		Actors &   The Store Manager \\[3mm] 
+		Description &  The Store Manager can view the \hyperref[Definitions]{On-Time Store Data} at any time. \\[3mm]  
+		Pre-Condition & The Back-End system is working well.
+		 \\[3mm] 
+		Flow of events & 
+		\begin{enumerate}
+			\item The manager enters the manage page.
+			\item The page shows all On-Time Store Data right on the main page.
+		\end{enumerate}
+		\\[3mm] 
+		Post-Conditions & \\[3mm] 
+		Exceptions & \\[3mm] 
+	\end{tabular}
+\end{center}
+
+
+
+\begin{center}
+	\begin{tabular}{p{0.22\textwidth}|p{0.78\textwidth}}
+		\multicolumn{2}{c}{\large \textbf{Reschedule the booking}} \\[3mm] 
+		\hline \\
+		Actors &   The Store Manager \\[3mm] 
+		Description & When the manager considers some area is too crowded, the queue is too long, or other necessary cases make them have to reschedule some customers' booking, they can do this operation. \\[3mm]  
+		Pre-Condition & The Back-End system is working well, there is at least one modifiable booking.  \\[3mm] 
+		Flow of events & 
+		\begin{enumerate}
+			\item The manager enters the manage page.
+			\item Click on the "Reschedule Booking" button.
+			\item The system jumps to the booking page that shows all the bookings.
+			\item The system marks the modifiable booking as red color (the bookings with departure time after the current time are modifiable)
+			\item The manager clicks or searches for a booking or selects some bookings.
+			\item The manager modifies the modifiable booking and clicks the "Confirm" button.
+			\item Wait for the Back-End system to deal with all operations and update the booking page automatically.
+		\end{enumerate}
+		\\[3mm] 
+		Post-Conditions & The Back-End system will send the notification and update the E-Ticket for the Click Customer. \\[3mm] 
+		Exceptions & If the Store Manager submits the wrong information, or this process is not successful, the flow of events will restart from point 3. \\[3mm] 
+	\end{tabular}
+\end{center}
+
+
+
+\begin{center}
+	\begin{tabular}{p{0.22\textwidth}|p{0.78\textwidth}}
+		\multicolumn{2}{c}{\large \textbf{Adjust the order of the Queue}} \\[3mm] 
+		\hline \\
+		Actors & The Store Manager  \\[3mm] 
+		Description & When the manager views some area is too crowded, they want customers who will visit these areas to enter the store later, or other necessary cases, they can do this operation to adjust the queue order.  \\[3mm]  
+		Pre-Condition &  The Back-End system is working well, and the queue is more than two customers. \\[3mm] 
+		Flow of events & 
+		\begin{enumerate}
+			\item The manager enters the manage page.
+			\item Click on the "Adjust the queue order" button.
+			\item The system jumps to the queue schedule page that shows the current queue in visualization mode.
+			\item The manager clicks or searches for a kind of customer or selects some customers.
+			\item The manager modifies the queue order and clicks the "Confirm" button.
+			\item Wait for the Back-End system to deal with all operations and update the queue schedule page automatically.
+		\end{enumerate}
+		\\[3mm] 
+		Post-Conditions & After this operation, the \hyperref[Definitions]{Digital Counterpart} will call the customer's queue number according to the new queue order.\\[3mm] 
+		Exceptions & If the Store Manager submits the wrong information, or this process is not successful, the flow of events will restart from point 3.
+		\\[3mm] 
+	\end{tabular}
+\end{center}
+
+
+\begin{center}
+	\begin{tabular}{p{0.22\textwidth}|p{0.78\textwidth}}
+		\multicolumn{2}{c}{\large \textbf{Adjust the maximum number in the store}} \\[3mm] 
+		\hline \\
+		Actors & The Store Manager  \\[3mm] 
+		Description & When the manager considers there are too many/few people in the store, they can do this operation to regulate the influx of people in the building.
+		\\[3mm]  
+		Pre-Condition & The Back-End system is working well. \\[3mm] 
+		Flow of events & 
+		\begin{enumerate}
+			\item The manager enters the manage page.
+			\item Just modify the maximum number in the store value on the main page.
+		\end{enumerate}
+		\\[3mm] 
+		Post-Conditions & If the current number is more than the maximum, the Digital Counterpart will stop to call the next customer until the current number few than the maximum. Instead, when the current number is fewer than the maximum, the Digital Counterpart will call fastly, until they are equal.
+		\\[3mm] 
+		Exceptions & If the Store Manager submits the wrong information, or this process is not successful, the maximum value will just come back to the previous value. \\[3mm] 
+	\end{tabular}
+\end{center}
+
+\subsubsection{Sequence Diagram}
+We have integrated the sequence diagrams from the perspective of the customer and store manager, respectively.
+
+From the customer's perspective Fig.\ref{Sequence Diagram Customer}, two kinds of customers are independent and do not interfere. The queue schedule function calls the queue number via the Digital Counterpart, and the customer has to view or listen well their queue number. When their number is called, they scan their QRCode.
+
+From the manager's perspective Fig.\ref{Sequence Diagram Manager}, their four operations are independent and do not interfere with each other.
+
+
+\begin{figure}
+	\includegraphics[scale=0.22]{sequence_diagram_customer.png}
+	\centering
+	\caption{Customers' Sequence Diagram}
+	\label{Sequence Diagram Customer}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[scale=0.18]{sequence_diagram_manager.png}
+	\centering
+	\caption{Manager's Sequence Diagram}
+	\label{Sequence Diagram Manager}
+\end{figure}
+
+
+\subsubsection{Scenarios}
+
+In order to describe these processes more vividly, we give three scenarios from three perspectives. 
+
+\textbf{Scenario 1 - Leonardo lives in a small town with a severe epidemic}: Leonardo, an excellent researcher, loves science, and he studies hard every day. His life is peaceful and happy in that small town. On a cold rainy day, a horrifying thing happened, his town found the COVID-19 cases! All people are terrified, and the mayor urges everyone not to go out. At this time, Leonardo cannot go to his university. Even he hardly goes out except going to the supermarket to buy food. In this challenging time, he discovered that the local supermarket "EsseCorta" was as crowded as usual, and there were also many people gathering. Even because other stores closed, the supermarket was even more crowded. To resolve this problem, Leonardo called on Essecorta to let everyone use CLup to reasonably organize shopping orders. The Essecorta owner was pleased, so within a few days, the system was deployed well.
+Now Leonardo does not have to take the risk any more in Essecorta. Every weekend, he books a visit on Monday morning at 9:30. Cause lives near it, so from the E-Ticket, Leonardo has to depart from 9:10. When he arrives, he found he even does not have to wait. The Digital Counterpart calls his queue number immediately. He takes out the E-Ticket, scans his QRCode, enters the supermarket, and following the Planned Roadmap on the E-Ticket. How to say? Such convenience! When he bought all items he wants, he rescans the QRCode at the exit and goes back home happy.
+
+
+\textbf{Scenario 2 - A lovely Nonna in the same town}: Nonna Angola live in this town much year. Facing this epidemic, she was very calm. She believes that this country has experienced many incidents, and people can handle the epidemic. Her life is simple, a coffee in the Morning, a Tea in the evening, that is all. She loves her simple life, and she does not want to change something. A day, she goes to the supermarket like usual day, the store manager tells her to take a Ticket from a machine, this machine has only a simple button like this lovely Nonna's life, this button is huge, almost occupied all space of the screen, to Nonna, it is not very difficult to use. After getting her Ticket, Nonna waits for the Digital Counterpart to call her number. A few seconds later, Nonna enters the market. The store manager helps her scan the QRCode when she enters and leaves the market.
+
+
+\textbf{Scenario 3 - The manager who want everyone safe}: Luca is a store manager. He is a bus driver before, but the cause of this unfortunate time, his bus is stopped, he has to find another job. The Essecorto owner found him because the driver has to keep every passager safe, so this job too! He has to look at the market at all times. One day, he finds that there are many people in the Gelato area. He realizes that it is not a good thing, so he reduces the store's maximum number. After a few minutes,  he finds that is not working, other areas have a few people, but the Gelato area still crowed. Why? Maybe this day has many children like Gelato, and these children did not book this visit. Instead, they all piked the Tiket on the machine, so the system did not monitor all this. Then Luca decided to adopt plan B. He checks the queue schedule and puts the customers who are also visiting the Gelato area later. Five minutes later, other managers tell him the adjustment is not enough, so Luca decided to take the last resort - reschedule the Gelato's customers' booking! He opens the booking schedule page and searches the keyword "Gelato" and modifies all valid results' customers' booking and postpones this for about 1 hour. Finally, ten minutes later, this area was clean. He did an excellent job!
+
+
+\subsection{Mapping on requirements}
+\subsubsection{$G_1$ : Allows store managers to regulate the influx of people in the building}
+
+\subsubsection{$G_2$ : Saves people from having to line up and stand outside of stores for hours on end}
+
+\subsubsection{$G_3$ : The application plan visits in a finer way to allow more people in the store, at the same time, let the customer occupy different spaces in the store to keep enough distance between them}
+
+
+
+
+
+
+
 \section{Performance Requirements}
 
-\newpage
 \section{Design Constraints}
 \subsection{Standards compliance}
 \subsection{Hardware limitations}
 
-\newpage
 \section{Software System Attributes}
 \subsection{Reliability}
 \subsection{Availability}
@@ -350,7 +645,7 @@ There are only three main goals of this system.
 \subsection{Maintainability}
 \subsection{Portability}
 
-\newpage
+
 \section{Other Requirements}
 
 \chapter{Formal Analysis Using Alloy}
@@ -395,11 +690,11 @@ max number
 			\hline
 			2020/11/27 & Fixed the problem of the second chapter & 1h \\
 			\hline
+			2020/12/04 & Completed the use case, sequence, and the scenario in the Section 3.2 & 4h\\
 		\end{tabular}
 	\end{center}
 \end{itemize}
 
 
-\backmatter
 
 \end{document}
