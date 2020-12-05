@@ -3,7 +3,7 @@
 \usepackage{hyperref}
 \usepackage{float}
 
-
+\usepackage{makecell}
 \pagestyle{headings}
 \graphicspath{{./Images/}}
 \hypersetup{
@@ -127,7 +127,8 @@ So, this project appeared - Customers Line-up(CLup).
 \begin{itemize}
 	\item  $WP_n$ : n-th world phenomena
 	\item  $SP_n$ : n-th shared phenomena
-	\item  $R_n$ : n-th requirement
+	\item  $R_n$ : n-th functional requirement
+	\item  $NR_n$: n-th non functional requirement
 	\item  $G_n$ : n-th goal
 	\item  $D_n$ : n-th domain assumption
 \end{itemize}
@@ -233,7 +234,7 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed va
 
 	\item Each \hyperref[Definitions]{Brick Customer} shall be able to
 	\begin{itemize}
-		\item Retrieve the \hyperref[Definitions]{Ticket} from \hyperref[Definitions]{Tickets Hand-Out Machine} and wait the \hyperref[Definitions]{Digital Counterpart} call them.
+		\item Retrieve the \hyperref[Definitions]{Ticket} from the \hyperref[Definitions]{Tickets Hand-Out Machine} and wait for the \hyperref[Definitions]{Digital Counterpart} to call them.
 		\item Scan the QR Code at QR Code Scanned Machine when they enter \textbf{and} leave the store.
 	\end{itemize}
 
@@ -248,8 +249,8 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed va
 	\item The \hyperref[Definitions]{Store Back-End System} shall be able to:
 	\begin{itemize}
 		\item Send the available time/date to the the click customers.
-		\item Received and schedule the click customers' book, the scheduling have to refer the duration time of each customer and the categories of items that the customer intend to buy
-		\item Calculate the time from the click customer's departure place to the store,and put the estimated departure time on the E-Ticket.
+		\item Received and schedule the click customers' book. The scheduling must refer to the duration time of each customer and the categories of items that the customer intends to buy
+		\item Calculate the time from the click customer's departure place to the store and put the estimated departure time on the E-Ticket.
 		\item Plan and put the Store Planned Roadmap on the \hyperref[Definitions]{E-Ticket}
 		\item Send the  E-Ticket to the click customers.
 		\item Send a notification and update the E-Ticket to the customer when their book is rescheduled.
@@ -263,7 +264,7 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed va
 		\end{itemize}
 		\item Analysis the history visit data and mark the \hyperref[Definitions]{Long-Term Customers}.
 		\item Calculate and store the \hyperref[Definitions]{On-Time Store Data}.
-		\item Schedule or reschedule the order of queue from click customer's book and brick customer's retrieved ticket.
+		\item Schedule or reschedule the queue order from the click customer's book and the brick customer's retrieved Ticket.
 		\item Control the \hyperref[Definitions]{Digital Counterpart} and display the queue number.
 		\item Receive the information from the \hyperref[Definitions]{QR Code Scanned Machine}.
 		\item Receive the information from the \hyperref[Definitions]{Tickets Hand-Out Machine}.
@@ -272,11 +273,10 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed va
 
 \subsection{Non-Functional Requirements}
 \begin{itemize}
-	\item The time from the click customer's departure place to the store that calculate from the \hyperref[Definitions]{Store Back-End System} must enough precise to avoid the customer arriving at the the store too early/late.
+	\item The time from the click customer's departure place to the store that calculates from the \hyperref[Definitions]{Store Back-End System} be precise enough to avoid the Customer arriving at the store too early/late.
 	\item The Store Back-End System must schedule the queue reasonably to minimize the wait time.
-	\item The Store Back-End System must mix the book and brick customer's retrieved ticket reasonably to allow the click customers enter the store near the book time, by the way avoid making the brick customers wait too long.
-	\item Make sure that the supermarket is not overcrowded in each area, and the queue is not too long.
-	\item Cause of everyone needs to do grocery shopping, the software for the click customer should be enough simple to use,.
+	\item The Store Back-End System must mix the book and brick customer's retrieved ticket reasonably to allow the click customers to enter the store near the book time by avoiding making the brick customers wait too long.
+	\item Cause everyone needs to do grocery shopping, the software for the click customer should be simple enough to use.
 \end{itemize}
 
 \section{User characteristics}
@@ -299,7 +299,7 @@ For the \hyperref[Definitions]{Store Back-End System}, we buy a Amazon EC2 IaaS 
 \begin{itemize}
 	\item $D_1$ : Everyone will leave the departure place at the departure time indicated by the system.
 	\item $D_2$ : Everyone who leaves on time can arrive at the store on time.
-	\item $D_3$ : Everyone can leave the store in time according to their estimated time.
+	\item $D_3$ : After shopping, everyone can leave the store in time according to their estimated time.
 	\item $D_4$ : If something unexpected happens, the store manager can adjust the maximum number of people in the store or reschedule the queue \& customer's book reasonably.
 	\item $D_5$ : If someone’s book is rescheduled, he can find the notification in time and set off according to the updated E-Ticket.
 	\item $D_6$ : Everyone can consciously scan the QR code at the entrance and exit.
@@ -622,15 +622,102 @@ Now Leonardo does not have to take the risk any more in Essecorta. Every weekend
 \subsection{Mapping on requirements}
 \subsubsection{$G_1$ : Allows store managers to regulate the influx of people in the building}
 
+
+\textbf{- Requirements:}
+\begin{itemize}
+	
+	\item $R_7$: The Store Manager shall be able to Check out the On-Time Store Data.
+	\item $R_8$: The Store Manager shall be able to Adjust the maximum number of people in the store. 
+	\item $R_9$: The Store Manager shall be able to Adjust the order of the queue.
+	\item $R_{10}$: The Store Manager shall be able to Check and reschedule the booking. 
+	\item $R_{12}$: The Store Back-End System shall be able to received and schedule the click customers’ book. The scheduling must refer to the duration time of each Customer and the categories of items that the Customer intends to buy.
+	\item $R_{15}$: The Store Back-End System shall send a notification and update the E-Ticket to the Customer when their book is rescheduled. 
+	\item $R_{17}$: The Store Back-End System shall analyze the history visit data and mark the Long-Term Customers. 
+	\item $R_{18}$: The Store Back-End System shall be able to Calculate and store the On-Time Store Data.
+	\item $R_{19}$: The Store Back-End System shall schedule or reschedule the queue order from click customer’s book and the brick customer's retrieved ticket.
+	\item $R_{20}$: The Store Back-End System shall be able to Control the Digital Counterpart and display the queue number. 
+	\item $R_{21}$: The Store Back-End System shall be able to receive the information from the QR Code Scanned Machine. Receive the information from the Tickets Hand-Out Machine. 
+\end{itemize}
+
+
+\textbf{- Domain Assumptions:}
+\begin{itemize}
+	\item $D_4$ : If something unexpected happens, the store manager can reasonably adjust the maximum number of people in the store or reschedule the queue \& Customer's book.
+	\item $D_5$ : If someone’s booking is rescheduled, he can find the notification in time and set off according to the updated E-Ticket.
+\end{itemize}
+
+
 \subsubsection{$G_2$ : Saves people from having to line up and stand outside of stores for hours on end}
+
+\textbf{- Requirements:}
+\begin{itemize}
+	\item $R_1$: Each Click Customer shall be able to sign-up and Log-in.
+	\item $R_2$: Each Click Customer shall be able to book a visit.
+	\item $R_3$: Each Click Customer shall be able to check on the E-Ticket.
+	\item $R_4$: Each Click Customer shall check on the store manager's notification when their book is rescheduled.
+	\item $R_5$: Each Brick Customer shall be able to retrieve the Ticket from the Tickets Hand-Out Machine and wait for the Digital Counterpart to call them.
+	\item $R_6$: Each Customer shall scan the QR Code at QR Code scanned machine when they enter and leave the store.
+	\item $R_{11}$: The Store Back-End System shall send the available time/date to the click customers. 
+	\item $R_{12}$: The Store Back-End System shall be able to received and schedule the click customers’ book. The scheduling must refer to the duration time of each Customer and the categories of items that the Customer intends to buy.
+	\item $R_{13}$: The Store Back-End System shall calculate the time from the click customer’s departure place to the store and put the estimated departure time on the E-Ticket. 
+	\item $R_{15}$: The Store Back-End System shall send a notification and update the E-Ticket to the Customer when their book is rescheduled. 
+	\item $R_{16}$: The Store Back-End System shall be able to store the Customer’s data.
+	\item $R_{17}$: The Store Back-End System shall analyze the history visit data and mark the Long-Term Customers. 
+	\item $NR_1$:The time from the click customer's departure place to the store that calculates from the Store Back-End System must be precise enough to avoid the Customer arriving at the store too early/late.
+	\item $NR_2$:The Store Back-End System must schedule the queue reasonably to minimize the wait time.
+	\item $NR_3$:The Store Back-End System must mix the book and brick customer's retrieved ticket reasonably to allow the click customers to enter the store near the book time by avoiding making the brick customers wait too long.
+	\item $NR_4$:Cause everyone needs to do grocery shopping, the software for the click customer should be simple enough to use.
+\end{itemize}
+
+\textbf{- Domain Assumptions:}
+\begin{itemize}
+	\item $D_1$ : Everyone will leave the departure place at the departure time indicated by the system.
+	\item $D_2$ : Everyone who leaves on time can arrive at the store on time.
+	\item $D_3$ : After shopping, everyone can leave the store in time according to their estimated time.
+	\item $D_5$ : If someone’s booking is rescheduled, he can find the notification in time and set off according to the updated E-Ticket.
+	\item $D_6$ : Everyone can consciously scan the QR code at the entrance and exit.
+	\item $D_8$ : If possible, everyone tries to book the visit via the application(be a \hyperref[Definitions]{Click Customer}) instead of picking up tickets on the spot(not be a \hyperref[Definitions]{Brick Customer}).
+\end{itemize}
+
 
 \subsubsection{$G_3$ : The application plan visits in a finer way to allow more people in the store, at the same time, let the customer occupy different spaces in the store to keep enough distance between them}
 
+\textbf{- Requirements:}
+\begin{itemize}
+	\item $R_{12}$: The Store Back-End System shall be able to received and schedule the click customers’ book. The scheduling must refer to the duration time of each Customer and the categories of items that the Customer intends to buy.
+	\item $R_{14}$: The Store Back-End System shall Plan and put the Store Planned Roadmap on the E-Ticket Send the E-Ticket to the click customers. 	
+	\item $R_{17}$: The Store Back-End System shall analyze the history visit data and mark the Long-Term Customers. 
+\end{itemize}
 
 
+\textbf{- Domain Assumptions:}
+\begin{itemize}
+	\item $D_3$ : After shopping, everyone can leave the store in time according to their estimated time.
+	\item $D_7$ : Everyone can follow the \hyperref[Definitions]{Planned Roadmap} in the store.
+\end{itemize}
 
 
+\subsubsection{Traceability Matrix   }
 
+
+\begin{center}
+	\setlength{\tabcolsep}{10pt} 
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{ |c|c|c| } 
+		\hline
+		\textbf{Goals} & \textbf{Requirements} & \textbf{Domain Assumptions} \\
+		\hline
+		\hline
+		$G_1$ & \makecell{$R_7$, $R_8$, $R_9$, $R_{10}$, $R_{12}$, $R_{15}$, \\ $R_{17}$, $R_{18}$, $R_{19}$,  $R_{20}$, $R_{21}$} & $D_4$, $D_5$ \\
+		\hline
+		$G_2$ &  \makecell{$R_1$, $R_2$, $R_3$, $R_4$, $R_5$, $R_6$, \\ $R_{11}$, $R_{12}$, $R_{13}$, $R_{15}$,  $R_{16}$, $R_{17}$, \\  $NR_1$, $NR_2$, $NR_3$, $NR_4$}  &  $D_1$, $D_2$, $D_3$, $D_5$, $D_6$, $D_8$\\
+		\hline
+		$G_3$ & $R_{12}$, $R_{14}$, $R_{17}$ & $D_3$, $D_7$ \\
+		\hline
+	\end{tabular}
+\end{center}
+
+In summary, we proved the \textbf{Requirements Completeness} of our system, so that \textbf{R and D   $\models$   G}.
 
 \section{Performance Requirements}
 
@@ -671,8 +758,11 @@ max number
 			\hline
 		\end{tabular}
 	\end{center}
+
+
 	\item \textbf{Zhang Yuedong}
 	\begin{center}
+		\scalebox{0.9}{
 		\begin{tabular}{ |c|c|c| } 
 			\hline
 			Date & Task & Hours \\
@@ -691,7 +781,10 @@ max number
 			2020/11/27 & Fixed the problem of the second chapter & 1h \\
 			\hline
 			2020/12/04 & Completed the use case, sequence, and the scenario in the Section 3.2 & 4h\\
-		\end{tabular}
+			\hline
+			2020/12/05 & Completed the Mapping on requirements in the section 3.2 & 2h \\
+			\hline
+		\end{tabular}}
 	\end{center}
 \end{itemize}
 
