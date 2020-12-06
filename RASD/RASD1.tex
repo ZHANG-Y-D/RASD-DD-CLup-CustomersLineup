@@ -63,6 +63,7 @@ So, this project appeared - Customers Line-up(CLup).
 
 \subsection{World Phenomena}
 
+//TODO ZHANG !!!
 \begin{center}
 	\begin{tabular}{ c|c } 
 		\hline
@@ -143,6 +144,8 @@ So, this project appeared - Customers Line-up(CLup).
 	\item Poste Italiane - \url{www.poste.it}
 \end{itemize}
 	
+
+//TODO KONG
 \section{Overview}
 The RASD document consists of five chapters.
 
@@ -154,16 +157,17 @@ it describes the purpose of the CLup.
 \textbf{Chapter \ref{C3:SpecificRequirements}} 
 
 
+
 \chapter{Overall Description} \label{C2:OverallDescription}
 \section{Product perspective}
 
-The CLup – Customers Line-up system can divide into three parts. Three client ends and a server end, The client ends are divided into consumer end and store manager end according to the object-oriented. Moreover, we have divided consumers into two groups according to their characteristics. We referred to the Business direction's "click and brick" concept in the "\hyperref[Reference documents]{Fondamenti di Sistemi informativi per il Settore dell'Informazione}" teach book, so we decided to name it the "\hyperref[Definitions]{Click Customer}" and the "\hyperref[Definitions]{Brick Customer}", the Click Customer will use the mobile application, and the Brick Customer will use the \hyperref[Definitions]{Tickets Hand-Out Machine} in the store.
+The CLup – Customers Line-up system can divide into three parts. Three client ends and a server end, The client ends are divided into Customer end and Store Manager end according to the object-oriented. Moreover, we have divided Customers into two groups according to their characteristics. We referred to the Business direction's "click and brick" concept in the "\hyperref[Reference documents]{Fondamenti di Sistemi informativi per il Settore dell'Informazione}" teach book, so we decided to name it the "\hyperref[Definitions]{Click Customer}" and the "\hyperref[Definitions]{Brick Customer}", the Click Customer will use the mobile application, and the Brick Customer will use the \hyperref[Definitions]{Tickets Hand-Out Machine} in the store.
 
 The mobile application for the Click Customer can install in the Android and IOS operation system. To make this app simple enough for everyone, we only design two main functions: Sign-up/in and Booking Function. When they book a visit, they have to input four information, the visit date/time, the approximate expected duration of the visit, the categories of items that the Customer intends to buy, and the place they depart. The departing place can input manually by the Customer or recognize by the GPS module. If customers take privacy very seriously, the address can even be fuzzy, as long as it does not affect the calculation of the time to arrive at the store. After they have booked a visit and the Back-End system confirmed it, they will receive the \hyperref[Definitions]{E-Ticket} as soon as possible with four data, QR Code, Queue Number, the estimated departure time and the \hyperref[Definitions]{Store Planned Roadmap}. 
 
 The Tickets Hand-Out Machine is usually placed at the entrance of the store. We design only one button that retrieves a Ticket, no book a visit function. There are two reasons for this design. First of all, this Machina has to easy enough to use. On the other hand, we consider that the Customer going out to pick up the number and wait until the book time to re-come to the store will significantly increase the number of outings, so we did not set up a booking process on this Machine.  Otherwise, we mix the queue of two kind of customer through the \hyperref[Definitions]{Store Back-End System's} queue schedule function to try to best to reduce the wait time.
 
-The manager end is a Management System that can install on a simple PC. The manager can use it to monitor the \hyperref[Definitions]{Store's On-Time Data}. Furthermore, if there are too many people in some areas or the whole store, the store manager can solve it in two ways. First, he can lower the maximum people value in the store so that the queue will enter slower. On the other hand, he can adjust the queue and let the Customer that will visit the crowded area to enter the store later. After all, if the queue is too long due to these problems, he also can reschedule customers’ book, but he can only reschedule the Customers' booking that before the departure time. 
+The Manager end is a Management System that can install on a simple PC. The manager can use it to monitor the \hyperref[Definitions]{Store's On-Time Data}. Furthermore, if there are too many people in some areas or the whole store, the store manager can solve it in two ways. First, he can lower the maximum people value in the store so that the queue will enter slower. On the other hand, he can adjust the queue and let the Customer that will visit the crowded area to enter the store later. After all, if the queue is too long due to these problems, he also can reschedule customers’ book, but he can only reschedule the Customers' booking that before the departure time. 
 
 The most important part of this system is the server end. The server end deployed the \hyperref[Definitions]{Store Back-End System}. This system has to communicate with all other ends and control the Hardware like the Digital Counterpart. It contains three functions, Booking Schedule Function, Queue Schedule Function, \hyperref[Reference documents]{Customer Relationship Management System - CRM System}. The Booking Schedule Function has to communicate with CRM, take the booking data, schedule the booking, and so on... For the Queue Schedule, We refer to the queuing model of the \hyperref[Reference documents]{Poste Italiane}. Its model has already been practiced very maturely. To visit the Poste Italiane, you can book your visit on the Ufficio Postale App or retrieve the ticket on the Machine, and the back-end system will mix two queues reasonably. For our Queue Schedule Function, to achieve goal $G_2$, we have higher requirements. We have to design a better mechanism so that both types of customers do not need to queue for too long, thereby reducing risk. Finally, the CRM System, this sub-system's primary work is communication with the Click Customer's end, like received the booking, integrate all information and generate/send the E-Ticket, by the way, when the Store Manager reschedules the booking, send notification and update the E-Ticket for the Customer. Otherwise, it also does other works like the CRM system usually do. For example, store Customer's data, analyze the Customer's history duration, and mark if this Customer is  \hyperref[Definitions]{Long-Term Customers}.
 
@@ -281,11 +285,12 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed va
 \end{itemize}
 
 
+//TODO ZHANG
 \section{User characteristics}
 The system will include three categories of user, each of them with different needs:
-The Click Customer : //TODO
-The Brick Customer
-The Store Manager
+The Click Customer:
+The Brick Customer:
+The Store Manager:
 
 
 \section{Assumptions, Dependencies, and Constraints}
@@ -387,7 +392,7 @@ Manager dashboard requirements:
 \end{itemize}
 
 \subsection{Communication Interfaces}
-
+\\TODO ZHANG
 
 
 \section{Functional Requirements}
@@ -676,10 +681,10 @@ In order to describe these processes more vividly, we give three scenarios from 
 Now Leonardo does not have to take the risk any more in Essecorta. Every weekend, he books a visit on Monday morning at 9:30. Cause lives near it, so from the E-Ticket, Leonardo has to depart from 9:10. When he arrives, he found he even does not have to wait. The Digital Counterpart calls his queue number immediately. He takes out the E-Ticket, scans his QRCode, enters the supermarket, and following the Planned Roadmap on the E-Ticket. How to say? Such convenience! When he bought all items he wants, he rescans the QRCode at the exit and goes back home happy.
 
 
-\textbf{Scenario 2 - A lovely Nonna in the same town}: Nonna Angola live in this town much year. Facing this epidemic, she was very calm. She believes that this country has experienced many incidents, and people can handle the epidemic. Her life is simple, a coffee in the Morning, a Tea in the evening, that is all. She loves her simple life, and she does not want to change something. A day, she goes to the supermarket like usual day, the store manager tells her to take a Ticket from a machine, this machine has only a simple button like this lovely Nonna's life, this button is huge, almost occupied all space of the screen, to Nonna, it is not very difficult to use. After getting her Ticket, Nonna waits for the Digital Counterpart to call her number. A few seconds later, Nonna enters the market. The store manager helps her scan the QRCode when she enters and leaves the market.
+\textbf{Scenario 2 - A lovely Nonna in the same town}: Nonna Angola live in this town much year. Facing this epidemic, she was very calm. She believes that this country has experienced many incidents, and people can handle the epidemic. Her life is simple, a coffee in the Morning, a Tea in the evening, that is all. She loves her simple life, and she does not want to change anything. A day, she goes to the supermarket like usual day, the store manager tells her to take a Ticket from a machine, this machine has only a simple button like this lovely Nonna's life, this button is huge, almost occupied all space of the screen, to Nonna, it is not very difficult to use. After getting her Ticket, Nonna waits for the Digital Counterpart to call her number. A few seconds later, Nonna enters the market. The store manager helps her scan the QRCode when she enters and leaves the market.
 
 
-\textbf{Scenario 3 - The manager who want everyone safe}: Luca is a store manager. He is a bus driver before, but the cause of this unfortunate time, his bus is stopped, he has to find another job. The Essecorto owner found him because the driver has to keep every passager safe, so this job too! He has to look at the market at all times. One day, he finds that there are many people in the Gelato area. He realizes that it is not a good thing, so he reduces the store's maximum number. After a few minutes,  he finds that is not working, other areas have a few people, but the Gelato area still crowed. Why? Maybe this day has many children like Gelato, and these children did not book this visit. Instead, they all piked the Tiket on the machine, so the system did not monitor all this. Then Luca decided to adopt plan B. He checks the queue schedule and puts the customers who are also visiting the Gelato area later. Five minutes later, other managers tell him the adjustment is not enough, so Luca decided to take the last resort - reschedule the Gelato's customers' booking! He opens the booking schedule page and searches the keyword "Gelato" and modifies all valid results' customers' booking and postpones this for about 1 hour. Finally, ten minutes later, this area was clean. He did an excellent job!
+\textbf{Scenario 3 - The manager who want everyone safe}: Luca is a store manager. He was a bus driver before, but the cause of this unfortunate time, his bus was stopped, he had to find another job. The Essecorto owner found him because the driver has to keep every passager safe, so this job too! He has to look at the market at all times. One day, he finds that there are many people in the Gelato area. He realizes that it is not a good thing, so he reduces the store's maximum number. After a few minutes,  he finds that is not working, other areas have a few people, but the Gelato area still crowed. Why? Maybe this day has many children like Gelato, and these children did not book this visit. Instead, they all piked the Tiket on the Machine, so the system did not monitor all this. Then Luca decided to adopt plan B. He checks the queue schedule and puts the customers who are also visiting the Gelato area later. Five minutes later, other managers tell him the adjustment is not enough, so Luca decided to take the last resort - reschedule the Gelato's customers' booking! He opens the booking schedule page and searches the keyword "Gelato" and modifies all valid results' customers' booking and postpones this for about 1 hour. Finally, ten minutes later, this area was clean. He did an excellent job!
 
 
 \subsection{Mapping on requirements}
@@ -787,7 +792,8 @@ In summary, we proved the \textbf{Requirements Completeness} of our system, so t
 
 \section{Performance Requirements}
 
-The Click Customer must have a smartphone with the Android or IOS operation system. When they open the book a visit page, the Back-End system has to send them the available data/time within 1 second. After they send the form, the Back-End system has to confirm it within 5 seconds. And then, the Back-End system has to schedule this booking, generate QRCode, Queue Number, Estimated departure time, and Planned Roadmap, integrate them to the E-Ticket, and send back the E-Ticket so soon as possible. Cause calculate the Planned Roadmap Operation has to wait for the other Customer's data, so this operation can not complete quickly. However, it must send the E-Ticket to the Customer 24 hours before departure.
+The Click Customer must have a smartphone with the Android or IOS operation system. When they open the book a visit page, the Back-End system has to send them the available data/time within 1 second. After they send the form, the Back-End system has to confirm it within 5 seconds. And then, the Back-End system has to schedule this booking, generate QRCode, Queue Number, Estimated departure time, and Planned Roadmap, integrate them to the E-Ticket, and send back the E-Ticket so soon as possible. Cause calculate the Planned Roadmap Operation has to wait for the other Customer's data, so this operation can not complete quickly. However, //TODO
+it must send the E-Ticket to the Customer 24 hours before departure. 
 
 For the Brick Customer, no need for them to hold any personal drives. They have to learn how to use the Ticket Hand-Out Machine. As the range of users includes all demographics, this machine has to be easy enough to use. When the Brick Customer retrieves the Ticket, the paper Ticket has to print in 1 second.
 
@@ -822,7 +828,9 @@ Furthermore, the hardware limitation of the Back-End System are:
 	\item 
 \end{itemize}
 
-\section{Software System Attributes}
+
+//TODO KONG
+section{Software System Attributes}
 \subsection{Reliability}
 \subsection{Availability}
 \subsection{Security}
@@ -830,12 +838,15 @@ Furthermore, the hardware limitation of the Back-End System are:
 \subsection{Portability}
 
 
-\section{Other Requirements}
 
+//TODO ZHANG
 \chapter{Formal Analysis Using Alloy}
 
-//TODO but \textbf{only the book of customers before the departure time can be rescheduled}. 
 max number
+Received the E-Ticket before departure time
+only the book of customers before the departure time can be rescheduled
+
+
 
 \chapter{Effort Spent}
 
@@ -853,6 +864,8 @@ max number
 			\hline
 			2020/11/14 & Drawn the state diagram in the Section 2.1.1 & 2h \\ 
 			\hline
+			
+			//TODO KONG
 		\end{tabular}
 	\end{center}
 
