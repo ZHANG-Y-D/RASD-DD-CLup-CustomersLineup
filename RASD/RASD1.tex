@@ -181,11 +181,11 @@ The Class Diagram model as shown in Fig.\ref{Class Diagram}, These classes imple
 
 
 \subsubsection{State Diagram}
-The State diagram Fig.\ref{State Diagram 1} illustrated the processing of a customer to require the E-ticket. Customers first register on the CLup, after they will book an appointment and specify their information(time, date, desired goods, etc.), then the can receive an E-Ticket. They can go to the supermarket according to the expected departure time given by the application, and enter the store with E-ticket.
+The State diagram Fig.\ref{State Diagram 1} illustrated the processing of a click-customer to require the E-ticket. Customers first register and log-in on the CLup, after they will book an appointment and specify their information(time, date, desired goods, etc.), then the can receive an E-Ticket. They can go to the supermarket according to the expected departure time given by the application, and scan-in the E-Ticket to enter the store, scan-out the E-Ticket when they leave the store.
 \\ \hspace*{\fill} \\
-The State diagram Fig.\ref{State Diagram 2} showed us how the manager monitors Store's On-Time data. The manager can view it on web in computer, and he can know the number of people inside and outside the store. He has the right to adjust the max people number inside the store to balance the capacity of supermarket. In advance, if too many people waiting outside the store, he can also send the notification to the customer who hasn't departed yet.
+The State diagram Fig.\ref{State Diagram 2} showed us how the manager monitors Store's On-Time data. The manager can view it on web in computer, and he can know the number of customer inside and outside the store. He has the right to set the max people number inside the store to balance the capacity of store. In advance, if too many people waiting outside the store, he can also send the notification to the customer who hasn't departed yet.
 \\ \hspace*{\fill} \\
-The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed various requirements. It receive the registration data and booking information from customers, analyzed customer data (duration time, desired products, categories, etc.) and calculate the route time from users' department place to the store. After the system will optimize the queue order to save everyone time. On the end, the system will generate an E-Ticket in PDF and send it to the user.\\
+The State diagram Fig.\ref{State Diagram 3} represented the serve end state diagram for click-customer. It receive the registration data and booking information from click-customers. After it schedule the booking, then the system generate and send the E-Ticket in PDF. After, it will schedule the queue. When the customer enter the store, it will receive the scan-in, after the customer leave the store, it will receive the scan-out.
 
 
 
@@ -207,7 +207,7 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed va
 
 \begin{figure}[H] 
 	\centering
-	\includegraphics[scale=0.62]{State_diagram2.png}
+	\includegraphics[scale=0.45]{State_diagram2.png}
 	\caption{Store Manager State Diagram}
 	\centering
 	\label{State Diagram 2}
@@ -215,8 +215,8 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed va
 
 \begin{figure}[H] 
 	\centering
-	\includegraphics[scale=0.62]{State_diagram3.png}
-	\caption{Server End State Diagram}
+	\includegraphics[scale=0.4]{State_diagram3.png}
+	\caption{Server End to Click-Customer State Diagram}
 	\centering
 	\label{State Diagram 3}
 \end{figure}
@@ -336,17 +336,17 @@ interface that the front-end offers or needs to interact with the users and the 
 In this section there are mock-ups of the user interfaces for the mobile application used
 by customer.\\
 
-\textbf{Login} In the Login page Fig.\ref{UI-Login} there are text fields for entering email and password in order to access the personal profile. In case that the customer don't have an account, there is also the option to sign-up.\\
+\textbf{Login} In the Login page Fig.\ref{UI-Login} there are text fields for entering username and password in order to access the personal profile. In case that the customer don't have an account, there is also the option to register.\\
 
-\textbf{Sign-up} In login page Fig.\ref{UI-Register}, the application requests the user to insert the name, email address and a password to register to the system.\\
+\textbf{Sign-up} In login page Fig.\ref{UI-Register}, the application requests the user to insert the username, email address and a password to register to the system.\\
 
-\textbf{Homepage} Once registered, the user will be welcomed by the homepage Fig.\ref{UI-Home}, that shows the optional of booking, ticket and notification. From booking, users can go to book an appointment for visiting the supermarket. In tickets button, customers can view all their tickets(ticket history, current ticket and up-coming ticket). As for notification part, if users has an unread notification, there will be a red point shown on the right top, after the user read it, the red point will disappear. With this, if users' appointment has been rescheduled by the manger, they can easily receive the notification or message from the manager.\\
+\textbf{Homepage} Once registered, the user will be welcomed by the homepage Fig.\ref{UI-Home}, that shows the optional of booking, ticket and notification. From booking, users can go to book an appointment for visiting the supermarket. In tickets button, customers can view all their tickets(ticket history, current ticket and up-coming ticket). As for notification part, if users has an unread notification, there will be a red point shown on the right top, after the user read it, the red point will disappear. With this, if users' appointment has been rescheduled by the manger, they can easily receive the notification from the manager.\\
 
-\textbf{Booking} After the user enter the booking button, users can see the page Fig.\ref{UI-Booking}, customers need to choose time and date from the given selection. Meanwhile, they need to approximate their duration time and what to buy in the supermarket. On the end, there are two ways to insert the depart address: one is manually insertion of the address by customer, another one is automatic positioning by GPS.\\
+\textbf{Booking} After the user enter the booking button, users can see the page Fig.\ref{UI-Booking}, customers need to choose time and date from the given selection. Meanwhile, they need to approximate their duration time, for long-term customers, the system will also shown the estimate duration time rely on his shopping duration time history. After, the customer need to select what categories to buy in the store. On the end, there are two ways to insert the depart address: one is manually insertion of the address by customer, another one is automatic positioning by GPS.\\
 
 \textbf{Category} In this page Fig.\ref{UI-Category}, there are lists of product categories in the supermarket, the product categories corresponding to the different zone in supermarket. Users can choose one or more categories which they want to buy during the shopping.\\ 
 
-\textbf{Manager Dashboard} In the manager dashboard Fig.\ref{UI-Dashboard}, the supermarket manager can see the number of people both inside and outside of the supermarket. He has the right to control the \textbf{Max} number of people inside the supermarket. If too many or too few people in the same zone of the supermarket, he can click 'Adjust', after he can change the max number of people inside the supermarket. And also if too many people waiting outside the supermarket, he can click the 'Reschedule' button, to reschedule the ticket and send the notification to customers who haven't departed yet.\\ 
+\textbf{Manager Dashboard} In the manager dashboard Fig.\ref{UI-Dashboard}, the supermarket manager can see the number of customers both inside and outside of the supermarket. He has the right to control the \textbf{Max} number of people inside the supermarket. If too many or too few people in the same zone of the supermarket, he can reset the Max number of customer inside the store on web. And also if too many people waiting outside the supermarket, he can click the 'Reschedule booking' button, to reschedule the ticket and send the notification to customers who haven't departed yet.\\ 
 
 \begin{figure}[H]
 	\begin{minipage}[t]{0.5\linewidth}
