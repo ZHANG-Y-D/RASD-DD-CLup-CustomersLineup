@@ -143,19 +143,21 @@ So, this project appeared - Customers Line-up(CLup).
 	\item  Fondamenti di Sistemi informativi per il Settore dell’Informazione - 7 settembre 2018
 	\item Poste Italiane - \url{www.poste.it}
 \end{itemize}
-	
 
 //TODO KONG
 \section{Overview}
-The RASD document consists of five chapters.
+The RASD document consists of different chapters in the structure.\\
 
-\textbf{Chapter \ref{C1:Introduction}} is the introduction chapter, it's an overview of the RASD and project, 
-it describes the purpose of the CLup.
+\textbf{Introduction}  In the first chapter, it gives the overview of CLup. It provided the definitions, acronyms and abbreviations throughout the document. The description of the product and main goal of this project are provided in the test. 
+\\
 
-\textbf{Chapter \ref{C2:OverallDescription}} 
 
-\textbf{Chapter \ref{C3:SpecificRequirements}} 
+\textbf{Overall Description} In this chapter, We describe how the product works. In addition, we provide more detailed information about the future details by using well-known diagrams (class diagrams and state diagrams). And product functions gives the more details of requirements. The list of domain assumptions and goals gives the support of the product.  The chapter ends with constrains to customer, manager and store back-end system, which are the basic for proceeding the product.
+\\
 
+\textbf{Specific Requirements} This chapter gives a more in-depth and detailed introduction to the system from the aspects of user/hardware/software interfaces, use cases, scenarios, sequence diagrams, and complete mapping of requirements. In use cases, it show the view from the click customer, brick customer and store manager. By using sequence diagram, illustrate the operations between each other. We also provide three small scenarios to explain more details and significant meaningful of CLup, corresponding to the view of click customer, brick customer and store manager. Some specifications regarding performance requirements and design constraints can also be found in the following sections.\\
+
+\textbf{Formal Analysis Using Alloy} In chapter 4, we use Alloy code as the fomal language to model some key concepts and introduce the purpose of it.\\
 
 
 \chapter{Overall Description} \label{C2:OverallDescription}
@@ -179,11 +181,11 @@ The Class Diagram model as shown in Fig.\ref{Class Diagram}, These classes imple
 
 
 \subsubsection{State Diagram}
-The State diagram Fig.\ref{State Diagram 1} illustrated the processing of a customer to require the E-ticket. Customers first state their requirements (time, goods, etc.), and then go to the store according to the expected departure time given by the application, after enter the store with E-ticket.
-
-The State diagram Fig.\ref{State Diagram 2} showed us how the manager monitors the entry and exit of the store and helps some customers who do not have access to the required technology.
-
-The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed various requirements. It receive the data from customers and store manager, analyzed customer data and make the best solution. For long-term customers, system will according to previous visits to estimate the shopping time. Meanwhile, system will based on the categories of items that customer desired to buy, to allow more people to enter the store, due to they will occupy different spaces in the store when they shopping and also satisfy the enough distance between each customer.
+The State diagram Fig.\ref{State Diagram 1} illustrated the processing of a customer to require the E-ticket. Customers first register on the CLup, after they will book an appointment and specify their information(time, date, desired goods, etc.), then the can receive an E-Ticket. They can go to the supermarket according to the expected departure time given by the application, and enter the store with E-ticket.
+\\ \hspace*{\fill} \\
+The State diagram Fig.\ref{State Diagram 2} showed us how the manager monitors Store's On-Time data. The manager can view it on web in computer, and he can know the number of people inside and outside the store. He has the right to adjust the max people number inside the store to balance the capacity of supermarket. In advance, if too many people waiting outside the store, he can also send the notification to the customer who hasn't departed yet.
+\\ \hspace*{\fill} \\
+The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed various requirements. It receive the registration data and booking information from customers, analyzed customer data (duration time, desired products, categories, etc.) and calculate the route time from users' department place to the store. After the system will optimize the queue order to save everyone time. On the end, the system will generate an E-Ticket in PDF and send it to the user.\\
 
 
 
@@ -195,26 +197,30 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed va
 	\label{Class Diagram}
 \end{figure}
 
-\begin{figure}[H]   
-	\includegraphics[scale=0.3]{State_diagram1.png}
+\begin{figure}[H]  
+	\centering 
+	\includegraphics[scale=0.62]{State_diagram1.png}
 	\caption{Customer State Diagram}
 	\centering
 	\label{State Diagram 1}
 \end{figure}
 
 \begin{figure}[H] 
-	\includegraphics[scale=0.3]{State_diagram2.png}
+	\centering
+	\includegraphics[scale=0.62]{State_diagram2.png}
 	\caption{Store Manager State Diagram}
 	\centering
 	\label{State Diagram 2}
 \end{figure}
 
 \begin{figure}[H] 
-	\includegraphics[scale=0.3]{State_diagram3.png}
+	\centering
+	\includegraphics[scale=0.62]{State_diagram3.png}
 	\caption{Server End State Diagram}
 	\centering
 	\label{State Diagram 3}
 \end{figure}
+
 
 \newpage
 
@@ -334,11 +340,13 @@ by customer.\\
 
 \textbf{Sign-up} In login page Fig.\ref{UI-Register}, the application requests the user to insert the name, email address and a password to register to the system.\\
 
-\textbf{Homepage} Once registered, the user will be welcomed by the homepage Fig.\ref{UI-Home}, that shows the optional of booking, ticket and waiting time. From booking, users can go to book an appointment for visiting the supermarket. In ticket button, customers can view all these ticket(history, current and up-coming ticket). As waiting time part, users can easily know how many time left for departing to supermarket.\\
+\textbf{Homepage} Once registered, the user will be welcomed by the homepage Fig.\ref{UI-Home}, that shows the optional of booking, ticket and notification. From booking, users can go to book an appointment for visiting the supermarket. In tickets button, customers can view all their tickets(ticket history, current ticket and up-coming ticket). As for notification part, if users has an unread notification, there will be a red point shown on the right top, after the user read it, the red point will disappear. With this, if users' appointment has been rescheduled by the manger, they can easily receive the notification or message from the manager.\\
 
-\textbf{Homepage} After the user enter the booking button, the user can see the page Fig.\ref{UI-Booking}, customers need to choose time and date from the given selection. Meanwhile, they need to approximate their duration time and what to buy in the supermarket. On the end, there are two ways to enter the depart address: one is insert by customer, another one is automatic positioning.\\
+\textbf{Booking} After the user enter the booking button, users can see the page Fig.\ref{UI-Booking}, customers need to choose time and date from the given selection. Meanwhile, they need to approximate their duration time and what to buy in the supermarket. On the end, there are two ways to insert the depart address: one is manually insertion of the address by customer, another one is automatic positioning by GPS.\\
 
-\textbf{Category} In this page Fig.\ref{UI-Category}, there are list of product categories in the supermarket, users can choose one or more categories which they want to buy during the shopping.\\ 
+\textbf{Category} In this page Fig.\ref{UI-Category}, there are lists of product categories in the supermarket, the product categories corresponding to the different zone in supermarket. Users can choose one or more categories which they want to buy during the shopping.\\ 
+
+\textbf{Manager Dashboard} In the manager dashboard Fig.\ref{UI-Dashboard}, the supermarket manager can see the number of people both inside and outside of the supermarket. He has the right to control the \textbf{Max} number of people inside the supermarket. If too many or too few people in the same zone of the supermarket, he can click 'Adjust', after he can change the max number of people inside the supermarket. And also if too many people waiting outside the supermarket, he can click the 'Reschedule' button, to reschedule the ticket and send the notification to customers who haven't departed yet.\\ 
 
 \begin{figure}[H]
 	\begin{minipage}[t]{0.5\linewidth}
@@ -349,7 +357,7 @@ by customer.\\
 	\end{minipage}%
 	\begin{minipage}[t]{0.5\linewidth}
 		\centering
-		\includegraphics[scale=0.6]{UI-Register.png}
+		\includegraphics[scale=0.5]{UI-Register.png}
 		\caption{UI-Register}
 		\label{UI-Register}
 	\end{minipage}
@@ -376,6 +384,14 @@ by customer.\\
 	\caption{UI-Category}
 	\centering
 	\label{UI-Category}
+\end{figure}
+
+\begin{figure}[H] 
+	\centering  
+	\includegraphics[scale=0.4]{UI-Dashboard.png}
+	\caption{UI-Dashboard}
+	\centering
+	\label{UI-Dashboard}
 \end{figure}
 
 
@@ -831,11 +847,17 @@ Furthermore, the hardware limitation of the Back-End System are:
 
 //TODO KONG
 section{Software System Attributes}
-\subsection{Reliability}
+\subsection{Reliability} 
+
 \subsection{Availability}
-\subsection{Security}
-\subsection{Maintainability}
-\subsection{Portability}
+
+\subsection{Security} 
+Since the collected user data is very sensitive, the user’s privacy must be considered during the entire data exchange process between the user and the system, and also between the system and the third party. The data stored in the system must be encrypted, and the municipality’s password must also be hashed before storing in Database.\\
+
+\subsection{Maintainability} The code must be written by Java, in order to let other developers easily understand and edit it. It also need to be well commented corresponding to the code in case of future issues.\\
+
+\subsection{Portability} The mobile application must be supported by Android and iOS operating systems. The web application must run in various operating systems: Windows, Linux, Mac.\\
+
 
 
 
@@ -862,7 +884,16 @@ The On-Time number of peoble is euqal or min than max number
 			\hline
 			2020/11/14 & Drawn the state diagram in the Section 2.1.1 & 2h \\ 
 			\hline
-			
+			2020/11/26 & Design and drawn the UI in section 3.1.1 & 2h \\
+			\hline
+			2020/12/5 & Completed the User Interface requirement & 3h \\
+			\hline
+			2020/12/6 & Inspected the section 2 & 1h \\
+			\hline
+			2020/12/10 & Wrote the overview & 1h \\
+			\hline
+			2020/12/18 & Completed the section 3.4 and fixed the problem in chapter 3 & 2h \\
+			\hline
 			//TODO KONG
 		\end{tabular}
 	\end{center}
