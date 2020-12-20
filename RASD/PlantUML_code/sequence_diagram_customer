@@ -12,8 +12,10 @@ click->CRM: Send a Booking
 CRM->booking: Register the booking
 booking->CRM: Send back the booking confirmation
 CRM->click: Confirm Booking
-//TODO
 ...
+booking->booking: Schedule the Booking
+CRM->booking: Ask the Booking Data
+booking->CRM: Send back the Booking data
 CRM->click: Send the E-Ticket
 ...
 queue->booking: Query the booking at the current time period
