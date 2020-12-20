@@ -152,7 +152,7 @@ The RASD document consists of different chapters in the structure.\\
 \\
 
 
-\textbf{Overall Description} In this chapter, We describe how the product works. In addition, we provide more detailed information about the future system by using well-known diagrams (class diagrams and state diagrams). And product functions gives the more details of requirements. The list of domain assumptions and goals gives the support of the product.  The chapter ends with constrains to customer, manager and store back-end system, which are the basic for proceeding the product.
+\textbf{Overall Description} In this chapter, We describe how the product works. In addition, we provide more detailed information about the future details by using well-known diagrams (class diagrams and state diagrams). And product functions gives the more details of requirements. The list of domain assumptions and goals gives the support of the product.  The chapter ends with constrains to customer, manager and store back-end system, which are the basic for proceeding the product.
 \\
 
 \textbf{Specific Requirements} This chapter gives a more in-depth and detailed introduction to the system from the aspects of user/hardware/software interfaces, use cases, scenarios, sequence diagrams, and complete mapping of requirements. In use cases, it show the view from the click customer, brick customer and store manager. By using sequence diagram, illustrate the operations between each other. We also provide three small scenarios to explain more details and significant meaningful of CLup, corresponding to the view of click customer, brick customer and store manager. Some specifications regarding performance requirements and design constraints can also be found in the following sections.\\
@@ -181,11 +181,11 @@ The Class Diagram model as shown in Fig.\ref{Class Diagram}, These classes imple
 
 
 \subsubsection{State Diagram}
-The State diagram Fig.\ref{State Diagram 1} illustrated the processing of a customer to require the E-ticket. Customers first state their requirements (time, goods, etc.), and then go to the store according to the expected departure time given by the application, after enter the store with E-ticket.
-
-The State diagram Fig.\ref{State Diagram 2} showed us how the manager monitors the entry and exit of the store and helps some customers who do not have access to the required technology.
-
-The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed various requirements. It receive the data from customers and store manager, analyzed customer data and make the best solution. For long-term customers, system will according to previous visits to estimate the shopping time. Meanwhile, system will based on the categories of items that customer desired to buy, to allow more people to enter the store, due to they will occupy different spaces in the store when they shopping and also satisfy the enough distance between each customer.
+The State diagram Fig.\ref{State Diagram 1} illustrated the processing of a customer to require the E-ticket. Customers first register on the CLup, after they will book an appointment and specify their information(time, date, desired goods, etc.), then the can receive an E-Ticket. They can go to the supermarket according to the expected departure time given by the application, and enter the store with E-ticket.
+\\ \hspace*{\fill} \\
+The State diagram Fig.\ref{State Diagram 2} showed us how the manager monitors Store's On-Time data. The manager can view it on web in computer, and he can know the number of people inside and outside the store. He has the right to adjust the max people number inside the store to balance the capacity of supermarket. In advance, if too many people waiting outside the store, he can also send the notification to the customer who hasn't departed yet.
+\\ \hspace*{\fill} \\
+The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed various requirements. It receive the registration data and booking information from customers, analyzed customer data (duration time, desired products, categories, etc.) and calculate the route time from users' department place to the store. After the system will optimize the queue order to save everyone time. On the end, the system will generate an E-Ticket in PDF and send it to the user.\\
 
 
 
@@ -197,26 +197,30 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed va
 	\label{Class Diagram}
 \end{figure}
 
-\begin{figure}[H]   
-	\includegraphics[scale=0.3]{State_diagram1.png}
+\begin{figure}[H]  
+	\centering 
+	\includegraphics[scale=0.62]{State_diagram1.png}
 	\caption{Customer State Diagram}
 	\centering
 	\label{State Diagram 1}
 \end{figure}
 
 \begin{figure}[H] 
-	\includegraphics[scale=0.3]{State_diagram2.png}
+	\centering
+	\includegraphics[scale=0.62]{State_diagram2.png}
 	\caption{Store Manager State Diagram}
 	\centering
 	\label{State Diagram 2}
 \end{figure}
 
 \begin{figure}[H] 
-	\includegraphics[scale=0.3]{State_diagram3.png}
+	\centering
+	\includegraphics[scale=0.62]{State_diagram3.png}
 	\caption{Server End State Diagram}
 	\centering
 	\label{State Diagram 3}
 \end{figure}
+
 
 \newpage
 
