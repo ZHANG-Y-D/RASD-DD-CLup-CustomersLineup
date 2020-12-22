@@ -18,9 +18,9 @@ rectangle "Store Back-End System" #BFE6B3 {
     }
 
     together {
-        (Check out the On-Time Store Data) as (CheckOut) #ffcb0c
+        (Check the On-Time Store Data) as (CheckOut) #ffcb0c
         (Adjust the maximum number in the store) as (AdjustMaximum) #ffcb0c
-        (Adjust the order of the Queue) as (AdjustQueue) #ffcb0c
+        (Adjust the Queue Order) as (AdjustQueue) #ffcb0c
         (Reschedule the booking) as (Reschedule) #ffcb0c
     }
 

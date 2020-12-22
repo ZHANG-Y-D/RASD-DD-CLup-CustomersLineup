@@ -8,7 +8,12 @@ actor "Brick Customer" as brick #blue
 
 click->CRM: Sign-up
 click->CRM: Log-in
-click->CRM: Send a Booking
+click->CRM: Send a Booking request
+CRM -> booking: Query the Available time
+booking -> CRM: Send back the Available time
+CRM -> CRM: Analysis the Average duration
+CRM -> click: Send the Booking information
+click -> CRM: Send the Booking form
 CRM->booking: Register the booking
 booking->CRM: Send back the booking confirmation
 CRM->click: Confirm Booking

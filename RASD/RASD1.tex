@@ -13,6 +13,43 @@
 	urlcolor=cyan,
 }
 
+
+% For Alloy Code --->>>
+\usepackage{listings}
+\usepackage{xcolor}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	language=c,
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{blue},
+	morekeywords={sig,one,lone,set,abstract, extends,all, disj,no,some,fact,pred,run,for},
+	numberstyle=\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\lstset{style=mystyle}
+% For Alloy Coide <<<---
+
+
+
 \begin{document} 
 	
 \title{Requirement Analysis and Specification Document RASD}
@@ -109,7 +146,7 @@ So, this project appeared - Customers Line-up(CLup).
 	\item The customers in the store
 	\item The maximum number of people in the store.
 	\end{itemize}
-	\item Long-Term Customers : The customers with the high average duration of the visit, we set the threshold value to 1 hour.
+	\item Long-Term Customers : The customers with the high average duration of the visit, we set the threshold value to 1 hour. //TODO
 \end{itemize}
 
 
@@ -845,8 +882,8 @@ Furthermore, the hardware limitation of the Back-End System are:
 \end{itemize}
 
 
-//TODO KONG
-section{Software System Attributes}
+//TODO
+\section{Software System Attributes}
 \subsection{Reliability} 
 
 \subsection{Availability}
@@ -863,8 +900,8 @@ Since the collected user data is very sensitive, the user’s privacy must be co
 
 //TODO ZHANG
 \chapter{Formal Analysis Using Alloy}
-Each user is uniquely identified by a username
-The On-Time number of peoble is euqal or min than max number
+\lstinputlisting[linerange={1-101}]{./AlloyCode/CLupAlloy.als}
+
 
 
 
@@ -873,6 +910,7 @@ The On-Time number of peoble is euqal or min than max number
 \begin{itemize}
 	\item \textbf{Kong Xiangyi}
 	\begin{center}
+		\scalebox{0.9}{
 		\begin{tabular}{ |c|c|c| } 
 			\hline
 			Date & Task & Hours \\
@@ -895,7 +933,7 @@ The On-Time number of peoble is euqal or min than max number
 			2020/12/18 & Completed the section 3.4 and fixed the problem in chapter 3 & 2h \\
 			\hline
 			//TODO KONG
-		\end{tabular}
+		\end{tabular}}
 	\end{center}
 
 
@@ -924,6 +962,8 @@ The On-Time number of peoble is euqal or min than max number
 			2020/12/05 & Completed the Mapping on requirements in the section 3.2 & 2h \\
 			\hline
 			2020/12/06 & Completed the Performance Requirements & 1h \\
+			\hline
+			2020/12/20 & Coding for Alloy & 4h\\
 			\hline
 		\end{tabular}}
 	\end{center}
