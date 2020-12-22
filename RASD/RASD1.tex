@@ -53,7 +53,7 @@ And this RASD has the following intended audiences
 
 At the end of 2019, a global epidemic broke out and swept almost all countries in the world in just a few months. Starting in 2020, people's life rhythm has been completely disrupted by this epidemic, a lot of cities are blocked, people are allowed to exit their homes only for essential needs, everyone had to wear masks and respect the social-distancing at least 1.5 m. In the public area, the human community has to take measures to avoid the crazy spread of the virus. Restaurants began to use dividers to separate the table, supermarkets and museums began to restrict flow of people, the school also adopted into two classes mode: online and onsite.
 
-In this situation, a new problem arises, how to delay the spread of the virus through technical means? 
+In this situation, a new problem arises, how to decrease the spread of the virus through technical means? 
 
 Since grocery shopping is the most needed activity under the lock-down, so let’s narrow the problem to grocery shopping.
 
@@ -93,15 +93,19 @@ Controlled by the world and observed by the machine\\
 		\hline
 		$SP_4$ & Users Scan-in and Scan-out on the store\\ 
 		\hline
+		$SP_5$ & Manager send the notification\\ 
+		\hline
 	\end{tabular}
 \end{center}
 Controlled by the machine and observed by the world\\
 \begin{center}
 	\begin{tabular}{ c|c } 
 		\hline
-		$SP_5$ &  Availabe booking date and time shown to users\\ 
+		$SP_6$ &  Availabe booking date and time shown to users\\ 
 		\hline
-		$SP_6$ &  Generate the E-Ticket\\ 
+		$SP_7$ &  Generate the E-Ticket\\ 
+		\hline
+		$SP_8$ &  Users receive the notification\\ 
 		\hline
 	\end{tabular}
 \end{center}
@@ -166,7 +170,7 @@ Controlled by the machine and observed by the world\\
 \section{Overview}
 The RASD document consists of different chapters in the structure.\\
 
-\textbf{Introduction}  In the first chapter, it gives the overview of CLup. It provided the definitions, acronyms and abbreviations throughout the document. The description of the product and main goal of this project are provided in the test. 
+\textbf{Introduction}  In the first chapter, it gives the overview of CLup. It provided the definitions, acronyms and abbreviations throughout the document. The description of the product and main goal of this project are provided in the test. Describe the world phenomena and shared phenomena.
 \\
 
 
@@ -201,7 +205,7 @@ The Class Diagram model as shown in Fig.\ref{Class Diagram}, These classes imple
 \subsubsection{State Diagram}
 The State diagram Fig.\ref{State Diagram 1} illustrated the processing of a click-customer to require the E-ticket. Customers first register and log-in on the CLup, after they will book an appointment and specify their information(time, date, desired goods, etc.), then the can receive an E-Ticket. They can go to the supermarket according to the expected departure time given by the application, and scan-in the E-Ticket to enter the store, scan-out the E-Ticket when they leave the store.
 \\ \hspace*{\fill} \\
-The State diagram Fig.\ref{State Diagram 2} showed us how the manager monitors Store's On-Time data. The manager can view it on web in computer, and he can know the number of customer inside and outside the store. He has the right to set the max people number inside the store to balance the capacity of store. In advance, if too many people waiting outside the store, he can also send the notification to the customer who hasn't departed yet.
+The State diagram Fig.\ref{State Diagram 2} showed us how the manager monitors Store's On-Time data. The manager can view it on web in computer, and he can know the number of customer inside store, and the customer queuing outside the store. He has the right to set the max people number inside the store to balance the capacity of store. In advance, if too many people waiting outside the store, he can also send the notification to the customer who hasn't departed yet.
 \\ \hspace*{\fill} \\
 The State diagram Fig.\ref{State Diagram 3} represented the serve end state diagram for click-customer. It receive the registration data and booking information from click-customers. After it schedule the booking, then the system generate and send the E-Ticket in PDF. After, it will schedule the queue. When the customer enter the store, it will receive the scan-in, after the customer leave the store, it will receive the scan-out.
 
