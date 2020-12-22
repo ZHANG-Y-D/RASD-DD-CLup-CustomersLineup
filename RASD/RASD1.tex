@@ -100,31 +100,48 @@ So, this project appeared - Customers Line-up(CLup).
 
 \subsection{World Phenomena}
 
-//TODO ZHANG !!!
 \begin{center}
 	\begin{tabular}{ c|c } 
 		\hline
-		$WP_1$ & cell \\ 
+		$WP_1$ & Users want to buy some products \\ 
 		\hline
-		$WP_2$ & cell \\ 
+		$WP_2$ & Users go to the store \\ 
 		\hline
-		$WP_3$ & cell \\ 
+		$WP_3$ & Users lining the queue out of the store \\ 
+		\hline
+		$WP_4$ & Users shopping inside the store \\ 
+		\hline
+		$WP_5$ & Manager monitor the people density in different store zone \\ 
 		\hline
 	\end{tabular}
 \end{center}
 
 \subsection{Shared Phenomena}
+Controlled by the world and observed by the machine\\
 \begin{center}
 	\begin{tabular}{ c|c } 
 		\hline
-		$SP_1$ & cell \\ 
+		$SP_1$ & Collect users' data through sensors(GPS) \\ 
 		\hline
-		$SP_2$ & cell \\ 
+		$SP_2$ & Users Login/ Register process \\ 
 		\hline
-		$SP_3$ & cell \\ 
+		$SP_3$ & Users select what to buy on CLup\\ 
+		\hline
+		$SP_4$ & Users Scan-in and Scan-out on the store\\ 
 		\hline
 	\end{tabular}
 \end{center}
+Controlled by the machine and observed by the world\\
+\begin{center}
+	\begin{tabular}{ c|c } 
+		\hline
+		$SP_5$ &  Availabe booking date and time shown to users\\ 
+		\hline
+		$SP_6$ &  Generate the E-Ticket\\ 
+		\hline
+	\end{tabular}
+\end{center}
+
 
 
 \section{Definitions, acronyms, abbreviations}
@@ -218,11 +235,11 @@ The Class Diagram model as shown in Fig.\ref{Class Diagram}, These classes imple
 
 
 \subsubsection{State Diagram}
-The State diagram Fig.\ref{State Diagram 1} illustrated the processing of a customer to require the E-ticket. Customers first register on the CLup, after they will book an appointment and specify their information(time, date, desired goods, etc.), then the can receive an E-Ticket. They can go to the supermarket according to the expected departure time given by the application, and enter the store with E-ticket.
+The State diagram Fig.\ref{State Diagram 1} illustrated the processing of a click-customer to require the E-ticket. Customers first register and log-in on the CLup, after they will book an appointment and specify their information(time, date, desired goods, etc.), then the can receive an E-Ticket. They can go to the supermarket according to the expected departure time given by the application, and scan-in the E-Ticket to enter the store, scan-out the E-Ticket when they leave the store.
 \\ \hspace*{\fill} \\
-The State diagram Fig.\ref{State Diagram 2} showed us how the manager monitors Store's On-Time data. The manager can view it on web in computer, and he can know the number of people inside and outside the store. He has the right to adjust the max people number inside the store to balance the capacity of supermarket. In advance, if too many people waiting outside the store, he can also send the notification to the customer who hasn't departed yet.
+The State diagram Fig.\ref{State Diagram 2} showed us how the manager monitors Store's On-Time data. The manager can view it on web in computer, and he can know the number of customer inside and outside the store. He has the right to set the max people number inside the store to balance the capacity of store. In advance, if too many people waiting outside the store, he can also send the notification to the customer who hasn't departed yet.
 \\ \hspace*{\fill} \\
-The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed various requirements. It receive the registration data and booking information from customers, analyzed customer data (duration time, desired products, categories, etc.) and calculate the route time from users' department place to the store. After the system will optimize the queue order to save everyone time. On the end, the system will generate an E-Ticket in PDF and send it to the user.\\
+The State diagram Fig.\ref{State Diagram 3} represented the serve end state diagram for click-customer. It receive the registration data and booking information from click-customers. After it schedule the booking, then the system generate and send the E-Ticket in PDF. After, it will schedule the queue. When the customer enter the store, it will receive the scan-in, after the customer leave the store, it will receive the scan-out.
 
 
 
@@ -244,7 +261,7 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed va
 
 \begin{figure}[H] 
 	\centering
-	\includegraphics[scale=0.62]{State_diagram2.png}
+	\includegraphics[scale=0.45]{State_diagram2.png}
 	\caption{Store Manager State Diagram}
 	\centering
 	\label{State Diagram 2}
@@ -252,8 +269,8 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end proceed va
 
 \begin{figure}[H] 
 	\centering
-	\includegraphics[scale=0.62]{State_diagram3.png}
-	\caption{Server End State Diagram}
+	\includegraphics[scale=0.4]{State_diagram3.png}
+	\caption{Server End to Click-Customer State Diagram}
 	\centering
 	\label{State Diagram 3}
 \end{figure}
@@ -373,17 +390,17 @@ interface that the front-end offers or needs to interact with the users and the 
 In this section there are mock-ups of the user interfaces for the mobile application used
 by customer.\\
 
-\textbf{Login} In the Login page Fig.\ref{UI-Login} there are text fields for entering email and password in order to access the personal profile. In case that the customer don't have an account, there is also the option to sign-up.\\
+\textbf{Login} In the Login page Fig.\ref{UI-Login} there are text fields for entering username and password in order to access the personal profile. In case that the customer don't have an account, there is also the option to register.\\
 
-\textbf{Sign-up} In login page Fig.\ref{UI-Register}, the application requests the user to insert the name, email address and a password to register to the system.\\
+\textbf{Sign-up} In login page Fig.\ref{UI-Register}, the application requests the user to insert the username, email address and a password to register to the system.\\
 
-\textbf{Homepage} Once registered, the user will be welcomed by the homepage Fig.\ref{UI-Home}, that shows the optional of booking, ticket and notification. From booking, users can go to book an appointment for visiting the supermarket. In tickets button, customers can view all their tickets(ticket history, current ticket and up-coming ticket). As for notification part, if users has an unread notification, there will be a red point shown on the right top, after the user read it, the red point will disappear. With this, if users' appointment has been rescheduled by the manger, they can easily receive the notification or message from the manager.\\
+\textbf{Homepage} Once registered, the user will be welcomed by the homepage Fig.\ref{UI-Home}, that shows the optional of booking, ticket and notification. From booking, users can go to book an appointment for visiting the supermarket. In tickets button, customers can view all their tickets(ticket history, current ticket and up-coming ticket). As for notification part, if users has an unread notification, there will be a red point shown on the right top, after the user read it, the red point will disappear. With this, if users' appointment has been rescheduled by the manger, they can easily receive the notification from the manager.\\
 
-\textbf{Booking} After the user enter the booking button, users can see the page Fig.\ref{UI-Booking}, customers need to choose time and date from the given selection. Meanwhile, they need to approximate their duration time and what to buy in the supermarket. On the end, there are two ways to insert the depart address: one is manually insertion of the address by customer, another one is automatic positioning by GPS.\\
+\textbf{Booking} After the user enter the booking button, users can see the page Fig.\ref{UI-Booking}, customers need to choose time and date from the given selection. Meanwhile, they need to approximate their duration time, for long-term customers, the system will also shown the estimate duration time rely on his shopping duration time history. After, the customer need to select what categories to buy in the store. On the end, there are two ways to insert the depart address: one is manually insertion of the address by customer, another one is automatic positioning by GPS.\\
 
 \textbf{Category} In this page Fig.\ref{UI-Category}, there are lists of product categories in the supermarket, the product categories corresponding to the different zone in supermarket. Users can choose one or more categories which they want to buy during the shopping.\\ 
 
-\textbf{Manager Dashboard} In the manager dashboard Fig.\ref{UI-Dashboard}, the supermarket manager can see the number of people both inside and outside of the supermarket. He has the right to control the \textbf{Max} number of people inside the supermarket. If too many or too few people in the same zone of the supermarket, he can click 'Adjust', after he can change the max number of people inside the supermarket. And also if too many people waiting outside the supermarket, he can click the 'Reschedule' button, to reschedule the ticket and send the notification to customers who haven't departed yet.\\ 
+\textbf{Manager Dashboard} In the manager dashboard Fig.\ref{UI-Dashboard}, the supermarket manager can see the number of customers both inside and outside of the supermarket. He has the right to control the \textbf{Max} number of people inside the supermarket. If too many or too few people in the same zone of the supermarket, he can reset the Max number of customer inside the store on web. And also if too many people waiting outside the supermarket, he can click the 'Reschedule booking' button, to reschedule the ticket and send the notification to customers who haven't departed yet.\\ 
 
 \begin{figure}[H]
 	\begin{minipage}[t]{0.5\linewidth}
@@ -882,10 +899,10 @@ Furthermore, the hardware limitation of the Back-End System are:
 \end{itemize}
 
 
-//TODO
+
 \section{Software System Attributes}
 \subsection{Reliability} 
-
+//TODO
 \subsection{Availability}
 
 \subsection{Security} 
@@ -898,9 +915,72 @@ Since the collected user data is very sensitive, the user’s privacy must be co
 
 
 
-//TODO ZHANG
 \chapter{Formal Analysis Using Alloy}
-\lstinputlisting[linerange={1-101}]{./AlloyCode/CLupAlloy.als}
+Here are the Sig and Fact part of our Alloy Code. They define the types, relationships, and properties of our models. In our model, the most important part is the relationship of Booking, two kinds of Customers, and two Schedules. We showed them perfectly through this Alloy model. \\
+
+\lstinputlisting[linerange={1-165}]{./AlloyCode/CLupAlloy.als}
+
+\vspace{10mm}
+
+In the \textbf{pred} part, we want to show this model separately from two customer perspectives, and after all, we will show a general world.\\
+
+From the BrickCutomer's perspective Fig.\ref{BrickCustomerAlloy}, they can retrieve a ticket from Machina and don't have to Booking. Everyone has to hold a valid Ticket at the hold time, and every Brick Customer will appear in the set of Queue Schedule, either CustomerInStore or CurrentQueue.
+
+\lstinputlisting[linerange={168-176}]{./AlloyCode/CLupAlloy.als}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{BrickCustomerRunAlloy.png}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\includegraphics[ angle = 270, scale=0.45]{BrickCustomerAlloy.png}
+	\caption{The Alloy world of the Brick Customer's perspective}
+	\centering
+	\label{BrickCustomerAlloy}
+\end{figure}
+
+\vspace{10mm}
+
+From the Click Customer's perspective Fig.\ref{CrickCustomerAlloy}, they have a unique Username, and some of them may do not hold a Booking, for example, a new User. To the Click Customer with a valid Booking, his Valid Booking's Valid Ticket may still not out. However, when they are in the QueueSchedule, they must hold a Valid Booking with a Valid Ticket. This constraint has already been declared in fact part.
+Now we ran a case with some different situations.
+\lstinputlisting[linerange={180-193}]{./AlloyCode/CLupAlloy.als}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{ClickCustomerRunAlloy.png}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\includegraphics[ angle = 270, scale=0.45]{ClickCustomerAlloy.png}
+	\caption{The Alloy world of the Click Customer's perspective}
+	\centering
+	\label{CrickCustomerAlloy}
+\end{figure}
+
+
+\newpage
+
+
+Finally, we are trying to give a "General World" of our Alloy model, shown in Fig.\ref{GeneralWorldAlloy}.\\
+
+\lstinputlisting[linerange={196-207}]{./AlloyCode/CLupAlloy.als}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.35]{GeneralWorldRunAlloy.png}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\includegraphics[ angle = 270, scale=0.4]{GeneralWorldAlloy.png}
+	\caption{The Alloy General World}
+	\centering
+	\label{GeneralWorldAlloy}
+\end{figure}
+
 
 
 
@@ -932,6 +1012,9 @@ Since the collected user data is very sensitive, the user’s privacy must be co
 			\hline
 			2020/12/18 & Completed the section 3.4 and fixed the problem in chapter 3 & 2h \\
 			\hline
+			2020/12/21 & Completed phenomena and modify the state diagram& 1h \\
+			\hline
+			
 			//TODO KONG
 		\end{tabular}}
 	\end{center}
