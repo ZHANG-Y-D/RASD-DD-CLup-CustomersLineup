@@ -241,7 +241,7 @@ The RASD document consists of different chapters in the structure.\\
 
 \textbf{Specific Requirements} This chapter gives a more in-depth and detailed introduction to the system from the aspects of user interfaces, use cases, scenarios, sequence diagrams, and complete mapping of requirements. In use cases, it show the view from the click customer, brick customer and store manager. By using sequence diagram, illustrate the operations between each other. We also provide three small scenarios to explain more details and significant meaningful of CLup, corresponding to the view of click customer, brick customer and store manager. Some specifications regarding performance requirements and design constraints can also be found in the following sections.\\
 
-\textbf{Formal Analysis Using Alloy} In chapter 4, we use Alloy code as the fomal language to model some key concepts and introduce the purpose of it.\\
+\textbf{Formal Analysis Using Alloy} In chapter 4, we use Alloy code as the fomal language to build our model and introduce the purpose of it.\\
 
 
 \chapter{Overall Description} \label{C2:OverallDescription}
@@ -266,11 +266,14 @@ The Class Diagram model as shown in Fig.\ref{Class Diagram}, These classes imple
 
 \subsubsection{State Diagram}
 
-The State diagram Fig.\ref{State Diagram 1} illustrated the processing of a Click Customer to require the E-ticket. Customers first register and log-in on the CLup, after they will book an appointment and specify their information(time, date, desired goods, etc.), then the can receive an E-Ticket. They can go to the Store according to the expected departure time given by the application, and scan-in the E-Ticket to enter the store, scan-out the E-Ticket when they leave the store.
+The State diagram Fig.\ref{State Diagram 1} illustrated the processing of a Click Customer to require the E-ticket. Customers first register and log-in on the CLup, after they will book an appointment and specify their information(time, date, desired goods, etc.), then the can receive an E-Ticket. They can go to the Store according to the expected departure time given by the application, and scan-in the E-Ticket to enter the store, scan-out the E-Ticket when they leave the store. \\
 
-\\ \hspace*{\fill} \\
-The State diagram Fig.\ref{State Diagram 2} showed us how the manager monitors Store's On-Time data. The manager can view it on web in computer, and he can know the number of customer inside store, and the customer queuing outside the store. He has the right to set the max people number inside the store to balance the capacity of store. In advance, if too many people waiting outside the store, he can also send the notification to the customer who hasn't departed yet.
-\\ \hspace*{\fill} \\
+
+
+The State diagram Fig.\ref{State Diagram 2} showed us how the manager monitors Store's On-Time data. The manager can view it on web in computer, and he can know the number of customer inside store, and the customer queuing outside the store. He has the right to set the max people number inside the store to balance the capacity of store. In advance, if too many people waiting outside the store, he can also send the notification to the customer who hasn't departed yet. \\
+
+
+
 The State diagram Fig.\ref{State Diagram 3} represented the serve end state diagram for Click Customer. It receive the registration data and booking information from Click Customer. After it schedule the booking, then the system generate and send the E-Ticket in PDF. After, it will schedule the queue. When the customer enter the store, it will receive the scan-in, after the customer leave the store, it will receive the scan-out.
 
 
@@ -291,7 +294,7 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end state diag
 
 \begin{figure}[H] 
 	\centering
-	\includegraphics[scale=0.45]{State_diagram2.png}
+	\includegraphics[scale=0.43]{State_diagram2.png}
 	\caption{Store Manager State Diagram}
 	\centering
 	\label{State Diagram 2}
@@ -299,7 +302,7 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end state diag
 
 \begin{figure}[H] 
 	\centering
-	\includegraphics[scale=0.4]{State_diagram3.png}
+	\includegraphics[scale=0.38]{State_diagram3.png}
 	\caption{Server End to Click-Customer State Diagram}
 	\centering
 	\label{State Diagram 3}
@@ -355,7 +358,6 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end state diag
 			\item Password
 			\item Valid Booking data
 			\item History visit data.
-			\item Is long-term customers
 		\end{itemize}
 		\item Analysis of the historical visit data and calculate the average history duration.
 		\item Calculate and store the \hyperref[Definitions]{On-Time Store Data}.
