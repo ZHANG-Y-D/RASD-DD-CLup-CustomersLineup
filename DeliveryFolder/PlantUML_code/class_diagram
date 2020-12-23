@@ -1,0 +1,93 @@
+@startuml
+class Customer <<abstract>>
+class Customer{
+
+}
+
+class ClickCustomer{
+    String username
+    String password
+    Booking ValidBooking
+    ArrayList<Booking> HistoryBooking
+}
+
+class BrickCustomer{
+    Ticket ValidTicket
+}
+
+class Booking{
+    DateTime  BookedVisitTime
+    Time ExpectedVisitDuration
+    ArrayList<ItemToBuy> CategoriesIntendBuy
+    String PlaceDepartureFrom
+    Time ActualVisitedDuration
+    Ticket ValidTicket
+
+    UpdateTheActualVisitedDuration()
+}
+
+class Ticket{
+String QRCode
+String EstimatedDepartureTime
+Int QueueNumber
+String StorePlannedRoadmap
+GenerateQRCode()
+GenerateQueueNumber()
+CalculateTheDepartureTime()
+ReceiveTheRoadMapFromBookSchedule()
+}
+
+
+class QueueSchedule{
+ArrayList<Customer> CurrentQueue
+ArrayList<Customer> CustomerInStore
+Int MaximumNumberInTheStore
+CallNextCustomer()
+ScheduleQueueFromBooking()
+ScheduleQueueForBrickCustomer()
+CustomerCheckIn()
+CustomerCheckOut()
+AdjustTheQueueOrder()
+ModifyMaximumNumber()
+}
+
+class BookSchedule{
+
+ArrayList<DailyBooking> DailyBooking
+
+TakeAvailableTime()
+AddBook()
+RescheduleBook()
+GenerateRoadMapForSameTimeCustomers()
+}
+
+class DailyBooking{
+    Date: Date
+    ArrayList<Booking> TodayBooking
+
+
+}
+
+class CRM{
+RegistryNewClickCustomer()
+CheckOutAClickCustomerData()
+ReceiveAndInsertANewBook()
+AnalysisAndSendAverageDuration()
+SendTicketToCustomer()
+SendNotifyToCustomer()
+UpdateTicketForCustomer()
+}
+
+ClickCustomer o-- Booking
+Customer <|-- ClickCustomer
+Customer <|-- BrickCustomer
+CRM "1 " -- "1   " BookSchedule
+BookSchedule "1 " --- "1 " QueueSchedule
+CRM "1  " -- "1..*" Customer
+BrickCustomer o---- Ticket
+Booking o--- Ticket
+BookSchedule "1 " o-- "0..* " DailyBooking
+DailyBooking o-- Booking
+Customer "0..*" ----- "1  " QueueSchedule
+
+@enduml

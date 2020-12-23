@@ -1,0 +1,66 @@
+@startuml
+actor Customer
+actor :Click Customer:as ClickCustomer
+actor :Brick Customer: as BrickCustomer
+actor :Store Manager: as StoreManager
+Customer <|-- ClickCustomer
+Customer <|-- BrickCustomer
+
+
+rectangle "Store Back-End System" #BFE6B3 {
+    left to right direction
+    together {
+        (Sign-up) as (Sign-up) #C0BEE9
+        (Log-in) as (Log-in) #C0BEE9
+        (Send a Booking) as (SendABooking) #C0BEE9
+        (Check on the E-Ticket) as (CheckE-Ticket) #C0BEE9
+        (Check on the notification) as (CheckNotification) #C0BEE9
+    }
+
+    together {
+        (Check the On-Time Store Data) as (CheckOut) #ffcb0c
+        (Adjust the maximum number in the store) as (AdjustMaximum) #ffcb0c
+        (Adjust the Queue Order) as (AdjustQueue) #ffcb0c
+        (Reschedule the booking) as (Reschedule) #ffcb0c
+    }
+
+    (Booking Schedule) as (BookingSchedule) #D9938C
+    (Queue Schedule) as (QueueSchedule) #D9938C
+
+
+
+    (Scan the QRCode) as (ScanQRCode) #C0BEE9
+    (Retrieve a Ticket) as (RetrieveTicket) #C0BEE9
+
+
+    ClickCustomer -u-- (Sign-up)
+    ClickCustomer -- (SendABooking)
+    ClickCustomer -- (CheckE-Ticket)
+    ClickCustomer -- (Log-in)
+    ClickCustomer -- (CheckNotification)
+    (SendABooking) ..> (Log-in) : << include >>
+    (CheckE-Ticket) ..> (Log-in) : << include >>
+    (CheckNotification) ..> (Log-in) : << include >>
+
+
+    BrickCustomer ---- (RetrieveTicket)
+    Customer --- (ScanQRCode)
+
+    (CheckOut) --- StoreManager
+    (AdjustMaximum) --- StoreManager
+    (AdjustQueue) --- StoreManager
+    (Reschedule) --- StoreManager
+    (QueueSchedule) <.. (AdjustQueue)  : <<include>>
+    (BookingSchedule) <.. (Reschedule)  : <<include>>
+
+
+    (SendABooking) ..> (BookingSchedule) : << include >>
+    (RetrieveTicket) ..> (QueueSchedule) : << include >>
+    (ScanQRCode) ..> (QueueSchedule) : << include >>
+    (QueueSchedule) <.. (AdjustMaximum) : << include >>
+    (QueueSchedule) <.. (CheckOut) : << include >>
+
+
+}
+
+@enduml
