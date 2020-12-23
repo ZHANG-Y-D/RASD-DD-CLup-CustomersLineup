@@ -232,14 +232,13 @@ Controlled by the machine and observed by the world \\
 \section{Overview}
 The RASD document consists of different chapters in the structure.\\
 
-\textbf{Introduction}  In the first chapter, it gives the overview of CLup. It provided the definitions, acronyms and abbreviations throughout the document. The description of the product and main goal of this project are provided in the test. Describe the world phenomena and shared phenomena.
+\textbf{Introduction}  In the first chapter, it gives the purpose of CLup. It provided the definitions, acronyms and abbreviations in the document. And also describe the world phenomena and shared phenomena. \\
+
+
+\textbf{Overall Description} In this chapter, We describe how the product works. In addition, we use the model of class diagrams and state diagrams to present the processing. And product functions gives the more details of functional and non-functional requirements. The list of domain assumptions and goals gives the support of the product.  The chapter ends with constrains to customer, manager and store back-end system, which are the basic for proceeding the product.
 \\
 
-
-\textbf{Overall Description} In this chapter, We describe how the product works. In addition, we provide more detailed information about the future details by using well-known diagrams (class diagrams and state diagrams). And product functions gives the more details of requirements. The list of domain assumptions and goals gives the support of the product.  The chapter ends with constrains to customer, manager and store back-end system, which are the basic for proceeding the product.
-\\
-
-\textbf{Specific Requirements} This chapter gives a more in-depth and detailed introduction to the system from the aspects of user interfaces, use cases, scenarios, sequence diagrams, and complete mapping of requirements. In use cases, it show the view from the click customer, brick customer and store manager. By using sequence diagram, illustrate the operations between each other. We also provide three small scenarios to explain more details and significant meaningful of CLup, corresponding to the view of click customer, brick customer and store manager. Some specifications regarding performance requirements and design constraints can also be found in the following sections.\\
+\textbf{Specific Requirements} This chapter gives introduction to the system respect to external interfaces, functional requirements, scenarios and sequence diagrams. In use cases, it show the view from the click customer, brick customer and store manager. By using sequence diagram, illustrate the operations between each other. We also provide three small scenarios to explain more details and significant meaningful of CLup, corresponding to the view of click customer, brick customer and store manager.\\
 
 \textbf{Formal Analysis Using Alloy} In chapter 4, we use Alloy code as the fomal language to build our model and introduce the purpose of it.\\
 
@@ -423,9 +422,9 @@ interface that the front-end offers or needs to interact with the users and the 
 In this section there are mock-ups of the user interfaces for the mobile application used
 by customer.\\
 
-\textbf{Login} In the Login page Fig.\ref{UI-Login} there are fields for filling username and password in order to access the personal profile. In case that the customer don't have an account, there is also the option to register.\\
+\textbf{Login} In the Login page Fig.\ref{UI-Login} there are fields for filling username and password in order to access the personal page. In case that the customer don't have an account, there is also the option to register an account.\\
 
-\textbf{Sign-up} In login page Fig.\ref{UI-Register}, the application requests the user to insert the username and password to register to the CLup.\\
+\textbf{Sign-up} In register page Fig.\ref{UI-Register}, users need to insert the username, password and confirmed password to register to the CLup.\\
 
 
 \textbf{Homepage} After registered, the user will be entered to the homepage Fig.\ref{UI-Home}, that shows the optional of booking, ticket and notification. From booking, users can go to book an appointment for visiting the store. In tickets button, customers can view all their tickets(ticket history, current ticket and up-coming ticket). As for notification part, if users has an unread notification, there will be a red point shown on the right top, after the user read it, the red point will disappear. With this, if users' appointment has been rescheduled by the manger, they can easily receive the notification from the manager.\\
