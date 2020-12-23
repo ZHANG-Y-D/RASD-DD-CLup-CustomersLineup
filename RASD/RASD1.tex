@@ -3,6 +3,9 @@
 \usepackage{hyperref}
 \usepackage{float}
 
+
+
+
 \usepackage{makecell}
 \pagestyle{headings}
 \graphicspath{{./Images/}}
@@ -51,13 +54,36 @@
 
 
 \begin{document} 
-	
-\title{Requirement Analysis and Specification Document RASD}
-\author{KONG XIANGYI\and ZHANG YUEDONG}
-\date{\today}
 
-\maketitle
 
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+		
+		\Huge
+		\textbf{Requirement Analysis and Specification Document RASD}
+		
+		\vspace{0.5cm}
+		\LARGE
+		December 2020
+		
+		\vspace{1.5cm}
+		
+		
+		\vfill
+			
+		\includegraphics[scale=0.7]{PolimiLogo}
+		
+		\vfill
+		
+		
+		\normalsize
+		\textbf{KONG XIANGYI} \\
+		\textbf{\&} \\
+		\textbf{ZHANG YUEDONG}
+		
+	\end{center}
+\end{titlepage}
 
 \tableofcontents
 
@@ -149,7 +175,6 @@ Controlled by the machine and observed by the world \\
 \end{center}
 
 
-
 \section{Definitions, acronyms, abbreviations}
 \subsection{Definitions}\label{Definitions}
 \begin{itemize}
@@ -183,7 +208,9 @@ Controlled by the machine and observed by the world \\
 	\item IaaS - Infrastructure as a Service
 	\item CRM - Customer Relationship Management
 	\item KPI - Key Performance Indicator
+	\item DAC - Discretionary Access Control
 \end{itemize}
+
 
 \subsection{Abbreviations}
 \begin{itemize}
@@ -195,12 +222,13 @@ Controlled by the machine and observed by the world \\
 	\item  $D_n$ : n-th domain assumption
 \end{itemize}
 
+
 \section{Reference documents} \label{Reference documents}
 \begin{itemize}
 	\item Specification Document: "R\&DD Assignment A.Y. 2020-2021"
 	\item Slides of the "Software Engineering 2" course A.Y. 2020-2021
 	\item IEEE Recommended Practice for Software Requirements Specifications - IEEE Std 830-1998
-	\item  Fondamenti di Sistemi informativi per il Settore dell’Informazione - 7 settembre 2018
+	\item Fondamenti di Sistemi informativi per il Settore dell’Informazione - 7 settembre 2018
 	\item Poste Italiane - \url{www.poste.it}
 \end{itemize}
 
@@ -241,11 +269,11 @@ The Class Diagram model as shown in Fig.\ref{Class Diagram}, These classes imple
 
 
 \subsubsection{State Diagram}
-The State diagram Fig.\ref{State Diagram 1} illustrated the processing of a click-customer to require the E-ticket. Customers first register and log-in on the CLup, after they will book an appointment and specify their information(time, date, desired goods, etc.), then the can receive an E-Ticket. They can go to the supermarket according to the expected departure time given by the application, and scan-in the E-Ticket to enter the store, scan-out the E-Ticket when they leave the store.
+The State diagram Fig.\ref{State Diagram 1} illustrated the processing of a Click Customer to require the E-ticket. Customers first register and log-in on the CLup, after they will book an appointment and specify their information(time, date, desired goods, etc.), then the can receive an E-Ticket. They can go to the Store according to the expected departure time given by the application, and scan-in the E-Ticket to enter the store, scan-out the E-Ticket when they leave the store.
 \\ \hspace*{\fill} \\
 The State diagram Fig.\ref{State Diagram 2} showed us how the manager monitors Store's On-Time data. The manager can view it on web in computer, and he can know the number of customer inside store, and the customer queuing outside the store. He has the right to set the max people number inside the store to balance the capacity of store. In advance, if too many people waiting outside the store, he can also send the notification to the customer who hasn't departed yet.
 \\ \hspace*{\fill} \\
-The State diagram Fig.\ref{State Diagram 3} represented the serve end state diagram for click-customer. It receive the registration data and booking information from click-customers. After it schedule the booking, then the system generate and send the E-Ticket in PDF. After, it will schedule the queue. When the customer enter the store, it will receive the scan-in, after the customer leave the store, it will receive the scan-out.
+The State diagram Fig.\ref{State Diagram 3} represented the serve end state diagram for Click Customer. It receive the registration data and booking information from Click Customer. After it schedule the booking, then the system generate and send the E-Ticket in PDF. After, it will schedule the queue. When the customer enter the store, it will receive the scan-in, after the customer leave the store, it will receive the scan-out.
 
 
 \begin{figure}[H] 
@@ -399,13 +427,13 @@ by customer.\\
 
 \textbf{Sign-up} In login page Fig.\ref{UI-Register}, the application requests the user to insert the username, email address and a password to register to the system.\\
 
-\textbf{Homepage} Once registered, the user will be welcomed by the homepage Fig.\ref{UI-Home}, that shows the optional of booking, ticket and notification. From booking, users can go to book an appointment for visiting the supermarket. In tickets button, customers can view all their tickets(ticket history, current ticket and up-coming ticket). As for notification part, if users has an unread notification, there will be a red point shown on the right top, after the user read it, the red point will disappear. With this, if users' appointment has been rescheduled by the manger, they can easily receive the notification from the manager.\\
+\textbf{Homepage} Once registered, the user will be welcomed by the homepage Fig.\ref{UI-Home}, that shows the optional of booking, ticket and notification. From booking, users can go to book an appointment for visiting the Store. In tickets button, customers can view all their tickets(ticket history, current ticket and up-coming ticket). As for notification part, if users has an unread notification, there will be a red point shown on the right top, after the user read it, the red point will disappear. With this, if users' appointment has been rescheduled by the manger, they can easily receive the notification from the manager.\\
 
 \textbf{Booking} After the user enter the booking button, users can see the page Fig.\ref{UI-Booking}, customers need to choose time and date from the given selection. Meanwhile, they need to approximate their duration time, for long-term customers, the system will also shown the estimate duration time rely on his shopping duration time history. After, the customer need to select what categories to buy in the store. On the end, there are two ways to insert the depart address: one is manually insertion of the address by customer, another one is automatic positioning by GPS.\\
 
-\textbf{Category} In this page Fig.\ref{UI-Category}, there are lists of product categories in the supermarket, the product categories corresponding to the different zone in supermarket. Users can choose one or more categories which they want to buy during the shopping.\\ 
+\textbf{Category} In this page Fig.\ref{UI-Category}, there are lists of product categories in the Store, the product categories corresponding to the different zone in Store. Users can choose one or more categories which they want to buy during the shopping.\\ 
 
-\textbf{Manager Dashboard} In the manager dashboard Fig.\ref{UI-Dashboard}, the supermarket manager can see the number of customers both inside and outside of the supermarket. He has the right to control the \textbf{Max} number of people inside the supermarket. If too many or too few people in the same zone of the supermarket, he can reset the Max number of customer inside the store on web. And also if too many people waiting outside the supermarket, he can click the 'Reschedule booking' button, to reschedule the ticket and send the notification to customers who haven't departed yet.\\ 
+\textbf{Manager Dashboard} In the manager dashboard Fig.\ref{UI-Dashboard}, the Store Manager can see the number of Customers both inside and outside of the Store. He has the right to control the \textbf{Max} number of people inside the Store. If too many or too few people in the same zone of the Store, he can reset the Max number of customer inside the store on web or adjust the Queue. And also if too many people waiting outside the Store, he can click the 'Reschedule booking' button, to reschedule the Click Customer's Booking who haven't departed yet. \\ 
 
 \begin{figure}[H]
 	\begin{minipage}[t]{0.5\linewidth}
@@ -455,22 +483,30 @@ by customer.\\
 
 
 \subsection{Hardware Interfaces}
-Since common users’ applications can only be accessed on mobile devices, this is the basic requirement of the user, as well as the Internet access rights to connect to the service and
-a way to collect the Location data, a GPS-enabled device is required.
+Here is the hardware requirement for users.
+\begin{itemize}
+	\item For \textbf{Click Customer}: the basic requirement is that a smartphone can access the Internet, and the GPS module is optional. If their smartphone, they can automatically input the address information by the GPS module. Otherwise, they have to input it manually.
+	\item For \textbf{Store Manager}: It needs a simple pc can access our Back-End System through the Web Browser. Because we adopt the \hyperref[Reference documents]{Thin Client} strategy, the hardware requirements for PC configuration are very low.
+	If there is a need to control costs, only a Raspberry Pi can connect to the network cable, and a monitor, mouse, keyboard are enough.
+	\item For the \textbf{Back-End System}: We adopted the Buy strategy. We will buy an Amazon EC2 \hyperref[Reference documents]{IaaS} to implement this system. So the server supplier Amazon will provide the hardware.
+\end{itemize}
+
+
 
 \subsection{Software  Interfaces}
-Mobile applications require the Android operating system to run on mobile devices.
+Mobile applications require the Android operating system or IOS to run on mobile devices.
 Manager dashboard requirements:
 \begin{itemize}
 	\item Microsoft Windows runs downloadable software
 	\item Web browser to access online dashboard
 \end{itemize}
 
+
 \subsection{Communication Interfaces}
 
 We have some kinds of devices that have to communicate with each other, Click Customer's mobile application, Store Manage's PC, the back-end system, the \hyperref[Definitions]{Digital Counterpart}, and the Tickets Hand-Out Machine. The Mobile Phone communicates with the Back-End system via the internet with TCP protocol in the transport layer. For the Store Manager's PC, we plan to use the Web Technology, and the Store Manager's dashboard will show on the HTTP page so that the communication from the PC to Back-End System will hold with HTTP Protocol.
 
-Finally, two hardware devices: Digital Counterpart and Tickets Hand-Out Machine. They will communicate with the Back-End System via a physical network cable work in Ethernet. A design like this is because they are fixed facilities, they do not need portability, but need high availability and stability.
+Finally, two hardware devices: Digital Counterpart and Tickets Hand-Out Machine. They will communicate with the Back-End System via a physical network cable work in Ethernet. A design like this is because they are fixed facilities, they do not need “Mobility”, but need high availability and stability.
 
 
 \section{Functional Requirements}
@@ -881,10 +917,9 @@ For the Back-End system, we will buy an Amazon EC2 IaaS to implement it. This sy
 
 \section{Design Constraints}
 \subsection{Standards compliance}
-
-Our system complies with the following standards
+Our system complies with the following standard for the GPS module:
 \begin{itemize}
-	\item //TODO
+	\item GPS data will give latitude and longitude degrees, but our software will use the Google API and convert it to a readable address.
 \end{itemize}
 
 
@@ -892,33 +927,58 @@ Our system complies with the following standards
 
 For our Click Customer application to run well on smartphones, we must follow the following hardware limitations:
 \begin{itemize}
-	\item 
-\end{itemize}
-
+	\item Minimum 256 MB disk space
+	\item Minimum 64 MB RAM
+	\item Optional GPS module
+	\item Network Module
+\end{itemize} 
+\vspace{5mm}
 For our Management System run on the PC, the hardware limitations are:
 \begin{itemize}
-	\item 
-\end{itemize}
-
+	\item Minimum 256 MB disk space
+	\item Minimum 64 MB RAM
+	\item Ethernet network cable
+\end{itemize} 
+\vspace{5mm}
 Furthermore, the hardware limitation of the Back-End System are:
 \begin{itemize}
-	\item 
+	\item Minimum 1TB disk space or Elastic space.
+	\item Minimum 1 GB RAM.
 \end{itemize}
-
 
 
 \section{Software System Attributes}
+
+The CLup System includes different services, Mobile Application, Management System For Manager, the Back-End System, and some other hardware devices. We will separately talk about those specific system attributes. 
+
 \subsection{Reliability} 
-//TODO
+
+For the Back-End System, we adopted the Buy strategy so that the Iaas provider will ensure the system's reliability below the infrastructure level. We only have to care about our software. In the development phase, we will strictly observe the Verification and Validation process. In daily operation, we will regularly check the database data to find out if any errors occur. 
+
+For the Mobile Application, when some errors occur, we will ask the Customer's permission to send back the error log, and we will fix it in the next version of our software.
+
 \subsection{Availability}
 
+For the Back-End System's queuing function, we must ensure that 99\% of the time is available during Store business hours.  But for CRM and Booking function, we will provide 95\% of the time is available on 24/24 up to 7.
+
+And for the hardware in the Store, the Digital Counterpart, and the Ticket Hand-Out Machine, we have to ensure that 99.99\% of the time is available during Store business hours.
+
+For the Management System of the Store Manager, available at least 99\% of the time.
+
+
 \subsection{Security} 
-Since the collected user data is very sensitive, the user’s privacy must be considered during the entire data exchange process between the user and the system, and also between the system and the third party. The data stored in the system must be encrypted, and the municipality’s password must also be hashed before storing in Database.\\
 
-\subsection{Maintainability} The code must be written by Java, in order to let other developers easily understand and edit it. It also need to be well commented corresponding to the code in case of future issues.\\
+Our system is not an army or government system, and there is no very high level of data security requirements. In our Management System,  based on the HTTP protocol, we will use the SSL protocol to ensure data security.
 
-\subsection{Portability} The mobile application must be supported by Android and iOS operating systems. The web application must run in various operating systems: Windows, Linux, Mac.\\
+To protect our back-end database, we decided to adopt DAC (Discretionary Access Control) data access policy, the Store Manager will manage all data. \\
 
+\subsection{Maintainability} 
+
+We Back-End System's code will write in Java. To ensure the readable, all our developers have to refer to the "Clean Code: A Handbook of Agile Software Craftsmanship" handbook. And after all, we will write and general the JavaDoc to improve maintainability.
+
+\subsection{Portability} 
+
+For the Click Customer's Application, it has to can run well in Android and IOS systems. And for our Management System, it must support some popular web browsers, for example, Microsoft Edge, Google Chrome, and Safari. \\ 
 
 
 
@@ -1021,8 +1081,8 @@ Finally, we are trying to give a "General World" of our Alloy model, shown in Fi
 			\hline
 			2020/12/21 & Completed phenomena and modify the state diagram& 1h \\
 			\hline
-			
-			//TODO KONG
+			2020/12/21 & Review and last discussion & 3h \\
+			\hline
 		\end{tabular}}
 	\end{center}
 
@@ -1056,6 +1116,8 @@ Finally, we are trying to give a "General World" of our Alloy model, shown in Fi
 			2020/12/20 & Coding for Alloy & 4h\\
 			\hline
 			2020/12/22 & Did the communication interface subsection and some TODO mark & 2h \\
+			\hline
+			2020/12/21 & Review and last discussion & 3h \\
 			\hline
 		\end{tabular}}
 	\end{center}
