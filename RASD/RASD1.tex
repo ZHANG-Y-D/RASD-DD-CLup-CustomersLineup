@@ -243,7 +243,7 @@ The RASD document consists of different chapters in the structure.\\
 \textbf{Overall Description} In this chapter, We describe how the product works. In addition, we provide more detailed information about the future details by using well-known diagrams (class diagrams and state diagrams). And product functions gives the more details of requirements. The list of domain assumptions and goals gives the support of the product.  The chapter ends with constrains to customer, manager and store back-end system, which are the basic for proceeding the product.
 \\
 
-\textbf{Specific Requirements} This chapter gives a more in-depth and detailed introduction to the system from the aspects of user/hardware/software interfaces, use cases, scenarios, sequence diagrams, and complete mapping of requirements. In use cases, it show the view from the click customer, brick customer and store manager. By using sequence diagram, illustrate the operations between each other. We also provide three small scenarios to explain more details and significant meaningful of CLup, corresponding to the view of click customer, brick customer and store manager. Some specifications regarding performance requirements and design constraints can also be found in the following sections.\\
+\textbf{Specific Requirements} This chapter gives a more in-depth and detailed introduction to the system from the aspects of user interfaces, use cases, scenarios, sequence diagrams, and complete mapping of requirements. In use cases, it show the view from the click customer, brick customer and store manager. By using sequence diagram, illustrate the operations between each other. We also provide three small scenarios to explain more details and significant meaningful of CLup, corresponding to the view of click customer, brick customer and store manager. Some specifications regarding performance requirements and design constraints can also be found in the following sections.\\
 
 \textbf{Formal Analysis Using Alloy} In chapter 4, we use Alloy code as the fomal language to model some key concepts and introduce the purpose of it.\\
 
@@ -269,7 +269,11 @@ The Class Diagram model as shown in Fig.\ref{Class Diagram}, These classes imple
 
 
 \subsubsection{State Diagram}
+<<<<<<< HEAD
 The State diagram Fig.\ref{State Diagram 1} illustrated the processing of a Click Customer to require the E-ticket. Customers first register and log-in on the CLup, after they will book an appointment and specify their information(time, date, desired goods, etc.), then the can receive an E-Ticket. They can go to the Store according to the expected departure time given by the application, and scan-in the E-Ticket to enter the store, scan-out the E-Ticket when they leave the store.
+=======
+The State diagram Fig.\ref{State Diagram 1} illustrated the processing of a click-customer to require the E-ticket. Customers first register and log-in on the CLup, after they will book an appointment and specify their information(time, date, desired goods, etc.), then the can receive an E-Ticket. They can go to the supermarket according to the expected departure time given by the E-Ticket, and scan-in the E-Ticket to enter the store, scan-out the E-Ticket when they leave the store.
+>>>>>>> f3ef4f5adc5f35e00430bbf84b4a732286637aeb
 \\ \hspace*{\fill} \\
 The State diagram Fig.\ref{State Diagram 2} showed us how the manager monitors Store's On-Time data. The manager can view it on web in computer, and he can know the number of customer inside store, and the customer queuing outside the store. He has the right to set the max people number inside the store to balance the capacity of store. In advance, if too many people waiting outside the store, he can also send the notification to the customer who hasn't departed yet.
 \\ \hspace*{\fill} \\
@@ -423,17 +427,25 @@ interface that the front-end offers or needs to interact with the users and the 
 In this section there are mock-ups of the user interfaces for the mobile application used
 by customer.\\
 
-\textbf{Login} In the Login page Fig.\ref{UI-Login} there are text fields for entering username and password in order to access the personal profile. In case that the customer don't have an account, there is also the option to register.\\
+\textbf{Login} In the Login page Fig.\ref{UI-Login} there are fields for filling username and password in order to access the personal profile. In case that the customer don't have an account, there is also the option to register.\\
 
-\textbf{Sign-up} In login page Fig.\ref{UI-Register}, the application requests the user to insert the username, email address and a password to register to the system.\\
+\textbf{Sign-up} In login page Fig.\ref{UI-Register}, the application requests the user to insert the username and password to register to the CLup.\\
 
+<<<<<<< HEAD
 \textbf{Homepage} Once registered, the user will be welcomed by the homepage Fig.\ref{UI-Home}, that shows the optional of booking, ticket and notification. From booking, users can go to book an appointment for visiting the Store. In tickets button, customers can view all their tickets(ticket history, current ticket and up-coming ticket). As for notification part, if users has an unread notification, there will be a red point shown on the right top, after the user read it, the red point will disappear. With this, if users' appointment has been rescheduled by the manger, they can easily receive the notification from the manager.\\
+=======
+\textbf{Homepage} After registered, the user will be entered to the homepage Fig.\ref{UI-Home}, that shows the optional of booking, ticket and notification. From booking, users can go to book an appointment for visiting the store. In tickets button, customers can view all their tickets(ticket history, current ticket and up-coming ticket). As for notification part, if users has an unread notification, there will be a red point shown on the right top, after the user read it, the red point will disappear. With this, if users' appointment has been rescheduled by the manger, they can easily receive the notification from the manager.\\
+>>>>>>> f3ef4f5adc5f35e00430bbf84b4a732286637aeb
 
 \textbf{Booking} After the user enter the booking button, users can see the page Fig.\ref{UI-Booking}, customers need to choose time and date from the given selection. Meanwhile, they need to approximate their duration time, for long-term customers, the system will also shown the estimate duration time rely on his shopping duration time history. After, the customer need to select what categories to buy in the store. On the end, there are two ways to insert the depart address: one is manually insertion of the address by customer, another one is automatic positioning by GPS.\\
 
 \textbf{Category} In this page Fig.\ref{UI-Category}, there are lists of product categories in the Store, the product categories corresponding to the different zone in Store. Users can choose one or more categories which they want to buy during the shopping.\\ 
 
+<<<<<<< HEAD
 \textbf{Manager Dashboard} In the manager dashboard Fig.\ref{UI-Dashboard}, the Store Manager can see the number of Customers both inside and outside of the Store. He has the right to control the \textbf{Max} number of people inside the Store. If too many or too few people in the same zone of the Store, he can reset the Max number of customer inside the store on web or adjust the Queue. And also if too many people waiting outside the Store, he can click the 'Reschedule booking' button, to reschedule the Click Customer's Booking who haven't departed yet. \\ 
+=======
+\textbf{Manager Dashboard} In the manager dashboard Fig.\ref{UI-Dashboard}, the supermarket manager can see the number of customers both inside and outside of the supermarket. He has the right to control the \textbf{Max} number of people inside the supermarket. If too many or too few people in the same zone of the supermarket, he can reset the Max number of customer inside the store on web. And also if too many people waiting outside the store, he can click the 'Reschedule booking' button, to reschedule the ticket and send the notification to customers who haven't departed yet.\\ 
+>>>>>>> f3ef4f5adc5f35e00430bbf84b4a732286637aeb
 
 \begin{figure}[H]
 	\begin{minipage}[t]{0.5\linewidth}
