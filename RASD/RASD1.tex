@@ -489,7 +489,7 @@ by customer.\\
 \subsection{Hardware Interfaces}
 Here is the hardware requirement for users.
 \begin{itemize}
-	\item For \textbf{Click Customer}: the basic requirement is that a smartphone can access the Internet, and the GPS module is optional. If their smartphone, they can automatically input the address information by the GPS module. Otherwise, they have to input it manually.
+	\item For \textbf{Click Customer}: the basic requirement is that a smartphone can access the Internet, and the GPS module is optional. If their smartphone is available, they can automatically input the address information by the GPS module. Otherwise, they have to input it manually.
 	\item For \textbf{Store Manager}: It needs a simple pc can access our Back-End System through the Web Browser. Because we adopt the \hyperref[Reference documents]{Thin Client} strategy, the hardware requirements for PC configuration are very low.
 	If there is a need to control costs, only a Raspberry Pi can connect to the network cable, and a monitor, mouse, keyboard are enough.
 	\item For the \textbf{Back-End System}: We adopted the Buy strategy. We will buy an Amazon EC2 \hyperref[Reference documents]{IaaS} to implement this system. So the server supplier Amazon will provide the hardware.
@@ -498,13 +498,10 @@ Here is the hardware requirement for users.
 
 
 \subsection{Software  Interfaces}
-Mobile applications require the Android operating system or IOS to run on mobile devices.
-Manager dashboard requirements:
-\begin{itemize}
-	\item Microsoft Windows runs downloadable software
-	\item Web browser to access online dashboard
-\end{itemize}
 
+Our Click Customer's Mobile applications will run in Android or IOS System on their mobile devices.
+
+And for the Store Manager's PC, we need the Web browser to access the online dashboard and the Microsoft Windows Operation System to implement the web browser.
 
 \subsection{Communication Interfaces}
 
@@ -635,7 +632,7 @@ The following table describe the use cases from the perspective of the  \hyperre
 	\begin{tabular}{p{0.22\textwidth}|p{0.78\textwidth}}
 		\multicolumn{2}{c}{\large \textbf{Retrieve a Ticket}} \\[3mm] 
 		\hline \\
-		Actors &  The Brick Customerw \\[3mm] 
+		Actors &  The Brick Customer \\[3mm] 
 		Description & The Brick Customer has to go to the store and retrieve the paper Ticket on the \hyperref[Definitions]{Tickets Hand-Out Machine}.   \\[3mm]  
 		Pre-Condition &  The Tickets Hand-Out Machine is available.\\[3mm] 
 		Flow of events & 
