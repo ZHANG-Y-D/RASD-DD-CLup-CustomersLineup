@@ -1,0 +1,34 @@
+@startuml
+
+component "Back-End System" as BES #88D792{
+    [BookingSchedule] as BS <<SubSystem>>
+    [CRM] <<SubSystem>>
+    [QueueSchedule] as QS <<SubSystem>>
+    [DBMSServer] as DBMS <<SubSystem>>
+}
+
+[ClickCustomerMobileApp] as CC #88D7D2
+[StoreManagerManagementSystemWebPage] as SM  #88D7D2
+[DigitalCounterpart] as DC  #88D7D2
+[TicketHandOutMachine] as TM  #88D7D2
+
+interface ManageMobileApp #88D792
+interface ManageQueue
+interface ManageBooking
+interface ManageDigitalCounterpart
+interface ManageTicketMachine
+
+ManageMobileApp --# CRM
+ManageQueue --# QS
+ManageBooking --# BS
+ManageDigitalCounterpart --# QS
+ManageTicketMachine --# QS
+
+CC #--( ManageMobileApp
+SM #--( ManageQueue
+SM #--( ManageBooking
+DC #--( ManageDigitalCounterpart
+TM #--( ManageTicketMachine
+
+
+@enduml

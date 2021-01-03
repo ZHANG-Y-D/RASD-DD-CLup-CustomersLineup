@@ -51,7 +51,7 @@ AdjustTheQueueOrder()
 ModifyMaximumNumber()
 }
 
-class BookSchedule{
+class BookingSchedule{
 
 ArrayList<DailyBooking> DailyBooking
 
@@ -81,12 +81,12 @@ UpdateTicketForCustomer()
 ClickCustomer o-- Booking
 Customer <|-- ClickCustomer
 Customer <|-- BrickCustomer
-CRM "1 " -- "1   " BookSchedule
-BookSchedule "1 " --- "1 " QueueSchedule
+CRM "1 " -- "1   " BookingSchedule
+BookingSchedule "1 " --- "1 " QueueSchedule
 CRM "1  " -- "1..*" Customer
 BrickCustomer o---- Ticket
 Booking o--- Ticket
-BookSchedule "1 " o-- "0..* " DailyBooking
+BookingSchedule "1 " o-- "0..* " DailyBooking
 DailyBooking o-- Booking
 Customer "0..*" ----- "1  " QueueSchedule
 

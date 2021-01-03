@@ -114,7 +114,7 @@ At the end of 2019, a global epidemic broke out and swept almost all countries i
 
 In this situation, a new problem arises, how to decrease the spread of the virus through technical means? 
 
-Since grocery shopping is the most needed activity under the lock-down, so let’s narrow the problem to grocery shopping.
+Since grocery shopping is the most needed activity under the lock-down, so let's narrow the problem to grocery shopping.
 
 In the supermarket, In order to meet these strict rules, many challenges have arisen, so, we can turn to technology, in particular to software applications, to help navigate the challenges created by the imposed restrictions.
 
@@ -175,7 +175,7 @@ Controlled by the machine and observed by the world \\
 \subsection{Definitions}\label{Definitions}
 \begin{itemize}
 	\item Click Customer : The customer has the required technology to access the store. I.e a smartphone. They can use the customer terminal software.
-	\item Brick Customer : The customer doesn't have the required technology to access the store, they have to hand out “tickets” on the spot.
+	\item Brick Customer : The customer doesn't have the required technology to access the store, they have to hand out "tickets" on the spot.
 	\item Store Manager : They have to manage the Store System, include the software and hardware.
 	\item Ticket: The ticket is a document which contains three key information: QR Code, the estimated departure time, the queue number, and the Store Planned Roadmap. To the click customer, it's \textbf{E-ticket} but to the brick customer,it's \textbf{Paper Ticket},and doesn't contain the estimated departure time, and just a General Store Map without the Planned Road.
 	\item QR Code : When customer booked a visit, they will received a QR Code.
@@ -196,7 +196,7 @@ Controlled by the machine and observed by the world \\
 
 \subsection{Acronyms}
 \begin{itemize}
-	\item RASD – Requirement Analysis and Specification Document
+	\item RASD - Requirement Analysis and Specification Document
 	\item CLup - Customers Line-up
 	\item UI - User Interface
 	\item IOS - iPhone OS
@@ -204,7 +204,7 @@ Controlled by the machine and observed by the world \\
 	\item IaaS - Infrastructure as a Service
 	\item CRM - Customer Relationship Management
 	\item KPI - Key Performance Indicator
-	\item DAC - Discretionary Access Control
+	\item DAC - Discretionary Access Control %TODO Check DAC
 \end{itemize}
 
 
@@ -224,7 +224,7 @@ Controlled by the machine and observed by the world \\
 	\item Specification Document: "R\&DD Assignment A.Y. 2020-2021"
 	\item Slides of the "Software Engineering 2" course A.Y. 2020-2021
 	\item IEEE Recommended Practice for Software Requirements Specifications - IEEE Std 830-1998
-	\item Fondamenti di Sistemi informativi per il Settore dell’Informazione - 7 settembre 2018
+	\item Fondamenti di Sistemi informativi per il Settore dell'Informazione - 7 settembre 2018
 	\item Poste Italiane - \url{www.poste.it}
 \end{itemize}
 
@@ -246,20 +246,20 @@ The RASD document consists of different chapters in the structure.\\
 \chapter{Overall Description} \label{C2:OverallDescription}
 \section{Product perspective}
 
-The CLup – Customers Line-up system can divide into three parts. Three client ends and a server end, The client ends are divided into Customer end and Store Manager end according to the object-oriented. Moreover, we have divided Customers into two groups according to their characteristics. We referred to the Business direction's "click and brick" concept in the "\hyperref[Reference documents]{Fondamenti di Sistemi informativi per il Settore dell'Informazione}" teach book, so we decided to name it the "\hyperref[Definitions]{Click Customer}" and the "\hyperref[Definitions]{Brick Customer}", the Click Customer will use the mobile application, and the Brick Customer will use the \hyperref[Definitions]{Tickets Hand-Out Machine} in the store.
+The CLup - Customers Line-up system can divide into three parts. Three client ends and a server end, The client ends are divided into Customer end and Store Manager end according to the object-oriented. Moreover, we have divided Customers into two groups according to their characteristics. We referred to the Business direction's "click and brick" concept in the "\hyperref[Reference documents]{Fondamenti di Sistemi informativi per il Settore dell'Informazione}" teach book, so we decided to name it the "\hyperref[Definitions]{Click Customer}" and the "\hyperref[Definitions]{Brick Customer}", the Click Customer will use the mobile application, and the Brick Customer will use the \hyperref[Definitions]{Tickets Hand-Out Machine} in the store.
 
 The mobile application for the Click Customer can install in the Android and IOS operation system. To make this app simple enough for everyone, we only design two main functions: Sign-up/in and Booking Function. When they book a visit, they have to input four information, the visit date/time, the approximate expected duration of the visit, the categories of items that the Customer intends to buy, and the place they depart. The departing place can input manually by the Customer or recognize by the GPS module. If customers take privacy very seriously, the address can even be fuzzy, as long as it does not affect the calculation of the time to arrive at the store. After they have booked a visit and the Back-End system confirmed it, they will receive the \hyperref[Definitions]{E-Ticket} as soon as possible with four data, QR Code, Queue Number, the estimated departure time and the \hyperref[Definitions]{Store Planned Roadmap}. 
 
 The Tickets Hand-Out Machine is usually placed at the entrance of the store. We design only one button that retrieves a Ticket, no book a visit function. There are two reasons for this design. First of all, this Machina has to easy enough to use. On the other hand, we consider that the Customer going out to pick up the number and wait until the book time to re-come to the store will significantly increase the number of outings, so we did not set up a booking process on this Machine.  Otherwise, we mix the queue of two kind of customer through the \hyperref[Definitions]{Store Back-End System's} queue schedule function to try to best to reduce the wait time.
 
-The Manager end is a Management System that can install on a simple PC. The manager can use it to monitor the \hyperref[Definitions]{Store's On-Time Data}. Furthermore, if there are too many people in some areas or the whole store, the store manager can solve it in two ways. First, he can lower the maximum people value in the store so that the queue will enter slower. On the other hand, he can adjust the queue and let the Customer that will visit the crowded area to enter the store later. After all, if the queue is too long due to these problems, he also can reschedule customers’ book, but he can only reschedule the Customers' booking that before the departure time. 
+The Manager end is a Management System that can install on a simple PC. The manager can use it to monitor the \hyperref[Definitions]{Store's On-Time Data}. Furthermore, if there are too many people in some areas or the whole store, the store manager can solve it in two ways. First, he can lower the maximum people value in the store so that the queue will enter slower. On the other hand, he can adjust the queue and let the Customer that will visit the crowded area to enter the store later. After all, if the queue is too long due to these problems, he also can reschedule customers' book, but he can only reschedule the Customers' booking that before the departure time.
 
-The most important part of this system is the server end. The server end deployed the \hyperref[Definitions]{Store Back-End System}. This system has to communicate with all other ends and control the Hardware like the Digital Counterpart. It contains three functions, Booking Schedule Function, Queue Schedule Function, \hyperref[Reference documents]{Customer Relationship Management System - CRM System}. The Booking Schedule Function has to communicate with CRM, take the booking data, schedule the booking, and so on... For the Queue Schedule, We refer to the queuing model of the \hyperref[Reference documents]{Poste Italiane}. Its model has already been practiced very maturely. To visit the Poste Italiane, you can book your visit on the Ufficio Postale App or retrieve the ticket on the Machine, and the back-end system will mix two queues reasonably. For our Queue Schedule Function, to achieve goal $G_2$, we have higher requirements. We have to design a better mechanism so that both types of customers do not need to queue for too long, thereby reducing risk. Finally, the CRM System, this sub-system's primary work is communication with the Click Customer's end, like received the booking, integrate all information and generate/send the E-Ticket, by the way, when the Store Manager reschedules the booking, send notification and update the E-Ticket for the Customer. Otherwise, it also does other works like the CRM system usually do. For example, store Customer's data, analyze the Customer's history average duration for the  Long-Term Customers.
+The most important part of this system is the server end. The server end deployed the \hyperref[Definitions]{Store Back-End System}. This system has to communicate with all other ends and control the Hardware like the Digital Counterpart. It contains three functions, Booking Schedule Function, Queue Schedule Function, \hyperref[Reference documents]{Customer Relationship Management System - CRM System}. The Booking Schedule Function has to communicate with CRM, take the booking data, schedule the booking, and so on. For the Queue Schedule, We refer to the queuing model of the \hyperref[Reference documents]{Poste Italiane}. Its model has already been practiced very maturely. To visit the Poste Italiane, you can book your visit on the Ufficio Postale App or retrieve the ticket on the Machine, and the back-end system will mix two queues reasonably. For our Queue Schedule Function, to achieve goal $G_2$, we have higher requirements. We have to design a better mechanism so that both types of customers do not need to queue for too long, thereby reducing risk. Finally, the CRM System, this sub-system's primary work is communication with the Click Customer's end, like received the booking, integrate all information and generate/send the E-Ticket, by the way, when the Store Manager reschedules the booking, send notification and update the E-Ticket for the Customer. Otherwise, it also does other works like the CRM system usually do. For example, store Customer's data, analyze the Customer's history average duration for the  Long-Term Customers.
 
 
 \subsection{Class Diagram and State Diagram}
 \subsubsection{Class Diagram}
-The Class Diagram model as shown in Fig.\ref{Class Diagram}, These classes implement the three functions of the Store Back-End System,the Customer Relationship Management sub-System composed by the  Customer class, Booking, Ticket, and CRM class, Among them, the CRM class is responsible for communicating with other ends,and it can control customer class's status,the Customer data will store in Database. The BookSchedule class implement the Booking Schedule Function, all booking data will store in database, and this class can control them. The last class is the QueueSchedule class, it will implement the Queue Schedule Function, it will take booking information and get Brick Customer's ticket information to schedule the queue, the store manager can check the length of the queue and the maximum number of customer in-store, when he found that somewhere in the store was too crowded, he can lower the maximum value. The CallNextCustomer method will control the \hyperref[Definitions]{Digital Counterpart} to make it display the next customer's queue number according to the maximum number allowed in the store. In summary, these functions form a set of effective mechanisms to achieve the goals.
+The Class Diagram model as shown in Fig.\ref{Class Diagram}, These classes implement the three functions of the Store Back-End System,the Customer Relationship Management sub-System composed by the  Customer class, Booking, Ticket, and CRM class, Among them, the CRM class is responsible for communicating with other ends,and it can control customer class's status,the Customer data will store in Database. The BookingSchedule class implement the Booking Schedule Function, all booking data will store in database, and this class can control them. The last class is the QueueSchedule class, it will implement the Queue Schedule Function, it will take booking information and get Brick Customer's ticket information to schedule the queue, the store manager can check the length of the queue and the maximum number of customer in-store, when he found that somewhere in the store was too crowded, he can lower the maximum value. The CallNextCustomer method will control the \hyperref[Definitions]{Digital Counterpart} to make it display the next customer's queue number according to the maximum number allowed in the store. In summary, these functions form a set of effective mechanisms to achieve the goals.
 
 
 
@@ -393,7 +393,7 @@ The system will include three categories of user, each of them with different ne
 	\item $D_2$ : Everyone who leaves on time can arrive at the store on time.
 	\item $D_3$ : After shopping, everyone can leave the store in time according to their estimated time.
 	\item $D_4$ : If something unexpected happens, the store manager can adjust the maximum number of people in the store or reschedule the queue \& customer's book reasonably.
-	\item $D_5$ : If someone’s book is rescheduled, he can find the notification in time and set off according to the updated E-Ticket.
+	\item $D_5$ : If someone's book is rescheduled, he can find the notification in time and set off according to the updated E-Ticket.
 	\item $D_6$ : Everyone can consciously scan the QR code at the entrance and exit.
 	\item $D_7$ : Everyone can follow the \hyperref[Definitions]{Planned Roadmap} in the store.
 	\item $D_8$ : If is possible, everyone tries to best book the visit by the software(be a \hyperref[Definitions]{Click Customer}) instead of picking up tickets on the spot(not be a \hyperref[Definitions]{Brick Customer}).
@@ -410,13 +410,13 @@ There are only three main goals of this system.
 \subsection{Constraints}
 There are not many constraints on the Customer's device. They only need a smartphone with the Android or IOS operation system. When they book a visit, the smartphone has to connect with the Internet. At other times, no need for a stable internet connection. They only need to be able to connect to the Internet discontinuously to receive notifications that may appear.
 The manager needs a PC with a stable network connection.
-For the \hyperref[Definitions]{Store Back-End System}, we buy an Amazon EC2 IaaS to implement this system.
+For the \hyperref[Definitions]{Store Back-End System}, we buy an Amazon EC2 IaaS to implement this system. %TODO Delete the Iaas
 
 \chapter{Specific Requirements} \label{C3:SpecificRequirements}
 
 \section{External Interface Requirements}
 CLup can be used by the customer who has ability to use smart cellphone. The system will
-collect data, analyze the data and create the 'Ticket'. Common users can interface themselves with CLup through a mobile application, the manager has ability to access the system’s functionalities in mobile application or web-based dashboard. Here is shown every kind of
+collect data, analyze the data and create the 'Ticket'. Common users can interface themselves with CLup through a mobile application, the manager has ability to access the system's functionalities in mobile application or web-based dashboard. Here is shown every kind of
 interface that the front-end offers or needs to interact with the users and the back-end.
 \subsection{User Interfaces}
 In this section there are mock-ups of the user interfaces for the mobile application used
@@ -506,7 +506,7 @@ And for the Store Manager's PC, we need the Web browser to access the online das
 
 We have some kinds of devices that have to communicate with each other, Click Customer's mobile application, Store Manage's PC, the back-end system, the \hyperref[Definitions]{Digital Counterpart}, and the Tickets Hand-Out Machine. The Mobile Phone communicates with the Back-End system via the internet with TCP protocol in the transport layer. For the Store Manager's PC, we plan to use the Web Technology, and the Store Manager's dashboard will show on the HTTP page so that the communication from the PC to Back-End System will hold with HTTP Protocol.
 
-Finally, two hardware devices: Digital Counterpart and Tickets Hand-Out Machine. They will communicate with the Back-End System via a physical network cable work in Ethernet. A design like this is because they are fixed facilities, they do not need “Mobility”, but need high availability and stability.
+Finally, two hardware devices: Digital Counterpart and Tickets Hand-Out Machine. They will communicate with the Back-End System via a physical network cable work in Ethernet. A design like this is because they are fixed facilities, they do not need "Mobility", but need high availability and stability.
 
 \newpage
 \section{Functional Requirements}
@@ -813,11 +813,11 @@ Now Leonardo does not have to take the risk any more in Essecorta. Every weekend
 	\item $R_8$: The Store Manager shall be able to Adjust the maximum number of people in the store. 
 	\item $R_9$: The Store Manager shall be able to Adjust the order of the queue.
 	\item $R_{10}$: The Store Manager shall be able to Check and reschedule the booking. 
-	\item $R_{12}$: The Store Back-End System shall be able to received and schedule the click customers’ book. The scheduling must refer to the duration time of each Customer and the categories of items that the Customer intends to buy.
+	\item $R_{12}$: The Store Back-End System shall be able to received and schedule the click customers' book. The scheduling must refer to the duration time of each Customer and the categories of items that the Customer intends to buy.
 	\item $R_{15}$: The Store Back-End System shall send a notification and update the E-Ticket to the Customer when their book is rescheduled. 
 	\item $R_{17}$: The Store Back-End System shall analyze the historical visit data and calculate the average history duration for the Long-Term Customers. 
 	\item $R_{18}$: The Store Back-End System shall be able to Calculate and store the On-Time Store Data.
-	\item $R_{19}$: The Store Back-End System shall schedule or reschedule the queue order from click customer’s book and the brick customer's retrieved ticket.
+	\item $R_{19}$: The Store Back-End System shall schedule or reschedule the queue order from click customer's book and the brick customer's retrieved ticket.
 	\item $R_{20}$: The Store Back-End System shall be able to Control the Digital Counterpart and display the queue number. 
 	\item $R_{21}$: The Store Back-End System shall be able to receive the information from the QR Code Scanned Machine. Receive the information from the Tickets Hand-Out Machine. 
 \end{itemize}
@@ -826,7 +826,7 @@ Now Leonardo does not have to take the risk any more in Essecorta. Every weekend
 \textbf{- Domain Assumptions:}
 \begin{itemize}
 	\item $D_4$ : If something unexpected happens, the store manager can reasonably adjust the maximum number of people in the store or reschedule the queue \& Customer's book.
-	\item $D_5$ : If someone’s booking is rescheduled, he can find the notification in time and set off according to the updated E-Ticket.
+	\item $D_5$ : If someone's booking is rescheduled, he can find the notification in time and set off according to the updated E-Ticket.
 \end{itemize}
 
 
@@ -841,10 +841,10 @@ Now Leonardo does not have to take the risk any more in Essecorta. Every weekend
 	\item $R_5$: Each Brick Customer shall be able to retrieve the Ticket from the Tickets Hand-Out Machine and wait for the Digital Counterpart to call them.
 	\item $R_6$: Each Customer shall scan the QR Code at QR Code scanned machine when they enter and leave the store.
 	\item $R_{11}$: The Store Back-End System shall send the available time/date to the click customers. 
-	\item $R_{12}$: The Store Back-End System shall be able to received and schedule the click customers’ book. The scheduling must refer to the duration time of each Customer and the categories of items that the Customer intends to buy.
-	\item $R_{13}$: The Store Back-End System shall calculate the time from the click customer’s departure place to the store and put the estimated departure time on the E-Ticket. 
+	\item $R_{12}$: The Store Back-End System shall be able to received and schedule the click customers' book. The scheduling must refer to the duration time of each Customer and the categories of items that the Customer intends to buy.
+	\item $R_{13}$: The Store Back-End System shall calculate the time from the click customer's departure place to the store and put the estimated departure time on the E-Ticket.
 	\item $R_{15}$: The Store Back-End System shall send a notification and update the E-Ticket to the Customer when their book is rescheduled. 
-	\item $R_{16}$: The Store Back-End System shall be able to store the Customer’s data.
+	\item $R_{16}$: The Store Back-End System shall be able to store the Customer's data.
 	\item $R_{17}$: The Store Back-End System shall analyze the history visit data and mark the Long-Term Customers. 
 	\item $NR_1$:The time from the click customer's departure place to the store that calculates from the Store Back-End System must be precise enough to avoid the Customer arriving at the store too early/late.
 	\item $NR_2$:The Store Back-End System must schedule the queue reasonably to minimize the wait time.
@@ -857,7 +857,7 @@ Now Leonardo does not have to take the risk any more in Essecorta. Every weekend
 	\item $D_1$ : Everyone will leave the departure place at the departure time indicated by the system.
 	\item $D_2$ : Everyone who leaves on time can arrive at the store on time.
 	\item $D_3$ : After shopping, everyone can leave the store in time according to their estimated time.
-	\item $D_5$ : If someone’s booking is rescheduled, he can find the notification in time and set off according to the updated E-Ticket.
+	\item $D_5$ : If someone's booking is rescheduled, he can find the notification in time and set off according to the updated E-Ticket.
 	\item $D_6$ : Everyone can consciously scan the QR code at the entrance and exit.
 	\item $D_8$ : If possible, everyone tries to book the visit via the application(be a \hyperref[Definitions]{Click Customer}) instead of picking up tickets on the spot(not be a \hyperref[Definitions]{Brick Customer}).
 \end{itemize}
@@ -867,7 +867,7 @@ Now Leonardo does not have to take the risk any more in Essecorta. Every weekend
 
 \textbf{- Requirements:}
 \begin{itemize}
-	\item $R_{12}$: The Store Back-End System shall be able to received and schedule the click customers’ book. The scheduling must refer to the duration time of each Customer and the categories of items that the Customer intends to buy.
+	\item $R_{12}$: The Store Back-End System shall be able to received and schedule the click customers' book. The scheduling must refer to the duration time of each Customer and the categories of items that the Customer intends to buy.
 	\item $R_{14}$: The Store Back-End System shall Plan and put the Store Planned Roadmap on the E-Ticket Send the E-Ticket to the click customers. 	
 	\item $R_{17}$: The Store Back-End System shall analyze the history visit data and mark the Long-Term Customers. 
 \end{itemize}
