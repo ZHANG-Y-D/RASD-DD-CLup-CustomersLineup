@@ -1,0 +1,11 @@
+@startuml
+    left to right direction
+    [DigitalCounterpartRedirector] as DC
+    interface ManageDigitalCounterpart
+    ManageDigitalCounterpart --# DC
+
+    interface GetQueueSchedule
+
+    DC #--( GetQueueSchedule
+
+@enduml
