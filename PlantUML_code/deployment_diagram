@@ -1,0 +1,96 @@
+@startuml
+skinparam linetype ortho
+left to right direction
+skinparam ArrowColor #000000
+
+rectangle "Application Layer"{
+    node "Application Server" <<device>>  #E4F0F6{
+        node "Ubuntu 20.10" <<OS>> #EECDD9  {
+            node "Java SE Runtime Environment 8u271" as REAL <<execution environment>> #F7FCFA{
+                artifact "CLup.jar"
+            }
+        }
+    }
+
+    node "jetNEXUS ALB-X" as LB <<load balancer>> #E4F0F6
+
+    LB -- REAL
+
+
+    node "Firewall" as FW1 <<device>> #E4F0F6
+
+    FW1 -- LB
+
+    node "Firewall" as FW2 <<device>> #E4F0F6
+
+    REAL -- FW2
+}
+
+
+
+
+node "Database Server"<<device>> #88D792{
+    node "Ubuntu 20.10" as U2 <<OS>> #EECDD9 {
+        node "PostgreSQL 13.1" as DS <<DBMS>>#F7FCFA{
+            database database
+        }
+    }
+}
+
+FW2 --- DS : TCP/IP
+
+
+database "LAN Switch Hub" as LAN <<device>> #f9fac5
+
+
+rectangle "Internal Device" {
+
+
+node "Personal Computer" as PC <<device>> #f9fac5 {
+    node "Ubuntu 20.10" <<OS>> as OSPC #EECDD9{
+        node "Java SE Runtime Environment 8u271" as RESM <<execution environment>> #F7FCFA{
+            artifact "StoreManagerManagementSystem.jar"
+        }
+    }
+}
+
+node "Digital Counterpart" as DC <<device>> #f9fac5 {
+    node "Ubuntu 20.10" as UDC <<OS>> #EECDD9 {
+        node "Java SE Runtime Environment 8u271" as REDC <<execution environment>> #F7FCFA{
+            artifact "DigitalCounterpart.jar"
+        }
+    }
+}
+
+
+
+node "Ticket Machine" as TM <<device>> #f9fac5{
+    node "Ubuntu 20.10" as UTM <<OS>> #EECDD9 {
+        node "Java SE Runtime Environment 8u271" as RETM <<execution environment>> #F7FCFA{
+            artifact "TicketMachine.jar"
+        }
+    }
+}
+
+}
+
+
+node "Mobile App" as MA <<device>> #f9fac5 {
+    node "SmartPhone OS" <<OS>> #EECDD9{
+        artifact "CLup Mobile Application" as MAPP
+    }
+
+}
+
+cloud Internet
+
+MAPP -- Internet: "TCP/IP"
+Internet --- FW1
+LAN --- LB: "Ethernet LAN"
+REDC -- LAN
+RETM -- LAN
+RESM -- LAN
+
+
+
+@enduml

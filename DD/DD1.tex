@@ -5,6 +5,7 @@
 \usepackage{float}
 \usepackage{makecell}
 \usepackage[nottoc]{tocbibind}
+\usepackage{biblatex}
 
 \pagestyle{headings}
 \graphicspath{{./Images/}}
@@ -97,6 +98,8 @@
 	\item IaaS - Infrastructure as a Service %TODO delete IaaS
 	\item CRM - Customer Relationship Management
 	\item LAN - Local Area Network
+	\item RAPS - Reliable Array of Partitioned Service
+	\item RACS - Reliable Array of Cloned Services
 \end{itemize}
 
 
@@ -127,25 +130,24 @@ Let us start with the High-level components and their interaction.
 We chose \textbf{3-Tiered architecture} with the \textbf{Thin Client} strategy for our system.
 As shown in Fig.\ref{fig:ThreeTieredArchitecture}.\cite{SistemiInformativi}
 
-\textbf{Tier-1} is the presentation layer.
-This layer will deploy the Click Client's mobile application,
-Store Manager's Management Web Page, and even Digital Counterpart and Ticket Hand-Out Machine's presentation.
+\textbf{Tier-1} is the \textbf{Presentation Layer}.
+This layer will deploy the Click Client's Mobile Application,
+the Store Manager's Management System,
+and even Digital Counterpart and Ticket Hand-Out Machine's presentation.
 
-\textbf{Tier-2} is the logic application layer.
-This layer will deploy our Back-End System component.
+\textbf{Tier-2} is the \textbf{Logic Application Layer}.
+This layer will deploy our Back-End System's components.
 
-\textbf{Tier-3} is the data access layer.
+\textbf{Tier-3} is the \textbf{Data Access Layer}.
 This layer includes our DBMS and the Data Base.
 
-We have a web page as the Management page for the Store Manager but considered this page a static page, and the traffic will be minimal,
-so we did not use the 5-Tiered Architecture with the Web Server and the Script Engine Server to general the Dynamic Page.
-
 Finally, our high-level architecture is shown in Fig.\ref{fig:HighLevelArchitecture}.
-The Store Manager's PC and other hardware will connect with an Ethernet cable.
-The Click Customer's Mobile App communicates with our Back-End System with the Internet.
+The Store Manager's PC and other hardware will connect with the Ethernet Switch Hub.
+The Click Customer's Mobile App will communicate with our Back-End System via the Internet.
 
-More detailed components will be introduced in the next section.
-
+More detailed components will be introduced in the next sections.
+In particular, in Sec.\ref{sec:deployment-view}.
+There, we will introduce the DMZ, load balancer, and other Deployment plan selections.
 
 \begin{figure}
 	\centering
@@ -157,7 +159,7 @@ More detailed components will be introduced in the next section.
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.37]{HighLevelArchitecture}
+	\includegraphics[scale=0.31]{HighLevelArchitecture}
 	\caption{High level architecture}
 	\centering
 	\label{fig:HighLevelArchitecture}
@@ -168,7 +170,7 @@ The following diagram Fig.\ref{fig:ComponentDiagram} is the \textbf{Component Di
 This diagram shows the 3-Tiered Architecture of our system.
 The Yellow components are in Presentation Layer.
 The blue components are in the Logic Application Layer, and the Green components DBMSServer is in the Data Access Layer.
-We will separately introduce all these components in this section and introduce all interfaces at Sec.\ref{sec:component-interfaces}.
+We will separately introduce all these components in this section, for the interfaces, please go to Sec.\ref{sec:component-interfaces}.
 
 The \textbf{Redirector} component is a bridge for communicating the Presentation Layer and the Logic Application Layer.
 It is transparent to User and back-end systems, plays the role of forwarding information on both sides, and connect interfaces.
@@ -200,18 +202,29 @@ Through the Interface shown in Fig.\ref{fig:component_diagram_RedirectoSubsystem
 
 The next three subsystems are the core subsystems in our application layer.
 
+The \textbf{CRM} component is responsible for communicating with Click Customers' End, handle the register, Log-In, Booking, data-send, and notify-send operation.
+The Booking operation will communicate with the Booking Schedule component, send the Booking Information, general E-Ticket, and store all data in the database.
+In addition, it must also help the Customer calculate the estimated departure time from depart place to the store, so it will call the GoogleMap API to query it.
+
+The \textbf{Booking Schedule} component is working for all Booking tasks.
+Receive the Booking from CRM, handle the Store Manager's modified Booking, send the Booking schedule to the Queue Schedule component, and store all Booking Schedule to the database.
+
+The \textbf{Queue Schedule} subsystem is the main component to communicate with the Store Manager's Management System.
+It has to take the Booking schedule to calculate the Queue order and handle the Store Manager's modification for the Maximum value or Queue order.
+
+At last, the \textbf{Database System}, it will manage all database, and handle the CRM, BookingSchedule, QueueSchedule's Query/Insert/Update.
+
 
 \begin{figure}
+	\includegraphics[width=1.25\textwidth]{component_diagram}
 	\centering
-	\includegraphics[scale=0.16, angle=270]{component_diagram}
 	\caption{Component Diagram}
-	\centering
 	\label{fig:ComponentDiagram}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.3]{component_diagram_redirector}
+	\includegraphics[scale=0.2]{component_diagram_redirector}
 	\caption{Redirector Component Diagram}
 	\centering
 	\label{fig:component_diagram_redirector}
@@ -232,9 +245,67 @@ The next three subsystems are the core subsystems in our application layer.
 	\label{fig:component_diagram_RedirectoSubsystem}
 \end{figure}
 
-\section{Deployment View}
+
+\section{Deployment View}\label{sec:deployment-view}
+
+Our deployment situation, as shown in Fig.\ref{fig:deployment_diagram}.
+Three colors respectively represent the three layers.
+The Green devices are in the Data Access Layer, the Blue devices are in the Logic Application Layer,
+and the Yellow devices are in the Presentation Layer.
+
+For all our devices, to reduce the development/management/maintenance cost,
+we will use the same Operation System - Ubuntu 20.10, and run in the same Runtime Environment - Java SE Runtime Environment 8u271.
+
+In the \textbf{Presentation Layer}, The Store Manager's PC, the Digital Counterpart, and the Ticket Machine are the Internal Devices, which means we must manage them ourselves.
+We built a LAN to connecting them with the Application Server via the Switch Hub. In our LAN, we used the Ethernet Protocol.
+Moreover, we have chosen the Thin Client strategy in the system architecture, so all our Internal Devices can run on the Raspberry Pi 4.
+It is a very low-cost deployment solution.
+
+In contrast, the Mobile Application is the External Device that will run on the Click Customer's SmartPhone.
+It has to connect with Back-End System via the Internet.
+We will separately develop the Client End for the two kinds of systems - IOS and Andriod System.
+
+In the \textbf{Application Layer}, We refer to the network security part of the information system book P.243.
+We used two Firewalls to build a \textbf{DeMilitarized Zone - DMZ}.
+The external network can only access the resources exposed in the DMZ (Our Application API), and the rest of the network is behind the second firewall.
+The DMZ functions as an isolated subnet between the Internet and the private network,
+So that our database can be better protected.\cite{SistemiInformativi}
+
+For the \textbf{Load Balancer}, we must first ensure that our Internal Devices can allocate enough Server resources and then ensure the Click Customer's resources, so we considered two plans.
+\begin{enumerate}
+	\item Allocate dedicated Application Servers for our Internal Device, and other Application Servers connect with Load Balancer.
+	\item Do not allocate server resources separately for internal devices, but set higher weights for Internal Devices in the load balancer.
+\end{enumerate}
+Plan 1 can guarantee that our system's most important part can work well, whether the balancer is working or how crowded the network is.
+Plan 2 ensures that when some servers are not working, the well-function servers can always allocate to Internal Devices.
+After weighing, we finally chose plan 2.
+Because we think Plan 2 has higher system availability/maintainability.
+
+As mentioned above, for the \textbf{Application Server}, we adopted the Reliable Array of Cloned Services - RACS, like the figure in the Information System Book P.202\cite{SistemiInformativi}, Fig.\ref{fig:RACS}.
+The load balancer must allocate the higher weights to Internal Devices, and all our Application Server will run the same application.
+There is a different point in our case from the figure: we have separated the database and the Application Server.
+Nevertheless, cause our business is "write-intensive", so we used the shared-disk configuration in essence.
+
+Finally, the \textbf{Database system}, we selected PostgreSQL as the Database Management System cause it is Open Sources and stable.
+Then we will use the relational database to implement it.
+For Security, as the DMZ mentioned above, only our private network can access this system, so that the external network will difficultly attack our database.
 
 
+\begin{figure}
+	\centering
+	\includegraphics[width=1.25\textwidth]{deployment_diagram}
+	\caption{Deployment Diagram}
+	\centering
+	\label{fig:deployment_diagram}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{RACS}
+	\caption{RACS: Shared-disk o cluster Configuration}
+	\centering
+	\label{fig:RACS}
+\end{figure}
 
 
 \section{Runtime View}
@@ -296,6 +367,9 @@ The next three subsystems are the core subsystems in our application layer.
 				\hline
 				2021/01/04 & Did S.\ref{sec:ComponentView}.
 				Component Diagram describe. & 2h \\
+				\hline
+				2021/01/05 & Did S.\ref{sec:deployment-view}.
+				Deployment Diagram and describe. & 5h \\
 				\hline
 			\end{tabular}}
 	\end{center}

@@ -1,5 +1,9 @@
 @startuml
 
+'skinparam linetype ortho
+'skinparam linetype polyline
+
+
 [ClickCustomerMobileApp] as CC
 [StoreManagerManagementSystemWebPage] as SM
 [DigitalCounterpart] as DC
@@ -85,6 +89,11 @@ CRM #--( DBSMFunction
 QS #--( DBSMFunction
 BS #--( DBSMFunction
 
+[GoogleMap Service] as GS
+interface GoogleMapQuery
+
+GS #-- GoogleMapQuery
+GoogleMapQuery )----# CRM
 
 
 @enduml
