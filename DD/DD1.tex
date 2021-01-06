@@ -56,6 +56,7 @@
 
 
 \section{Purpose}
+The purpose of this document is to explain how we design and build CLup application. We demostrate the architecture design of the system, based on the rule of Top-down design approach, we describe the different design characteristics. We explain it from the view of component, deployment and runtime. To be more specific, we also show the user interface design to illustrate the CLup application step by step. The purpose of interface design is user-friendly and efficiently. Our aim is to let other stakeholders can easily understand and know the structure of CLup application.
 
 
 \section{Scope}
@@ -325,6 +326,72 @@ For Security, as the DMZ mentioned above, only our private network can access th
 
 \chapter{USER INTERFACE DESIGN}\label{ch:user-interface-design}
 
+\section{UI design}
+We illustrated some main UI designs in RASD document, here, we describe more details for the specific UI button. ~\\
+
+\textbf{UI-Date Time} After enter the booking button, there is an option of date and time, Fig.\ref{UI-Date Time}, the CLup will give the available booking date, which wiith the deep dark color. And the same method for selecting available booking time.~\\
+
+\textbf{UI-Duration Time} It needs the user to estimate his shooping time, Fig.\ref{UI-Duration Time}, for long-term users, they can press the "Analysis" button, the system will approximate a duration time depending on his shopping history.~\\
+
+\textbf{UI-Ticket}  Fig.\ref{UI-Ticket} shows the users current ticket and history ticket. The current ticket with the red point, to inform the user it is the valid ticket.~\\
+
+\textbf{UI-Ticket PDF} it present the PDF ticket for the user, Fig.\ref{UI-Ticket PDF} the QRcode using for scan on the entry. And it also give the suggestion of departing time from current position to the store.~\\
+ 
+\textbf{UI-Notification}  Fig.\ref{UI-Notification} which display the notification of rescheduled ticket, the red point means the unread message. And it will also give the new ticket to the user.
+
+
+
+\begin{figure}[H]
+	\begin{minipage}[t]{0.56\linewidth}
+		\centering
+		\includegraphics[scale=0.5]{UI-Date Time.png}
+		\caption{UI-Date Time}
+		\label{UI-Date Time}
+	\end{minipage}%
+	\begin{minipage}[t]{0.56\linewidth}
+		\centering
+		\includegraphics[scale=0.5]{UI-Duration Time.png}
+		\caption{UI-Duration Time}
+		\label{UI-Duration Time}
+	\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{minipage}[t]{0.56\linewidth}
+		\centering
+		\includegraphics[scale=0.5]{UI-Ticket.png}
+		\caption{UI-Ticket}
+		\label{UI-Ticket}
+	\end{minipage}%
+	\begin{minipage}[t]{0.56\linewidth}
+		\centering
+		\includegraphics[scale=0.5]{UI-Ticket PDF.png}
+		\caption{UI-Ticket PDF}
+		\label{UI-Ticket PDF}
+	\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{UI-Notification.png}
+	\caption{UI-Notification}
+	\centering
+	\label{UI-Notification}
+\end{figure}
+
+\section{UX design}
+We present the UX diagram of user, Fig.\ref{UX-User} the diagram show the proceed of how the user from login to get the valid ticket. Corresponding to the UI design, it show the total user view of the CLup application.~\\
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{UX-User.png}
+	\caption{UX-User}
+	\centering
+	\label{UX-User}
+\end{figure}
+
+
 
 \chapter{REQUIREMENTS TRACEABILITY}\label{ch:requirements-traceability}
 
@@ -344,6 +411,10 @@ For Security, as the DMZ mentioned above, only our private network can access th
 				\hline
 				\hline
 				2021/01/02 & Group discussion and task assignment & 2h \\
+				\hline
+				2021/01/04 & UI design & 2h \\
+				\hline
+				2021/01/05 & UX design diagram in chapter 3& 2h \\
 				\hline
 
 		\end{tabular}}
