@@ -1,34 +1,99 @@
 @startuml
 
-component "Back-End System" as BES #88D792{
-    [BookingSchedule] as BS <<SubSystem>>
-    [CRM] <<SubSystem>>
-    [QueueSchedule] as QS <<SubSystem>>
-    [DBMSServer] as DBMS <<SubSystem>>
+'skinparam linetype ortho
+'skinparam linetype polyline
+
+
+[ClickCustomerMobileApp] as CC
+[StoreManagerManagementSystemWebPage] as SM
+[DigitalCounterpart] as DC
+[TicketHandOutMachine] as TM
+
+
+
+component "Application Server" as AS  #E4F0F6 {
+    [BookingSchedule] as BS <<SubSystem>> #8CAFD9
+    [CRM] <<SubSystem>> #8CAFD9
+    [QueueSchedule] as QS <<SubSystem>> #8CAFD9
+    [Redirector] as RD <<SubSystem>> #8CAFD9
+
+    interface RegisterNewClickCustomer #8CAFD9
+    interface LogIn #8CAFD9
+    interface GetClickCustomerData #8CAFD9
+    interface ModifyClickCustomerData #8CAFD9
+    interface SendNotifyToClickCustomer #8CAFD9
+    
+    interface GetBookingSchedule #8CAFD9
+    interface ModifyBookingSchedule #8CAFD9
+
+    interface ModifyQueueSchedule #8CAFD9
+    interface GetQueueSchedule #8CAFD9
+    interface GetMaxNumberInStore #8CAFD9
+    interface ModifyMaxNumberInStore #8CAFD9
+
+
+    RegisterNewClickCustomer --# CRM
+    LogIn --# CRM
+    GetClickCustomerData --# CRM
+    SendNotifyToClickCustomer --# CRM
+    ModifyClickCustomerData --# CRM
+
+    GetBookingSchedule --# BS
+    ModifyBookingSchedule --# BS
+
+    ModifyQueueSchedule --# QS
+    GetQueueSchedule --# QS
+    GetMaxNumberInStore --# QS
+    ModifyMaxNumberInStore --# QS
+
+    RD #--( RegisterNewClickCustomer
+    RD #--( LogIn
+    RD #--( GetClickCustomerData
+    RD #--( ModifyClickCustomerData
+    RD #--( SendNotifyToClickCustomer
+    RD #--( GetBookingSchedule
+    RD #--( ModifyBookingSchedule
+    RD #--( ModifyQueueSchedule
+    RD #--( GetQueueSchedule
+    RD #--( GetMaxNumberInStore
+    RD #--( ModifyMaxNumberInStore
+
+    CRM #--( GetBookingSchedule
+    CRM #--( ModifyBookingSchedule
+
+    QS #--( GetBookingSchedule
+
+
 }
 
-[ClickCustomerMobileApp] as CC #88D7D2
-[StoreManagerManagementSystemWebPage] as SM  #88D7D2
-[DigitalCounterpart] as DC  #88D7D2
-[TicketHandOutMachine] as TM  #88D7D2
+interface ManageMobileApp #8CAFD9
+interface ManageTicketMachine #8CAFD9
+interface ManageDigitalCounterpart #8CAFD9
+interface ManagementSystemWebPage #8CAFD9
 
-interface ManageMobileApp #88D792
-interface ManageQueue
-interface ManageBooking
-interface ManageDigitalCounterpart
-interface ManageTicketMachine
-
-ManageMobileApp --# CRM
-ManageQueue --# QS
-ManageBooking --# BS
-ManageDigitalCounterpart --# QS
-ManageTicketMachine --# QS
+ManageMobileApp --# RD
+ManageTicketMachine --# RD
+ManageDigitalCounterpart --# RD
+ManagementSystemWebPage --# RD
 
 CC #--( ManageMobileApp
-SM #--( ManageQueue
-SM #--( ManageBooking
+SM #--( ManagementSystemWebPage
 DC #--( ManageDigitalCounterpart
 TM #--( ManageTicketMachine
+
+[DBMSServer] as DBMS #88D792
+interface DBSMFunction #88D792
+
+DBSMFunction --# DBMS
+CRM #--( DBSMFunction
+QS #--( DBSMFunction
+BS #--( DBSMFunction
+
+[GoogleMap Service] as GS
+interface GoogleMapQuery
+
+GS #-- GoogleMapQuery
+GoogleMapQuery )----# CRM
 
 
 @enduml

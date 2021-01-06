@@ -1,0 +1,27 @@
+@startuml
+
+
+
+left to right direction
+[ClickCustomerRedirector] as CC
+
+interface ManageMobileApp
+ManageMobileApp --# CC
+
+
+interface RegisterNewClickCustomer
+interface LogIn
+interface GetClickCustomerData
+interface GetBookingSchedule
+interface ModifyClickCustomerData
+interface SendNotifyToClickCustomer
+
+
+CC #--( RegisterNewClickCustomer
+CC #--( LogIn
+CC #--( GetClickCustomerData
+CC #--( GetBookingSchedule
+CC #--( ModifyClickCustomerData
+CC #--( SendNotifyToClickCustomer
+
+@enduml

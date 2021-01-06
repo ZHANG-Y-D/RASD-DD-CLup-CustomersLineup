@@ -1,0 +1,16 @@
+@startuml
+left to right direction
+[TicketMachineRedirector] as TM
+
+interface ManageTicketMachine
+ManageTicketMachine --# TM
+
+interface ModifyQueueSchedule
+interface GetQueueSchedule
+interface GetMaxNumberInStore
+
+TM #--( GetQueueSchedule
+TM #--( GetMaxNumberInStore
+TM #--( ModifyQueueSchedule
+
+@enduml
