@@ -1,0 +1,11 @@
+@startuml
+    left to right direction
+    [QRCodeScannedMachine] as QR
+    interface ManageQRCodeScannedMachine
+    ManageQRCodeScannedMachine --# QR
+
+    interface ModifyQueueSchedule
+
+    QR #--( ModifyQueueSchedule
+
+@enduml

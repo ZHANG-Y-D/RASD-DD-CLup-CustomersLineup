@@ -160,7 +160,7 @@ There, we will introduce the DMZ, load balancer, and other Deployment plan selec
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.31]{HighLevelArchitecture}
+	\includegraphics[scale=0.31]{HighLevelArchitecture}%ScanQRMachine
 	\caption{High level architecture}
 	\centering
 	\label{fig:HighLevelArchitecture}
@@ -180,7 +180,7 @@ It has four subsystems, respectively, responsible for communicating with four ty
 The \textbf{ClickCustomerRedirector} will transfer the message between Mobile Application and the Application Server.
 The Register message will pass by the RegisterNewClickCustomer, and look out the Valid/History Booking will use the GetClickCustomerData Interface,
 this Interface will return all information of this Customer.
-For the most important operation - Booking a visit, use GetBookingSchedule to get the available Time/Date.
+For the most important operation - Booking a visit, use GetClickCustomerData to get the available Time/Date and the average history duration(if available).
 Then, through the ModifyClickCustomerData Interface to submit the Booking,
 by the way, it also can modify other available data of this Customer.
 Moreover, the SendNotifyToClickCustomer Interface will handle Notify message.
@@ -201,10 +201,16 @@ The \textbf{ManagementSystemRedirector} will function for the Management System 
 This redirector will transmit the message between the Presentation layer's web page and the Back-End System.
 Through the Interface shown in Fig.\ref{fig:component_diagram_RedirectoSubsystem}, the Manager can realize his operation like reschedule someone's Booking, adjust the Queue order, or lower the maximum number.
 
+The \textbf{QRCodeScannedMachineRedirector} is working for the \hyperref[subsec:definitions]{Ticket QRCode Scanned Machine}.
+When the Enter Machine scanned someone's QRCode, it will directly use the ModifyQueueSchedule to move this Customer from the Queue list to the CustomerInStore list.
+If this Customer is not in the Queue list, the ModifyQueueSchedule will not return OK, which means this operation not successful.
+Of course, the Exit Machine will do similar things, move out the Customer from the CustomerInStore list.
+
+
 The next three subsystems are the core subsystems in our application layer.
 
 The \textbf{CRM} component is responsible for communicating with Click Customers' End, handle the register, Log-In, Booking, data-send, and notify-send operation.
-The Booking operation will communicate with the Booking Schedule component, send the Booking Information, general E-Ticket, and store all data in the database.
+The Booking operation will communicate with the Booking Schedule component, get the available data/time, send the Booking Information, generate E-Ticket, and store all data in the database.
 In addition, it must also help the Customer calculate the estimated departure time from depart place to the store, so it will call the GoogleMap API to query it.
 
 The \textbf{Booking Schedule} component is working for all Booking tasks.
@@ -217,7 +223,7 @@ At last, the \textbf{Database System}, it will manage all database, and handle t
 
 
 \begin{figure}
-	\includegraphics[width=1.25\textwidth]{component_diagram}
+	\includegraphics[width=1.2\textwidth]{component_diagram}
 	\centering
 	\caption{Component Diagram}
 	\label{fig:ComponentDiagram}
@@ -233,13 +239,15 @@ At last, the \textbf{Database System}, it will manage all database, and handle t
 
 \begin{figure}
 	\centering
-	\includegraphics[scale=0.2]{component_diagram_ClickCustomerRedirector}
+	\includegraphics[width=0.8\textwidth]{component_diagram_ClickCustomerRedirector}
 	\vspace{10mm}
-	\includegraphics[scale=0.2]{component_diagram_DigitalCounterpartRedirector}
+	\includegraphics[width=0.8\textwidth]{component_diagram_DigitalCounterpartRedirector}
 	\vspace{10mm}
-	\includegraphics[scale=0.2]{component_diagram_ManagementSystemRedirector}
+	\includegraphics[width=0.8\textwidth]{component_diagram_ManagementSystemRedirector}
 	\vspace{10mm}
-	\includegraphics[scale=0.2]{component_diagram_TicketMachineRedirector}
+	\includegraphics[width=0.8\textwidth]{component_diagram_TicketMachineRedirector}
+	\vspace{10mm}
+	\includegraphics[width=0.8\textwidth]{component_diagram_QRMachine}
 	\vspace{10mm}
 	\caption{Redirector's Subsystem Component Diagram}
 	\centering
@@ -248,6 +256,15 @@ At last, the \textbf{Database System}, it will manage all database, and handle t
 
 
 \section{Deployment View}\label{sec:deployment-view}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.2\textwidth]{deployment_diagram}
+	\caption{Deployment Diagram}
+	\centering
+	\label{fig:deployment_diagram}
+\end{figure}
+
 
 Our deployment situation, as shown in Fig.\ref{fig:deployment_diagram}.
 Three colors respectively represent the three layers.
@@ -291,16 +308,7 @@ Finally, the \textbf{Database system}, we selected PostgreSQL as the Database Ma
 Then we will use the relational database to implement it.
 For Security, as the DMZ mentioned above, only our private network can access this system, so that the external network will difficultly attack our database.
 
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1.25\textwidth]{deployment_diagram}
-	\caption{Deployment Diagram}
-	\centering
-	\label{fig:deployment_diagram}
-\end{figure}
-
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.5\textwidth]{RACS}
 	\caption{RACS: Shared-disk o cluster Configuration}
@@ -309,12 +317,101 @@ For Security, as the DMZ mentioned above, only our private network can access th
 \end{figure}
 
 
-\section{Runtime View}
+\section{Runtime View}\label{sec:RuntimeViwe}
+
+This section will describe the two most important processes in our system - the Click Customer booking process and Store Manager manage processes.
+
+The \textbf{Click Customer booking process} is shown in Fig.\ref{fig:ClickCustomerBookingFunction}.
+There are three components of our Application Server participated in.
+The redirector forward all message for two sides, and the CRM system handle all Customer stuffs like the bank windows.
+When a Customer sends a booking, the CRM system will not generate tickets immediately.
+Because it must wait for all customers within the closed period to book their visit, and then it can calculate the route map in the Store for each customer according to their wanted list.
+By the way, there we used the Observer Pattern, which we will introduce in Sec.\ref{sec:SelectedArchitecturalStylesAndPatterns}.
+However, the CRM will generate the Ticket when someone's booking is changed and then send a notification to the corresponding Customer.
+
+After-all, the Customer can check their Ticket when they received the Notification.
+If they checked it too early, they would only found their historic Ticket.
 
 
+\begin{figure}[h]
+	\includegraphics[width=1.2\textwidth]{sequence_diagram_ClickCustomerBookingFunction}
+	\centering
+	\caption{Click Customer's Booking Function Sequence Diagram}
+	\label{fig:ClickCustomerBookingFunction}
+\end{figure}
+
+
+The second process is the \textbf{Store Manager Management System process}, and it is shown in Fig.\ref{fig:StoreManagerManagementSystemSequenceDiagram}.
+This process presented all functions of the Store Manager Management System.
+The four operations in the figure are independent of each other, and there is no sequence.
+The management system can execute any process according to the operations of the Store Manager.
+Since the first three operations in the figure are clear and precise enough, we will focus on the fourth operation - Reschedule the booking.
+
+When a Store Manager does the \textbf{Rescheduling job}, they have to check the Booking Schedule first, and then choose a range they want to change,
+for example, the Click Customers who want to visit the Gelato area.
+And then, submit the change through the ModifyBookingSchedule API.
+The BookingSchedule component will store this change in the database.
+At this time, our Observer Pattern will function, the CRM will find out this change and regenerate the Ticket for the corresponding Click Customer if it is needed.
+Cause it is not a part of the Management System, so not shown in this Figure.
+
+
+
+\begin{figure}[h]
+	\includegraphics[width=1.2\textwidth]{sequence_diagram_StoreManagerManagementSystem}
+	\centering
+	\caption{Store Manager Management System Sequence Diagram}
+	\label{fig:StoreManagerManagementSystemSequenceDiagram}
+\end{figure}
 
 
 \section{Component Interfaces}\label{sec:component-interfaces}
+
+The fundamental relationship between Interface and components has been illustrated in the component diagram Fig.\ref{fig:ComponentDiagram}.
+So, in this section, we will introduce each Interface in detail.
+
+\vspace{5mm}
+
+For \textbf{CRM}'s Interface:
+\begin{itemize}
+	\item RegisterNewClickCustomer(username, password): It is only for the Click Customer Mobile App to register the new User.
+	\item LogIn(username,password): It is for registed user log-in.
+	\item GetClickCustomerData(motive): It can get all Current/History Ticket.
+	If the motive value is "Booking", it can also get the Historic Average duration and the available booking date/time for the Booking operation.
+	\item ModifyClickCustomerData(): The Mobile App must use this function to contain the new Booking field and send the Booking.
+	If the Booking is Successful, it can get the OK string, so that this Booking is already stored in the database, and the Click Customer just waits for the notification.
+	\item SendNotifyToClickCustomer(): This function is used to receive notification from the server passively.
+	For example, when the Ticket is generated or updated, the Mobile App will get the notification, and the Customer can check the new Ticket.
+\end{itemize}
+
+\vspace{5mm}
+
+For \textbf{BookingSchedule}'s Interface:
+\begin{itemize}
+	\item GetBookingSchedule(datetime, customer, item): It can use to get the wanted BookingSchedule.
+			The range is datetime, customer, or item.
+			All of these parameters are a list, a datetime range, customer list, or item list;
+			this function will return the wanted Booking.
+			For example, when the CRM component wants all the available dates/times in the schedule, it can give the current DateTime to this function.
+			It will return all schedules from now, so the CRM can calculate and give the available date/time to the Mobile App.
+			Alternatively, if the Store Manager Management System wants to get the Customer list who must visit Gelato and Pizza area, it can give the [Gelato, Pizza] to the item field. For sure, it will return all corresponding customers.
+	\item ModifyBookingSchedule(): It used for the Management System, or CRM system want to insert or update some Booking, if the database accepted
+			the change, it will return the OK string.
+\end{itemize}
+
+\vspace{5mm}
+
+For \textbf{QueueSchedule}'s Interface:
+
+\begin{itemize}
+	\item GetQueueSchedule(): It can return the Current Queue order, both the Queue and CustomerInStore.
+	All our Presentation Layer's device will use it except the Mobile App and the QRCode Scanned Machine.
+	The Digital Counterpart will use it to display the next queue number.
+	The Ticket Machine will use it to display how many Customers in queue and store, the Management System will use it to check the \hyperref[subsec:definitions]{Store In-Time Data}.
+	\item ModifyQueueSchedule(): Management System and Ticket Machine will use it to modify or insert the Queue order.
+	Like the ModifyBookingSchedule, only if the database finally accepted this change, it will return the OK string.
+	\item GetMaxNumberInStore(): the Ticket Machine will display the Allowed Maximum number in the Store to remind the Customer, and the Management System will also call it to display this value.
+	\item ModifyMaxNumberInStore(): The Management System will use this to change the Allowed Maximum number in the Store value to reduce/raise its current customer number.
+\end{itemize}
 
 
 \section{Selected Architectural Styles and Patterns}\label{sec:SelectedArchitecturalStylesAndPatterns}
@@ -329,66 +426,66 @@ For Security, as the DMZ mentioned above, only our private network can access th
 \section{UI design}
 We illustrated some main UI designs in RASD document, here, we describe more details for the specific UI button. ~\\
 
-\textbf{UI-Date Time} After enter the booking button, there is an option of date and time, Fig.\ref{UI-Date Time}, the CLup will give the available booking date, which wiith the deep dark color. And the same method for selecting available booking time.~\\
+\textbf{UI-Date Time} After enter the booking button, there is an option of date and time, Fig.\ref{fig:UI-DateTime}, the CLup will give the available booking date, which with the deep dark color. And the same method for selecting available booking time.~\\
 
-\textbf{UI-Duration Time} It needs the user to estimate his shooping time, Fig.\ref{UI-Duration Time}, for long-term users, they can press the "Analysis" button, the system will approximate a duration time depending on his shopping history.~\\
+\textbf{UI-Duration Time} It needs the user to estimate his shooping time, Fig.\ref{fig:UI-DurationTime}, for long-term users, they can press the "Analysis" button, the system will approximate a duration time depending on his shopping history.~\\
 
 \textbf{UI-Ticket}  Fig.\ref{UI-Ticket} shows the users current ticket and history ticket. The current ticket with the red point, to inform the user it is the valid ticket.~\\
 
-\textbf{UI-Ticket PDF} it present the PDF ticket for the user, Fig.\ref{UI-Ticket PDF} the QRcode using for scan on the entry. And it also give the suggestion of departing time from current position to the store.~\\
+\textbf{UI-Ticket PDF} it present the PDF ticket for the user, Fig.\ref{fig:UI-TicketPDF} the QRcode using for scan on the entry. And it also give the suggestion of departing time from current position to the store.~\\
  
-\textbf{UI-Notification}  Fig.\ref{UI-Notification} which display the notification of rescheduled ticket, the red point means the unread message. And it will also give the new ticket to the user.
+\textbf{UI-Notification}  Fig.\ref{fig:ui-notification} which display the notification of rescheduled ticket, the red point means the unread message. And it will also give the new ticket to the user.
 
 
 
 \begin{figure}[H]
 	\begin{minipage}[t]{0.56\linewidth}
 		\centering
-		\includegraphics[scale=0.5]{UI-Date Time.png}
+		\includegraphics[scale=0.5]{UI-DateTime}
 		\caption{UI-Date Time}
-		\label{UI-Date Time}
+		\label{fig:UI-DateTime}
 	\end{minipage}%
 	\begin{minipage}[t]{0.56\linewidth}
 		\centering
-		\includegraphics[scale=0.5]{UI-Duration Time.png}
+		\includegraphics[scale=0.5]{UI-DurationTime}
 		\caption{UI-Duration Time}
-		\label{UI-Duration Time}
+		\label{fig:UI-DurationTime}
 	\end{minipage}
 \end{figure}
 
 \begin{figure}[H]
 	\begin{minipage}[t]{0.56\linewidth}
 		\centering
-		\includegraphics[scale=0.5]{UI-Ticket.png}
+		\includegraphics[scale=0.5]{UI-Ticket}
 		\caption{UI-Ticket}
 		\label{UI-Ticket}
 	\end{minipage}%
 	\begin{minipage}[t]{0.56\linewidth}
 		\centering
-		\includegraphics[scale=0.5]{UI-Ticket PDF.png}
+		\includegraphics[scale=0.5]{UI-TicketPDF}
 		\caption{UI-Ticket PDF}
-		\label{UI-Ticket PDF}
+		\label{fig:UI-TicketPDF}
 	\end{minipage}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.6]{UI-Notification.png}
+	\includegraphics[scale=0.6]{UI-Notification}
 	\caption{UI-Notification}
 	\centering
-	\label{UI-Notification}
+	\label{fig:ui-notification}
 \end{figure}
 
 \section{UX design}
-We present the UX diagram of user, Fig.\ref{UX-User} the diagram show the proceed of how the user from login to get the valid ticket. Corresponding to the UI design, it show the total user view of the CLup application.~\\
+We present the UX diagram of user, Fig.\ref{fig:ux-user} the diagram show the proceed of how the user from login to get the valid ticket. Corresponding to the UI design, it show the total user view of the CLup application.~\\
 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{UX-User.png}
+	\includegraphics[scale=0.5]{UX-User}
 	\caption{UX-User}
 	\centering
-	\label{UX-User}
+	\label{fig:ux-user}
 \end{figure}
 
 
@@ -414,7 +511,7 @@ We present the UX diagram of user, Fig.\ref{UX-User} the diagram show the procee
 				\hline
 				2021/01/04 & UI design & 2h \\
 				\hline
-				2021/01/05 & UX design diagram in chapter 3& 2h \\
+				2021/01/05 & UX design diagram in chapter 3 & 2h \\
 				\hline
 
 		\end{tabular}}
@@ -442,6 +539,12 @@ We present the UX diagram of user, Fig.\ref{UX-User} the diagram show the procee
 				\hline
 				2021/01/05 & Did S.\ref{sec:deployment-view}.
 				Deployment Diagram and describe. & 5h \\
+				\hline
+				2021/01/06 & Did S.\ref{sec:RuntimeViwe}.
+				Runtime View and describe & 4h \\
+				\hline
+				2021/01/07 & Did S.\ref{sec:component-interfaces}.
+				Component Interface describe & 2h \\
 				\hline
 			\end{tabular}}
 	\end{center}
