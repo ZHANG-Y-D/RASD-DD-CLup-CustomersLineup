@@ -107,7 +107,11 @@ The purpose of this document is to explain how we design and build CLup applicat
 
 \subsection{Abbreviations}
 \begin{itemize}
-	\item %TODO
+	\item  $R_n$ : n-th functional requirement
+	\item  $NR_n$: n-th non functional requirement
+	\item  $G_n$ : n-th goal
+	\item  $D_n$ : n-th domain assumption
+	\item  $C_n$ : n-th component
 \end{itemize}
 
 
@@ -556,6 +560,129 @@ We present the UX diagram of user, Fig.\ref{fig:ux-user} the diagram show the pr
 
 \chapter{REQUIREMENTS TRACEABILITY}\label{ch:requirements-traceability}
 
+In this chapter, we will bind the Goals specified in RASD with the component in DD.
+
+\section{G1 : Allows store managers to regulate the influx of people in the building}
+\subsection{Requirements}
+\begin{itemize}
+	\item $R_7$: The Store Manager shall be able to Check out the On-Time Store Data.
+	\item $R_8$: The Store Manager shall be able to Adjust the maximum number of people in the store.
+	\item $R_9$: The Store Manager shall be able to Adjust the order of the queue.
+	\item $R_{10}$: The Store Manager shall be able to Check and reschedule the booking.
+	\item $R_{12}$: The Store Back-End System shall be able to received and schedule the click customers' booking. The scheduling must refer to the duration time of each Customer and the categories of items that the Customer intends to buy.
+	\item $R_{15}$: The Store Back-End System shall send a notification and update the E-Ticket to the Customer when their book is rescheduled.
+	\item $R_{17}$: The Store Back-End System shall analyze the historical visit data and calculate the average history duration for the Long-Term Customers.
+	\item $R_{18}$: The Store Back-End System shall be able to Calculate and store the On-Time Store Data.
+	\item $R_{19}$: The Store Back-End System shall schedule or reschedule the queue order from click customer's booking and the brick customer's retrieved ticket.
+	\item $R_{20}$: The Store Back-End System shall be able to Control the Digital Counterpart and display the queue number.
+	\item $R_{21}$: The Store Back-End System shall be able to receive the information from the QR Code Scanned Machine. Receive the information from the Tickets Hand-Out Machine.
+\end{itemize}
+
+\subsection{Domain Assumptions}
+\begin{itemize}
+	\item $D_4$ : If something unexpected happens, the store manager can reasonably adjust the maximum number of people in the store or reschedule the queue \& Customer's book.
+	\item $D_5$ : If someone's booking is rescheduled, he can find the notification in time and set off according to the updated E-Ticket.
+\end{itemize}
+
+\subsection{Components}
+\begin{itemize}
+	\item $C_1$: CRM
+	\item $C_2$: QueueSchedule
+	\item $C_3$: BookingSchedule
+	\item $C_4$: ClickCustomerMobileApp
+	\item $C_5$: DigitalCounterpart
+	\item $C_6$: TicketHandOutMachine
+	\item $C_7$: QRCodeScannedMachine
+	\item $C_{8}$: StoreManagerManagementSystem
+	\item $C_{9}$: DBMSServer
+\end{itemize}
+
+
+\section{$G_2$ : Saves people from having to line up and stand outside of stores for hours on end}
+
+\subsection{Requirements}
+
+\begin{itemize}
+	\item $R_1$: Each Click Customer shall be able to sign-up and Log-in.
+	\item $R_2$: Each Click Customer shall be able to book a visit.
+	\item $R_3$: Each Click Customer shall be able to check on the E-Ticket.
+	\item $R_4$: Each Click Customer shall check on the store manager's notification when their book is rescheduled.
+	\item $R_5$: Each Brick Customer shall be able to retrieve the Ticket from the Tickets Hand-Out Machine and wait for the Digital Counterpart to call them.
+	\item $R_6$: Each Customer shall scan the QR Code at QR Code scanned machine when they enter and leave the store.
+	\item $R_{11}$: The Store Back-End System shall send the available time/date to the click customers.
+	\item $R_{12}$: The Store Back-End System shall be able to received and schedule the click customers' booking. The scheduling must refer to the duration time of each Customer and the categories of items that the Customer intends to buy.
+	\item $R_{13}$: The Store Back-End System shall calculate the time from the click customer's departure place to the store and put the estimated departure time on the E-Ticket.
+	\item $R_{15}$: The Store Back-End System shall send a notification and update the E-Ticket to the Customer when their book is rescheduled.
+	\item $R_{16}$: The Store Back-End System shall be able to store the Customer's data.
+	\item $R_{17}$: The Store Back-End System shall analyze the historical visit data and calculate the average history duration for the Long-Term Customers.
+	\item $NR_1$:The time from the click customer's departure place to the store that calculates from the Store Back-End System must be precise enough to avoid the Customer arriving at the store too early/late.
+	\item $NR_2$:The Store Back-End System must schedule the queue reasonably to minimize the wait time.
+	\item $NR_3$:The Store Back-End System must mix the book and brick customer's retrieved ticket reasonably to allow the click customers to enter the store near the book time by avoiding making the brick customers wait too long.
+	\item $NR_4$:Cause everyone needs to do grocery shopping, the software for the click customer should be simple enough to use.
+\end{itemize}
+
+
+\subsection{Domain Assumptions}
+
+\begin{itemize}
+	\item $D_1$ : Everyone will leave the departure place at the departure time indicated by the system.
+	\item $D_2$ : Everyone who leaves on time can arrive at the store on time.
+	\item $D_3$ : After shopping, everyone can leave the store in time according to their estimated time.
+	\item $D_5$ : If someone's booking is rescheduled, he can find the notification in time and set off according to the updated E-Ticket.
+	\item $D_6$ : Everyone can consciously scan the QR code at the entrance and exit.
+	\item $D_8$ : If possible, everyone tries to book the visit via the application(be a \hyperref[Definitions]{Click Customer}) instead of picking up tickets on the spot(not be a \hyperref[Definitions]{Brick Customer}).
+\end{itemize}
+
+
+\subsection{Components}
+\begin{itemize}
+	\item $C_1$: CRM
+	\item $C_2$: QueueSchedule
+	\item $C_3$: BookingSchedule
+	\item $C_4$: ClickCustomerMobileApp
+	\item $C_5$: DigitalCounterpart
+	\item $C_6$: TicketHandOutMachine
+	\item $C_7$: QRCodeScannedMachine
+	\item $C_{9}$: DBMSServer
+	\item $C_{10}$: GoogleMap Service
+\end{itemize}
+
+
+\section{$G_3$ : The application plan visits in a finer way to allow more people in the store, at the same time, let the customer occupy different spaces in the store to keep enough distance between them}
+
+\subsection{Requirements}
+
+\begin{itemize}
+	\item $R_{12}$: The Store Back-End System shall be able to received and schedule the click customers' booking. The scheduling must refer to the duration time of each Customer and the categories of items that the Customer intends to buy.
+	\item $R_{14}$: The Store Back-End System shall Plan and put the Store Planned Roadmap on the E-Ticket Send the E-Ticket to the click customers.
+	\item $R_{17}$: The Store Back-End System shall analyze the historical visit data and calculate the average history duration for the Long-Term Customers.
+\end{itemize}
+
+\subsection{Domain Assumptions}
+
+\begin{itemize}
+	\item $D_3$ : After shopping, everyone can leave the store in time according to their estimated time.
+	\item $D_7$ : Everyone can follow the \hyperref[Definitions]{Planned Roadmap} in the store.
+\end{itemize}
+
+\subsection{Components}
+
+\begin{itemize}
+	\item $C_1$: CRM
+	\item $C_3$: BookingSchedule
+	\item $C_4$: ClickCustomerMobileApp
+	\item $C_{9}$: DBMSServer
+\end{itemize}
+
+
+
+%\begin{center}
+%	\begin{tabular}{ |c|c|c| }
+%		\hline
+%		
+%
+%	\end{tabular}
+%\end{center}
 
 \chapter{IMPLEMENTATION, INTEGRATION AND TEST PLAN}\label{ch:implementation-integration-and-test-plan}
 
