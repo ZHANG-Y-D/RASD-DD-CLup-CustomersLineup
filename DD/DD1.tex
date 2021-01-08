@@ -101,6 +101,7 @@ The purpose of this document is to explain how we design and build CLup applicat
 	\item LAN - Local Area Network
 	\item RAPS - Reliable Array of Partitioned Service
 	\item RACS - Reliable Array of Cloned Services
+	\item MVC - Model-View-Controller
 \end{itemize}
 
 
@@ -122,7 +123,7 @@ In this chapter, we will describe the architectural design of our system.
 
 We will use the Top-down design approach, design the very high-level structure first,
 and then gradually work down to detailed decisions about low-level constructs.
-Finally, arrive at detailed decisions.\cite{Slides}
+Finally, arrive at detailed decisions.\cite{SlidesSE2}
 Let us start with the High-level components and their interaction.
 
 
@@ -130,6 +131,15 @@ Let us start with the High-level components and their interaction.
 
 We chose \textbf{3-Tiered architecture} with the \textbf{Thin Client} strategy for our system.
 As shown in Fig.\ref{fig:ThreeTieredArchitecture}.\cite{SistemiInformativi}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{ThreeTiered}
+	\caption{3-Tiered architecture}
+	\centering
+	\label{fig:ThreeTieredArchitecture}
+\end{figure}
+
 
 \textbf{Tier-1} is the \textbf{Presentation Layer}.
 This layer will deploy the Click Client's Mobile Application,
@@ -146,25 +156,18 @@ Finally, our high-level architecture is shown in Fig.\ref{fig:HighLevelArchitect
 The Store Manager's PC and other hardware will connect with the Ethernet Switch Hub.
 The Click Customer's Mobile App will communicate with our Back-End System via the Internet.
 
-More detailed components will be introduced in the next sections.
-In particular, in Sec.\ref{sec:deployment-view}.
-There, we will introduce the DMZ, load balancer, and other Deployment plan selections.
-
-\begin{figure}
+\begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.7]{ThreeTiered}
-	\caption{3-Tiered architecture}
-	\centering
-	\label{fig:ThreeTieredArchitecture}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[scale=0.31]{HighLevelArchitecture}%ScanQRMachine
+	\includegraphics[width=1.2\textwidth]{HighLevelArchitecture}
 	\caption{High level architecture}
 	\centering
 	\label{fig:HighLevelArchitecture}
 \end{figure}
+
+More detailed components will be introduced in the next sections.
+In particular, in Sec.\ref{sec:deployment-view}.
+There, we will introduce the DMZ, load balancer, and other Deployment plan selections.
+
 
 \section{Component View} \label{sec:ComponentView}
 The following diagram Fig.\ref{fig:ComponentDiagram} is the \textbf{Component Diagram}, and it contains all components in our system.
@@ -173,9 +176,45 @@ The Yellow components are in Presentation Layer.
 The blue components are in the Logic Application Layer, and the Green components DBMSServer is in the Data Access Layer.
 We will separately introduce all these components in this section, for the interfaces, please go to Sec.\ref{sec:component-interfaces}.
 
+\begin{figure}[H]
+	\includegraphics[width=1.2\textwidth]{component_diagram}
+	\centering
+	\caption{Component Diagram}
+	\label{fig:ComponentDiagram}
+\end{figure}
+
+
 The \textbf{Redirector} component is a bridge for communicating the Presentation Layer and the Logic Application Layer.
 It is transparent to User and back-end systems, plays the role of forwarding information on both sides, and connect interfaces.
 It has four subsystems, respectively, responsible for communicating with four types of devices, as shown in Fig.\ref{fig:component_diagram_redirector}.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.2]{component_diagram_redirector}
+	\caption{Redirector Component Diagram}
+	\centering
+	\label{fig:component_diagram_redirector}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{component_diagram_ClickCustomerRedirector}
+	\vspace{10mm}
+	\includegraphics[width=0.8\textwidth]{component_diagram_DigitalCounterpartRedirector}
+	\vspace{10mm}
+	\includegraphics[width=0.8\textwidth]{component_diagram_ManagementSystemRedirector}
+	\vspace{10mm}
+	\includegraphics[width=0.8\textwidth]{component_diagram_TicketMachineRedirector}
+	\vspace{10mm}
+	\includegraphics[width=0.8\textwidth]{component_diagram_QRMachine}
+	\vspace{10mm}
+	\caption{Redirector's Subsystem Component Diagram}
+	\centering
+	\label{fig:component_diagram_RedirectoSubsystem}
+\end{figure}
+
+
 
 The \textbf{ClickCustomerRedirector} will transfer the message between Mobile Application and the Application Server.
 The Register message will pass by the RegisterNewClickCustomer, and look out the Valid/History Booking will use the GetClickCustomerData Interface,
@@ -222,42 +261,17 @@ It has to take the Booking schedule to calculate the Queue order and handle the 
 At last, the \textbf{Database System}, it will manage all database, and handle the CRM, BookingSchedule, QueueSchedule's Query/Insert/Update.
 
 
-\begin{figure}
-	\includegraphics[width=1.2\textwidth]{component_diagram}
-	\centering
-	\caption{Component Diagram}
-	\label{fig:ComponentDiagram}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[scale=0.2]{component_diagram_redirector}
-	\caption{Redirector Component Diagram}
-	\centering
-	\label{fig:component_diagram_redirector}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.8\textwidth]{component_diagram_ClickCustomerRedirector}
-	\vspace{10mm}
-	\includegraphics[width=0.8\textwidth]{component_diagram_DigitalCounterpartRedirector}
-	\vspace{10mm}
-	\includegraphics[width=0.8\textwidth]{component_diagram_ManagementSystemRedirector}
-	\vspace{10mm}
-	\includegraphics[width=0.8\textwidth]{component_diagram_TicketMachineRedirector}
-	\vspace{10mm}
-	\includegraphics[width=0.8\textwidth]{component_diagram_QRMachine}
-	\vspace{10mm}
-	\caption{Redirector's Subsystem Component Diagram}
-	\centering
-	\label{fig:component_diagram_RedirectoSubsystem}
-\end{figure}
 
 
+\newpage
 \section{Deployment View}\label{sec:deployment-view}
 
-\begin{figure}[h]
+Our deployment situation, as shown in Fig.\ref{fig:deployment_diagram}.
+Three colors respectively represent the three layers.
+The Green devices are in the Data Access Layer, the Blue devices are in the Logic Application Layer,
+and the Yellow devices are in the Presentation Layer.
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=1.2\textwidth]{deployment_diagram}
 	\caption{Deployment Diagram}
@@ -265,18 +279,13 @@ At last, the \textbf{Database System}, it will manage all database, and handle t
 	\label{fig:deployment_diagram}
 \end{figure}
 
-
-Our deployment situation, as shown in Fig.\ref{fig:deployment_diagram}.
-Three colors respectively represent the three layers.
-The Green devices are in the Data Access Layer, the Blue devices are in the Logic Application Layer,
-and the Yellow devices are in the Presentation Layer.
-
 For all our devices, to reduce the development/management/maintenance cost,
 we will use the same Operation System - Ubuntu 20.10, and run in the same Runtime Environment - Java SE Runtime Environment 8u271.
 
-In the \textbf{Presentation Layer}, The Store Manager's PC, the Digital Counterpart, and the Ticket Machine are the Internal Devices, which means we must manage them ourselves.
-We built a LAN to connecting them with the Application Server via the Switch Hub. In our LAN, we used the Ethernet Protocol.
-Moreover, we have chosen the Thin Client strategy in the system architecture, so all our Internal Devices can run on the Raspberry Pi 4.
+In the \textbf{Presentation Layer}, The Store Manager's PC, the Digital Counterpart, the Ticket Machine and the QRCode Scanned Machine are the Internal Devices, which means we must manage them by ourselves.
+We built a LAN to connecting them with the Application Server via the Switch Hub.
+In our LAN, we used the Ethernet Protocol.
+Moreover, we have chosen the \textbf{Thin Client} strategy in the system architecture, so all our Internal Devices can run on the Raspberry Pi 4.
 It is a very low-cost deployment solution.
 
 In contrast, the Mobile Application is the External Device that will run on the Click Customer's SmartPhone.
@@ -304,17 +313,18 @@ The load balancer must allocate the higher weights to Internal Devices, and all 
 There is a different point in our case from the figure: we have separated the database and the Application Server.
 Nevertheless, cause our business is "write-intensive", so we used the shared-disk configuration in essence.
 
-Finally, the \textbf{Database system}, we selected PostgreSQL as the Database Management System cause it is Open Sources and stable.
-Then we will use the relational database to implement it.
-For Security, as the DMZ mentioned above, only our private network can access this system, so that the external network will difficultly attack our database.
-
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\textwidth]{RACS}
+	\includegraphics[width=0.4\textwidth]{RACS}
 	\caption{RACS: Shared-disk o cluster Configuration}
 	\centering
 	\label{fig:RACS}
 \end{figure}
+
+
+Finally, the \textbf{Database system}, we selected PostgreSQL as the Database Management System cause it is Open Sources and stable.
+Then we will use the relational database to implement it.
+For Security, as the DMZ mentioned above, only our private network can access this system, so that the external network will difficultly attack our database.
 
 
 \section{Runtime View}\label{sec:RuntimeViwe}
@@ -333,14 +343,6 @@ After-all, the Customer can check their Ticket when they received the Notificati
 If they checked it too early, they would only found their historic Ticket.
 
 
-\begin{figure}[h]
-	\includegraphics[width=1.2\textwidth]{sequence_diagram_ClickCustomerBookingFunction}
-	\centering
-	\caption{Click Customer's Booking Function Sequence Diagram}
-	\label{fig:ClickCustomerBookingFunction}
-\end{figure}
-
-
 The second process is the \textbf{Store Manager Management System process}, and it is shown in Fig.\ref{fig:StoreManagerManagementSystemSequenceDiagram}.
 This process presented all functions of the Store Manager Management System.
 The four operations in the figure are independent of each other, and there is no sequence.
@@ -354,9 +356,14 @@ The BookingSchedule component will store this change in the database.
 At this time, our Observer Pattern will function, the CRM will find out this change and regenerate the Ticket for the corresponding Click Customer if it is needed.
 Cause it is not a part of the Management System, so not shown in this Figure.
 
+\begin{figure}[H]
+	\includegraphics[width=1.2\textwidth]{sequence_diagram_ClickCustomerBookingFunction}
+	\centering
+	\caption{Click Customer's Booking Function Sequence Diagram}
+	\label{fig:ClickCustomerBookingFunction}
+\end{figure}
 
-
-\begin{figure}[h]
+\begin{figure}[H]
 	\includegraphics[width=1.2\textwidth]{sequence_diagram_StoreManagerManagementSystem}
 	\centering
 	\caption{Store Manager Management System Sequence Diagram}
@@ -416,10 +423,67 @@ For \textbf{QueueSchedule}'s Interface:
 
 \section{Selected Architectural Styles and Patterns}\label{sec:SelectedArchitecturalStylesAndPatterns}
 
-%MVC
+As the Sec.\ref{sec:ArchitectureOverview} said, we adopted the \textbf{3-Tiered Architecture} style for our system, as Fig.\ref{fig:Classification Of 3-Tier Architecture} in Sistem Information Book P.197 \cite{SistemiInformativi} showed.
+There are 13 kinds of 3-Tier architecture configuration.
+From Config 1 to 5 are Think Client and 6 to 13 are Thin Client, we decided to use the \textbf{Thin Client} like the Config 7.
+So that our Presentation Layer devices can applicate the lowest cost hardware, in this situation, we chose the Raspberry Pi 4 for all these devices.
+
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{ClassificationOf3-TierArchitecture}
+\centering
+\caption{Classification Of 3-Tier Architecture}
+\label{fig:Classification Of 3-Tier Architecture}
+\end{figure}
+
+By the way, as the Sec.\ref{sec:deployment-view} Deployment View mentioned, we chose the RACS and shared-disk strategy to handle our load balance problem.
+In that section, we also proposed two options to deploy our system and why we chose the second option.
+
+\vspace{5mm}
+
+\textbf{Model-View-Controller - MVC}: We referred to the Slide of the Software Engineering 1 course and decided to adopt the MVC pattern to implement our Presentation Layer devices.
+As the Fig.\ref{fig:MVC} in Slide showed \cite{SlidesSE1}, the Controller is used to invoke the API and communicate with our Application Server.
+The View used to the UI, and the Model used to handle the data arrive from the Application Server and notify the View when something changed.
+
+
+\begin{figure}[H]
+	\includegraphics[width=0.7\textwidth]{MVC}
+	\centering
+	\caption{MVC Pattern}
+	\label{fig:MVC}
+\end{figure}
+
+\vspace{5mm}
+
 %Observer Pattern
+\textbf{Observer Pattern}: We also referred to the observer pattern's idea like the Fig.\ref{fig:Observer Pattern} below in the Slide \cite{SlidesSE1}.
+Nevertheless, our system has a specific case: we treat the database as the subject and our CRM component as the Observer.
+While some Click Customer's Booking is changed, the CRM will send a notification to the Click Customer Mobile App.
+If it is necessary, the CRM will update the E-Ticket for the corresponding customer.
+
+\begin{figure}[H]
+	\includegraphics[width=0.7\textwidth]{ObserverPattern}
+	\centering
+	\caption{Observer Pattern}
+	\label{fig:Observer Pattern}
+\end{figure}
+
+
 
 \section{Other Design Decisions}
+
+In this section, we will talk about the Database Design decision. We referred to the Database 1 Course \cite{Database1Course} and the Database System book \cite{DatabaseSystemBook}.
+
+Our data have several key features: Our data is structured, and the schema can be predefined, and our data structure is vertically scalable instead of horizontally scalable.
+So we decided to adopt the \textbf{Relational Database}.
+
+In the database design process, we will strictly follow the design process.
+From Conceptual Design to Logical Design, and then to do the Normalization.
+Because the Relational Database is vertically scalable, if the initial design is wrong, the cost of later modification will increase exponentially.
+
+For the deployment issues, as the Sec.\ref{sec:deployment-view} Deployment View mentioned, we used \textbf{PostgreSQL} as the Database Management System because it is free, open-source, mature, and stable.
+
+
 
 \chapter{USER INTERFACE DESIGN}\label{ch:user-interface-design}
 
@@ -513,6 +577,8 @@ We present the UX diagram of user, Fig.\ref{fig:ux-user} the diagram show the pr
 				\hline
 				2021/01/05 & UX design diagram in chapter 3 & 2h \\
 				\hline
+				2021/01/08 & Group Discussion & 2h\\
+				\hline
 
 		\end{tabular}}
 	\end{center}
@@ -546,6 +612,8 @@ We present the UX diagram of user, Fig.\ref{fig:ux-user} the diagram show the pr
 				2021/01/07 & Did S.\ref{sec:component-interfaces}.
 				Component Interface describe & 2h \\
 				\hline
+				2021/01/08 & Finished the architecture part and did the group discussion. & 4h \\
+				\hline
 			\end{tabular}}
 	\end{center}
 \end{itemize}
@@ -557,7 +625,7 @@ We present the UX diagram of user, Fig.\ref{fig:ux-user} the diagram show the pr
 \begin{thebibliography}{9}
 
 \bibitem{SistemiInformativi}
-Cinzia Cappiello, Mariagrazia Fugini, Paul Grefen, Barbara Pernici, Pierluigi Plebani, Monica Vitali. (7 settembre 2018)  Fondamenti di Sistemi informativi: per il Settore dell'Informazione.
+Cinzia Cappiello, Mariagrazia Fugini, Paul Grefen, Barbara Pernici, Pierluigi Plebani, Monica Vitali. (7 settembre 2018)  \textbf{Fondamenti di Sistemi informativi}: per il Settore dell'Informazione.
 
 \bibitem{IEEESDD}
 "IEEE Standard for Information Technology--Systems Design--Software Design Descriptions," in IEEE STD 1016-2009 , vol., no., pp.1-35, 20 July 2009, doi: 10.1109/IEEESTD.2009.5167255.
@@ -566,8 +634,23 @@ Cinzia Cappiello, Mariagrazia Fugini, Paul Grefen, Barbara Pernici, Pierluigi Pl
 "ISO/IEC/IEEE Systems and software engineering -- Architecture description," in ISO/IEC/IEEE 42010:2011(E) (Revision of ISO/IEC 42010:2007 and IEEE Std 1471-2000) , vol., no., pp.1-46, 1 Dec.
 2011, doi: 10.1109/IEEESTD.2011.6129467.
 
-\bibitem{Slides}
+\bibitem{SlidesSE1}
+Gianpaolo Cugola, Lorenzo Di Tucci. (A.Y.2018/2019) The slides of the Software Engineering 1 course.
+Politecnico di Milano.
+
+\bibitem{SlidesSE2}
 Elisabetta Di Nitto, Matteo Rossi. (A.Y.2020/2021) The slides of the Software Engineering 2 course.
+Politecnico di Milano.
+
+\bibitem{Database1Course}
+Sara Comai, Giovanni Meroni, Davide Piantella. (A.Y.2019/2020) The Database 1 course.
+Politecnico di Milano.
+
+\bibitem{DatabaseSystemBook}
+Paolo Atzeni, Stefano Ceri, Stefano Paraboschi, Riccardo Torlone. \textbf{Database Systems} concepts, languages \& architectures.
+The McGraw-Hill Companies.
+ISBN 007-709500-6.
+
 
 \end{thebibliography}
 
