@@ -220,36 +220,43 @@ We will separately introduce all these components in this section, for the inter
 	\label{fig:ComponentDiagram}
 \end{figure}
 
+\vspace{5mm}
 
 The \textbf{Redirector} component is a bridge for communicating the Presentation Layer and the Logic Application Layer.
 It is transparent to User and back-end systems, plays the role of forwarding information on both sides, and connect interfaces.
 It has four subsystems, respectively, responsible for communicating with four types of devices, as shown in Fig.\ref{fig:component_diagram_redirector}.
 
+\vspace{8mm}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.2]{component_diagram_redirector}
+	\includegraphics[width=0.5\textwidth]{component_diagram_redirector}
 	\caption{Redirector Component Diagram}
 	\centering
 	\label{fig:component_diagram_redirector}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.8\textwidth]{component_diagram_ClickCustomerRedirector}
-	\vspace{10mm}
-	\includegraphics[width=0.8\textwidth]{component_diagram_DigitalCounterpartRedirector}
-	\vspace{10mm}
-	\includegraphics[width=0.8\textwidth]{component_diagram_ManagementSystemRedirector}
-	\vspace{10mm}
-	\includegraphics[width=0.8\textwidth]{component_diagram_TicketMachineRedirector}
-	\vspace{10mm}
-	\includegraphics[width=0.8\textwidth]{component_diagram_QRMachine}
-	\vspace{10mm}
-	\caption{Redirector's Subsystem Component Diagram}
-	\centering
-	\label{fig:component_diagram_RedirectoSubsystem}
-\end{figure}
+\vspace{8mm}
+
+
+
+%
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.8\textwidth]{component_diagram_ClickCustomerRedirector}
+%	\vspace{10mm}
+%	\includegraphics[width=0.8\textwidth]{component_diagram_DigitalCounterpartRedirector}
+%	\vspace{10mm}
+%	\includegraphics[width=0.8\textwidth]{component_diagram_ManagementSystemRedirector}
+%	\vspace{10mm}
+%	\includegraphics[width=0.8\textwidth]{component_diagram_TicketMachineRedirector}
+%	\vspace{10mm}
+%	\includegraphics[width=0.8\textwidth]{component_diagram_QRMachine}
+%	\vspace{10mm}
+%	\caption{Redirector's Subsystem Component Diagram}
+%	\centering
+%	\label{fig:component_diagram_RedirectoSubsystem}
+%\end{figure}
 
 
 
@@ -264,23 +271,87 @@ The Mobile Application can actively "pull" Notify message through this Interface
 To "push" Notify information, we will use the Observer Pattern.
 It will introduce in Sec.\ref{sec:SelectedArchitecturalStylesAndPatterns}
 
+\vspace{8mm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{component_diagram_ClickCustomerRedirector}
+%	\caption{ClickCustomerRedirector Diagram}
+%	\centering
+%	\label{fig:ClickCustomerRedirector}
+\end{figure}
+
+\vspace{8mm}
+
+\newpage
 The \textbf{TicketMachineRedirector} will transfer the Ticket Hand-Out Machine's message.
 It needs two pieces of information, the allowed \hyperref[subsec:definitions]{maximum number of people in the store} and how many Customers in the Queue in time.
 So The GetQueueSchedule and GetMaxNumberInStore Interface can do these operations, and these two fields will show on the Ticket Machine's screen.
 Finally, the retrieve ticket operation will handle by the ModifyQueueSchedule Interface.
 It will put a BrickCustomer into the Queue.
 
+\vspace{8mm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{component_diagram_TicketMachineRedirector}
+%	\caption{TicketMachineRedirector Diagram}
+%	\centering
+%	\label{fig:TicketMachineRedirector}
+\end{figure}
+
+\vspace{8mm}
+
 The \textbf{DigitalCounterpartRedirector} will help the \hyperref[subsec:definitions]{Digital Counterpart} display the next queue number.
 The Customer can enter the store after found his number on the Digital Counterpart.
 
+\vspace{8mm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{component_diagram_DigitalCounterpartRedirector}
+%	\caption{DigitalCounterpartRedirector Diagram}
+%	\centering
+%	\label{fig:DigitalCounterpartRedirector}
+\end{figure}
+
+\vspace{8mm}
+
+\newpage
 The \textbf{ManagementSystemRedirector} will function for the Management System of our Store Manager.
 This redirector will transmit the message between the Presentation layer's Management System and the Back-End System.
-Through the Interface shown in Fig.\ref{fig:component_diagram_RedirectoSubsystem}, the Manager can realize his operation like reschedule someone's Booking, adjust the Queue order, or lower the maximum number.
+Through the Interface shown in Figure blow, the Manager can realize his operation like reschedule someone's Booking, adjust the Queue order, or lower the maximum number.
+
+
+\vspace{8mm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{component_diagram_ManagementSystemRedirector}
+%	\caption{ManagementSystemRedirector Diagram}
+%	\centering
+%	\label{fig:ManagementSystemRedirector}
+\end{figure}
+
+\vspace{8mm}
+
 
 The \textbf{QRCodeScannedMachineRedirector} is working for the \hyperref[subsec:definitions]{Ticket QRCode Scanned Machine}.
 When the Enter Machine scanned someone's QRCode, it will directly use the ModifyQueueSchedule to move this Customer from the Queue list to the CustomerInStore list.
 If this Customer is not in the Queue list, the ModifyQueueSchedule will not return OK, which means this operation not successful.
 Of course, the Exit Machine will do similar things, move out the Customer from the CustomerInStore list.
+
+\vspace{8mm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{component_diagram_QRMachine}
+%	\caption{QRMachineRedirector Diagram}
+%	\centering
+%	\label{fig:QRMachineRedirector}
+\end{figure}
+
+\vspace{8mm}
 
 
 The next three subsystems are the core subsystems in our application layer.
@@ -527,8 +598,8 @@ For the deployment issues, as the Sec.\ref{sec:deployment-view} Deployment View 
 \section{UI design}
 We illustrated some main UI designs in RASD document, here, we describe more details for the specific UI design. For every user can use CLup easily and see it clearly, we did the icon and word size bigger, to ensure that even old people can also do it by themselves. ~\\
 
-\subsection{Click Customer Register and Book a Ticket}
-For every click customer, they can use their smart phone to download the CLup and book a ticket to the store. The user need to login/register on CLup, after they need to select some shopping details, i.e. date, time, duration time, etc. As shown in following UI design:~\\
+\subsection{Click Customer Register and Book a visit}
+For every click customer, they can use their smart phone to download the CLup and book a visit to the store. The user need to login/register on CLup, after they need to select some shopping details, i.e. date, time, duration time, etc. As shown in following UI design:~\\
 ~\\ 
 
 \textbf{UI-Date} After enter the booking button, there is an option of date and time, Fig.\ref{fig:UI-Date}, the CLup will give the available booking date, which with the deep dark color. User can choose the date from the available option~\\
@@ -538,7 +609,7 @@ For every click customer, they can use their smart phone to download the CLup an
 \textbf{UI-DurationTime} It needs the user to estimate his shopping time, Fig.\ref{fig:UI-DurationTime}, for long-term users, the system will also approximate a duration time depending on his shopping history.~\\
 ~\\
 \subsection{Click Customer Get the Ticket}
-After the user fulfilled their information, the system will receive their details and schedule the ticket. Users need to wait the notification to inform them that their ticket is ready! After they receive the notification, they can find their E-Ticket in the button of "Ticket". They can with this E-Ticket to enter the store and know the shopping route in the store. As we design in the following:~\\
+After the user fulfilled their information, the system will receive their details and schedule the booking. Users need to wait the notification to inform them that their ticket is ready! After they receive the notification, they can find their E-Ticket in the button of "Ticket". They can with this E-Ticket to enter the store and know the shopping route in the store. As we design in the following:~\\
 ~\\ 
 
 \textbf{UI-Notification}  Fig.\ref{fig:UI-Notification} which display the user is available, and also inform the user in case of their ticket was rescheduled. The red point means the unread message. The date and time under means the receive message time.
@@ -659,9 +730,13 @@ The store manager can control the people density inside the store. In case of to
 	\label{fig:UI-QueueOrder}
 \end{figure}
 
-
+\newpage
 \section{UX design}
-We present the UX diagram of user, Fig.\ref{fig:ux-user} the diagram show the proceed of how the user from login to get the valid ticket. Corresponding to the UI design, it show the total user view of the CLup application. Of course we cannot show all the details the user proceed, we pick the main point to illustrate the UX for user. And we also add some character aiming to complete the UX, e.t."Logout", which we didn't mention in RASD~\\
+
+We present the UX diagram of the Click Customer, Fig.\ref{fig:ux-user} the diagram show the proceed of how the Click Customer from login to get the valid ticket.
+Corresponding to the UI design, it shows the total user view of the CLup application.
+Of course we cannot show all the details the user proceed, we pick the main point to illustrate the UX for user.
+And we also add some character aiming to complete the UX, i.e."Logout", which we didn't mention in RASD~\\
 
 
 \begin{figure}[H]
@@ -928,7 +1003,8 @@ We will use all the above testing methods to test our system.
 				\hline
 				2021/01/08 & Did the chapter 1 and chapter 5 & 3h\\
 				\hline
-
+				2021/01/09 & Last call for group discussion and prepare the delivery. & 3h \\
+				\hline
 		\end{tabular}}
 	\end{center}
 
@@ -964,6 +1040,8 @@ We will use all the above testing methods to test our system.
 				2021/01/08 & Finished the architecture part and did the group discussion. & 4h \\
 				\hline
 				2021/01/09 & Updated the Chapter \ref{ch:implementation-integration-and-test-plan}. & 2h \\
+				\hline
+				2021/01/09 & Last call for group discussion and prepare the delivery. & 3h \\
 				\hline
 			\end{tabular}}
 	\end{center}

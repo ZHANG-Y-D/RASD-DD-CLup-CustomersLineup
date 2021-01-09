@@ -1,0 +1,98 @@
+@startuml
+box sd Click Customer Booking Function Sequence Diagram
+
+participant ":ClickCustomerMobileApp" as CC
+participant ":Redirector" as RD
+participant ":CRM" as CRM
+participant ":BookingSchedule" as BS
+participant ":DBMSServer" as DB
+participant ":GoogleMap Service" as Google
+
+
+group LogIn
+CC -> RD: LogIn(username,password)
+activate CC
+activate RD
+RD -> CRM: LogIn(username,password)
+activate CRM
+CRM -> DB: checkUser(username,password)
+activate DB
+DB -> CRM: True
+deactivate DB
+CRM -> RD: LogIn Successful
+RD -> CC: LogIn Successful
+end group
+...
+group SendABooking
+CC -> RD: GetClickCustomerData("Booking")
+RD -> CRM: GetClickCustomerData("Booking")
+CRM -> BS: GetBookingSchedule("Available")
+activate BS
+
+BS -> DB: QueryBookingSchedule()
+activate DB
+DB -> BS: BookingSchedule
+deactivate DB
+
+BS -> CRM: BookingSchedule
+deactivate BS
+CRM -> CRM: CalculateHistoryAverageDuration()
+CRM -> RD: [BookingSchedule,HistoryAverageDuration]
+RD -> CC: [BookingSchedule,HistoryAverageDuration]
+CC -> RD: ModifyClickCustomerData("Booking",newBooking)
+RD -> CRM: ModifyClickCustomerData("Booking",newBooking)
+CRM -> BS: ModifyBookingSchedule("Booking", newBooking)
+activate BS
+BS -> DB: InsertBooking(newBooking)
+activate DB
+DB -> BS: OK
+deactivate DB
+BS -> CRM: OK
+deactivate BS
+CRM -> RD: Booking Successful
+RD -> CC: Booking Successful
+end group
+...
+
+group CRMGenerateE-Ticket
+CRM -> BS: GetBookingSchedule()
+activate BS
+BS -> DB: QueryBookingSchedule()
+activate DB
+DB -> BS: RelativeCustomerBookingSchedule
+deactivate DB
+BS -> CRM: RelativeCustomerBookingSchedule
+deactivate BS
+CRM -> CRM: GenerateRoadMap()
+CRM -> Google: QueryTimeFromDepartPlaceToStore()
+activate Google
+Google -> CRM: TimeFromDepartPlaceToStore
+deactivate Google
+CRM -> CRM: GenerateQRCode()
+CRM -> CRM: GenerateQueueNumber()
+CRM -> CRM: IntegrateInfoAndGenerateE-Ticket()
+CRM -> DB: InsertE-Ticket()
+activate DB
+DB -> CRM: OK
+deactivate DB
+CRM -> RD: Send a Notification
+RD -> CC: Your Ticket is updated
+end group
+...
+
+group CustomerCheckE-Ticket
+CC -> RD: GetClickCustomerData()
+RD -> CRM: GetClickCustomerData()
+CRM -> DB: QueryClickCustomerData()
+activate DB
+DB -> CRM: customerData
+deactivate DB
+CRM -> RD: customerData
+deactivate CRM
+RD -> CC: customerData
+deactivate RD
+end group
+
+deactivate CC
+end box
+@enduml

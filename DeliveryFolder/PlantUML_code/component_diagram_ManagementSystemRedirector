@@ -1,0 +1,25 @@
+@startuml
+    left to right direction
+
+    [ManagementSystemRedirector] as MS
+
+    interface ManagementSystemWebPage
+
+    ManagementSystemWebPage --# MS
+
+    interface GetBookingSchedule
+    interface ModifyBookingSchedule
+
+    interface GetQueueSchedule
+    interface ModifyQueueSchedule
+    interface GetMaxNumberInStore
+    interface ModifyMaxNumberInStore
+
+    MS #--( GetBookingSchedule
+    MS #--( ModifyBookingSchedule
+    MS #--( GetQueueSchedule
+    MS #--( ModifyQueueSchedule
+    MS #--( GetMaxNumberInStore
+    MS #--( ModifyMaxNumberInStore
+
+@enduml

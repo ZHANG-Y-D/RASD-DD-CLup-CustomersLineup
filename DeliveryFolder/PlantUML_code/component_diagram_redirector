@@ -1,0 +1,29 @@
+@startuml
+
+component "Redirector" as RD {
+
+    left to right direction
+
+    [ClickCustomerRedirector] as CC
+    [TicketMachineRedirector] as TM
+    [DigitalCounterpartRedirector] as DC
+    [ManagementSystemRedirector] as MS
+    [QRCodeScannedMachine] as QR
+
+}
+
+interface ManageMobileApp
+interface ManageTicketMachine
+interface ManageDigitalCounterpart
+interface ManagementSystem
+interface ManageQRCodeScannedMachine
+
+
+ManageMobileApp --# CC
+ManageTicketMachine --# TM
+ManageDigitalCounterpart --# DC
+ManagementSystem --# MS
+ManageQRCodeScannedMachine --# QR
+
+
+@enduml
