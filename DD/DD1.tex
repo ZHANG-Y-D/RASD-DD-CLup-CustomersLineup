@@ -770,8 +770,23 @@ In this chapter, we will bind the Goals specified in RASD with the component in 
 
 
 \section{Implementation }
-
+We use the Top-down design approach. When a click customer want to book a ticket, the following modules will be implemented is this order:~\\
 ~\\
+$\bullet$ ClickCustomerMobileApp~\\
+$\bullet$ Redirector~\\
+$\bullet$ CRM~\\
+$\bullet$ BookingSchedule~\\
+$\bullet$ DBMSServer~\\
+~\\
+For the store manager management system, the modules sequence is this:~\\
+~\\
+$\bullet$ StoreManagerManagementSystem~\\
+$\bullet$ Redirector~\\
+$\bullet$ QueueSchedule~\\
+$\bullet$ BookingSchedule~\\
+$\bullet$ DBMSServer~\\
+
+
 \section{Integration}
 The aiming od integration testing is at exercising: interface and modules interactions. We need to consider and avoid the different integration faults:~\\
 ~\\
@@ -784,7 +799,7 @@ $\bullet$ Dynamic mismatches\cite{SlidesSE2}~\\
 Our integration testing based on the Top-down structure of system with the thread of a portion of several modules offers a user- visible function.~\\
 ~\\
 \section{Test Plan}
-We will use the black-box testing after the integration. We will use modules to devise test cases, and the actural behavior of software under test is checked against the the behavior specified by the model. The prerequisties of performances testing is expected workload and acceptable performance. For system testing, the teams are independent and will test the functional and non-functional requirements. As for the test environment, it need to be as close as possiable to production enviroment. In performance, we need to identify the inefficient algorithms, optimize the query possibilities and hardware/ network issues.
+We will use the black-box testing. We will use modules to devise test cases, and the actural behavior of software under test is checked against the the behavior specified by the model. The prerequisties of performances testing is expected workload and acceptable performance. For system testing, the teams are independent and will test the functional and non-functional requirements. As for the test environment, it need to be as close as possiable to production enviroment. In performance, we need to identify the inefficient algorithms, optimize the query possibilities and hardware/ network issues\cite{SlidesSE2}.
 
 
 
@@ -810,6 +825,8 @@ We will use the black-box testing after the integration. We will use modules to 
 				2021/01/07 &  Did chapter 5 implementation, integrate and test & 4h \\
 				\hline
 				2021/01/08 & Group Discussion & 2h\\
+				\hline
+				2021/01/08 & Did the chapter 1 and chapter 5 & 3h\\
 				\hline
 
 		\end{tabular}}
