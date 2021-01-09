@@ -144,8 +144,7 @@ On the end, we use the UX diagram to show the user process.~\\
 
 
 \textbf{Requirements traceability}
-In this chapter, we describe G1, G2 and G3.
-We specific the corresponding requirements, domain assumptions and components.~\\
+In this chapter, we describe goals with respect to RASD. We specific the corresponding requirements, domain assumptions and components.~\\
 
 \textbf{Implementation, integration and test plan}
 In this chapter, we will introduce the implementation and integration of our system.
@@ -523,13 +522,21 @@ For the deployment issues, as the Sec.\ref{sec:deployment-view} Deployment View 
 \chapter{USER INTERFACE DESIGN}\label{ch:user-interface-design}
 
 \section{UI design}
-We illustrated some main UI designs in RASD document, here, we describe more details for the specific UI button. ~\\
+We illustrated some main UI designs in RASD document, here, we describe more details for the specific UI design. For every user can use CLup easily and see it clearly, we did the icon and word size bigger, to ensure that even old people can also do it by themselves. ~\\
+
+\subsection{Click Customer Register and Book a Ticket}
+For every click customer, they can use their smart phone to download the CLup and book a ticket to the store. The user need to login/register on CLup, after they need to select some shopping details, i.e. date, time, duration time, etc. As shown in following UI design:~\\
+~\\ 
 
 \textbf{UI-Date} After enter the booking button, there is an option of date and time, Fig.\ref{fig:UI-Date}, the CLup will give the available booking date, which with the deep dark color. User can choose the date from the available option~\\
 
 \textbf{UI-Time} After user fix the date, they need also select the booking time, as shown in Fig.\ref{fig:UI-Time}, it need to point the AM/PM.~\\
 
 \textbf{UI-DurationTime} It needs the user to estimate his shopping time, Fig.\ref{fig:UI-DurationTime}, for long-term users, the system will also approximate a duration time depending on his shopping history.~\\
+~\\
+\subsection{Click Customer Get the Ticket}
+After the user fulfilled their information, the system will receive their details and schedule the ticket. Users need to wait the notification to inform them that their ticket is ready! After they receive the notification, they can find their E-Ticket in the button of "Ticket". They can with this E-Ticket to enter the store and know the shopping route in the store. As we design in the following:~\\
+~\\ 
 
 \textbf{UI-Notification}  Fig.\ref{fig:UI-Notification} which display the user is available, and also inform the user in case of their ticket was rescheduled. The red point means the unread message. The date and time under means the receive message time.
 
@@ -538,12 +545,20 @@ We illustrated some main UI designs in RASD document, here, we describe more det
 \textbf{UI-TicketPDF} The user ticket include 2 pages, the first page Fig.\ref{fig:UI-TicketPDF} display the QRcode using for scan on the entry. And it also give queue number and the suggestion of departing time from current position to the store.~\\
 
 \textbf{UI-Route} This is the second page of user's ticket Fig.\ref{fig:UI-Route} it illustrate the user shopping route in the store. As you can see, in both enter and exit position have the small yellow scan QRCode machine, it needs the user scan-in and scan-out. After, the blue line show the shopping route inside the store, the big yellow cycle point the position of user desired product. The red line show the main map of the store.~\\
+
+\subsection{Brick Customer take the ticket}
+For brick customer, they may not available to book the ticket on smart phone. But they can take the ticket on hand-out ticket machine easily. Their ticket will be the same ticket as click customer, also have the QRCode, obviously, brick customer ticket don't need the depart time from home and shopping route, because they've arrived at the store and didn't specific what to buy. Brick customer and click customer all need to wait outside the store, as long as the "Queue number screen" let then go inside. We illustrate some UI design in the following:~\\
+~\\
  
-\textbf{UI-TakeTicket} It shows the screen of take ticket machine out of the store Fig.\ref{fig:UI-TakeTicket}. Brick customer can take the ticket from here by pressing the "Ticket" button. It will print automatically a PDF ticket to brick customer. It also present the people inside the store and waiting in queue.~\\
+\textbf{UI-TakeTicket} It shows the screen of hand-out ticket machine out of the store Fig.\ref{fig:UI-TakeTicket}. Brick customer can take the ticket from here by pressing the "Ticket" button. It will print automatically a PDF ticket to brick customer. It also present the people inside the store and waiting in queue.~\\
 
-\textbf{UI-Queue Number Screen} It displays the screen of queue number orderingFig.\ref{fig:UI-TakeTicket}. This screen shown out of the store, which the user in queue can see it, after they see their corresponding number, they can enter the store with their QRCode.~\\
+\textbf{UI-Queue Number Screen} It displays the screen of queue number orderingFig.\ref{fig:UI-QueueNumberScreen}. This screen shown out of the store, which the user in queue can see it, after they see their corresponding number, they can enter the store with their QRCode.~\\
 
-\textbf{UI-Reschedule} This displays the screen of manager Fig.\ref{fig:UI-Reschedule}. After the manager press the "Reschedule" button, it will enter to this page, he can search for multiple informations. For example, if he saw too many people in the gelato zone, he can search gelato on searching bar, it will show all the Click customers who want to buy gelato, but haven't departed yet. In advanced, he can also search the specific time slot of the user, etc. ~\\  
+\subsection{Store Manager management System}
+The store manager can control the people density inside the store. In case of too many/less people in the store or in the same zone, he can do three things: (1) He can adjust the max number inside the store. (2) He can reschedule some users' ticket(only users haven't departed yet) (3) He can reschedule the queue order waiting outside the store. We design the manager UI screen in the following:~\\
+~\\
+
+\textbf{UI-Reschedule} This displays the screen of manager Fig.\ref{fig:UI-Reschedule}. After the manager press the "Reschedule" button, it will enter to this page, he can smart search for multiple informations. For example, if he saw too many people in the gelato zone, he can search gelato on searching bar, it will show all the Click customers who want to buy gelato, but haven't departed yet. In advanced, he can also smart search the specific time slot of the user, etc. ~\\  
 
 \textbf{UI-Reschedule Click Customer} This displays the screen of manager Fig.\ref{fig:UI-RescheduleCC} for reschedule the click customer. Manager has the right of select users to reschedule their booking time.  As shown is search bar, it display the customer whose deired product is gelato, and the booking time is between 11:30 to 12:00. Manager can press the reschedule button to schedule their booking to another time slot, to reduce the people density in specific store zone. ~\\ 
  
@@ -614,7 +629,7 @@ We illustrated some main UI designs in RASD document, here, we describe more det
 	\includegraphics[width=0.56\textwidth]{UI-QueueNumberScreen}
 	\centering
 	\caption{UI-QueueNumberScreen.png}
-	\label{fig:UI-QueueNumberScreen.png}
+	\label{fig:UI-QueueNumberScreen}
 \end{figure}
 
 \begin{figure}[H]
