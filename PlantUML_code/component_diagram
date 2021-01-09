@@ -5,11 +5,10 @@
 
 
 [ClickCustomerMobileApp] as CC
-[StoreManagerManagementSystemWebPage] as SM
+[StoreManagerManagementSystem] as SM
 [DigitalCounterpart] as DC
 [TicketHandOutMachine] as TM
-
-
+[QRCodeScannedMachine] as QR
 
 component "Application Server" as AS  #E4F0F6 {
     [BookingSchedule] as BS <<SubSystem>> #8CAFD9
@@ -26,8 +25,9 @@ component "Application Server" as AS  #E4F0F6 {
     interface GetBookingSchedule #8CAFD9
     interface ModifyBookingSchedule #8CAFD9
 
-    interface ModifyQueueSchedule #8CAFD9
+
     interface GetQueueSchedule #8CAFD9
+    interface ModifyQueueSchedule #8CAFD9
     interface GetMaxNumberInStore #8CAFD9
     interface ModifyMaxNumberInStore #8CAFD9
 
@@ -69,17 +69,20 @@ component "Application Server" as AS  #E4F0F6 {
 interface ManageMobileApp #8CAFD9
 interface ManageTicketMachine #8CAFD9
 interface ManageDigitalCounterpart #8CAFD9
-interface ManagementSystemWebPage #8CAFD9
+interface ManagementSystem #8CAFD9
+interface ManageQRCodeScannedMachine #8CAFD9
 
 ManageMobileApp --# RD
 ManageTicketMachine --# RD
 ManageDigitalCounterpart --# RD
-ManagementSystemWebPage --# RD
+ManagementSystem --# RD
+ManageQRCodeScannedMachine --# RD
 
 CC #--( ManageMobileApp
-SM #--( ManagementSystemWebPage
+SM #--( ManagementSystem
 DC #--( ManageDigitalCounterpart
 TM #--( ManageTicketMachine
+QR #--( ManageQRCodeScannedMachine
 
 [DBMSServer] as DBMS #88D792
 interface DBSMFunction #88D792

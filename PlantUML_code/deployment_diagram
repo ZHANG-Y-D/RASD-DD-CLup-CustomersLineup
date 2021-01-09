@@ -72,6 +72,15 @@ node "Ticket Machine" as TM <<device>> #f9fac5{
     }
 }
 
+node "QR Code Scanned Machine" as QR <<device>> #f9fac5{
+node "Ubuntu 20.10" as UQR <<OS>> #EECDD9 {
+        node "Java SE Runtime Environment 8u271" as REQR <<execution environment>> #F7FCFA{
+            artifact "QRCodeScanner.jar"
+        }
+    }
+
+}
+
 }
 
 
@@ -90,6 +99,7 @@ LAN --- LB: "Ethernet LAN"
 REDC -- LAN
 RETM -- LAN
 RESM -- LAN
+REQR -- LAN
 
 
 

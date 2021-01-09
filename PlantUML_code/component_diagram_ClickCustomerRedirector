@@ -12,7 +12,6 @@ ManageMobileApp --# CC
 interface RegisterNewClickCustomer
 interface LogIn
 interface GetClickCustomerData
-interface GetBookingSchedule
 interface ModifyClickCustomerData
 interface SendNotifyToClickCustomer
 
@@ -20,7 +19,6 @@ interface SendNotifyToClickCustomer
 CC #--( RegisterNewClickCustomer
 CC #--( LogIn
 CC #--( GetClickCustomerData
-CC #--( GetBookingSchedule
 CC #--( ModifyClickCustomerData
 CC #--( SendNotifyToClickCustomer
 

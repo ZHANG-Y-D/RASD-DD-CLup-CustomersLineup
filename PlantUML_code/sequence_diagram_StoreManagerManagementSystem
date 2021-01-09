@@ -1,0 +1,83 @@
+@startuml
+box sd Store Manager Management System Sequence Diagram
+
+participant ":Store Manager Management System" as MS
+participant ":Redirector" as RD
+participant ":QueueSchedule" as QS
+participant ":BookingSchedule" as BS
+participant ":DBMSServer" as DB
+'participant ":CRM" as CRM
+'participant ":ClickCustomer Mobile App" as CC
+
+activate MS
+activate RD
+group Check On-Time Store Data
+MS->RD: GetQueueSchedule()
+RD->QS: GetQueueSchedule()
+activate QS
+QS->DB: QueryQueueSchedule()
+activate DB
+DB->QS: [Queue,CustomerInStore,MaxNumberInStore]
+Deactivate DB
+QS->RD: [Queue,CustomerInStore,MaxNumberInStore]
+deactivate QS
+RD->MS: [Queue,CustomerInStore,MaxNumberInStore]
+end
+
+...
+group Modify the queue order
+MS->RD: ModifyQueueSchedule()
+RD->QS: ModifyQueueSchedule()
+activate QS
+QS->DB: ModifyQueueSchedule()
+activate DB
+DB->QS: OK
+Deactivate DB
+QS->RD: OK
+deactivate QS
+RD->MS: Modify Queue Order Successful
+end
+
+...
+group Modify the maximum number in the store
+MS->RD: GetMaxNumberInStore()
+RD->QS: GetMaxNumberInStore()
+activate QS
+QS->DB: ModifyMaxNumberInStore()
+activate DB
+DB->QS: OK
+Deactivate DB
+QS->RD: OK
+deactivate QS
+RD->MS: Modify Max Number Successful
+end
+
+...
+group Reschedule the booking
+MS->RD: GetBookingSchedule()
+RD->BS: GetBookingSchedule()
+activate BS
+BS->DB: GetBookingSchedule()
+activate DB
+DB->BS: [BookingSchedule]
+Deactivate DB
+BS->RD: [BookingSchedule]
+deactivate BS
+RD->MS: [BookingSchedule]
+...
+MS->RD: ModifyBookingSchedule()
+RD->BS: ModifyBookingSchedule()
+activate BS
+BS->DB: updateBookingSchedule()
+activate DB
+DB->BS: OK
+Deactivate DB
+BS->RD: OK
+deactivate BS
+RD->MS: OK
+end group
+deactivate RD
+deactivate MS
+
+end box
+@enduml
