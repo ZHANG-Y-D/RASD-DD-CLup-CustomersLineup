@@ -65,7 +65,7 @@ This document also aims to let other stakeholders easily understand and know the
 
 \section{Scope}
 CLup is an application aiming to help customers reduce the risk in the COVID-19 situation.
-The customer needs to have a smart phone to book the visit. Customers also can hand out the ticket from the ticket machine out of the store.
+The customer needs to have a smart phone to book the visit. Customers also can take the ticket from the ticket machine out of the store.
 Customers need to scan-in and scan-out when they enter and exit the store. As the RASD mentioned, we have two kinds of customers - the Click Customer and the Brick Customer.
 The Click customer needed to specify their wanted item list when they were booking the ticket, and the system will project a roadmap in the store for them, so the Click Customer needs to follow the route shown in the ticket when they are shopping.
 The Store Manager needs to monitor the store's density, control the entry number, and reschedule the ticket when too many people in the store or the same zone.
@@ -77,7 +77,7 @@ The Store Manager needs to monitor the store's density, control the entry number
 	\item Click Customer : The customer has the required technology to access the store.
 							I.e a smartphone.
 							They can use the customer terminal software.
-	\item Brick Customer : The customer doesn't have the required technology to access the store, they have to hand out "tickets" on the spot.
+	\item Brick Customer : The customer doesn't have the required technology to access the store, they have to take the "Tickets" on the spot.
 	\item Store Manager : They have to manage the Store System, include the software and hardware.
 	\item Ticket: The ticket is a document which contains three key information: QR Code, the estimated departure time, the queue number, and the Store Planned Roadmap.
 					To the click customer, it's \textbf{E-ticket} but to the brick customer,it's \textbf{Paper Ticket},and doesn't contain the estimated departure time, and just a General Store Map without the Planned Road.
@@ -125,7 +125,10 @@ The Store Manager needs to monitor the store's density, control the entry number
 
 
 \section{Revision history}
-
+\begin{itemize}
+	\item 1.1 The initial vision
+	\item 2.1 Updated the Store Management's web page to the Management System
+\end{itemize}
 
 \section{Document Structure}
 Here are the structure of DD document:~\\
@@ -271,7 +274,7 @@ The \textbf{DigitalCounterpartRedirector} will help the \hyperref[subsec:definit
 The Customer can enter the store after found his number on the Digital Counterpart.
 
 The \textbf{ManagementSystemRedirector} will function for the Management System of our Store Manager.
-This redirector will transmit the message between the Presentation layer's web page and the Back-End System.
+This redirector will transmit the message between the Presentation layer's Management System and the Back-End System.
 Through the Interface shown in Fig.\ref{fig:component_diagram_RedirectoSubsystem}, the Manager can realize his operation like reschedule someone's Booking, adjust the Queue order, or lower the maximum number.
 
 The \textbf{QRCodeScannedMachineRedirector} is working for the \hyperref[subsec:definitions]{Ticket QRCode Scanned Machine}.
@@ -554,7 +557,7 @@ For brick customer, they may not available to book the ticket on smart phone. Bu
 
 \textbf{UI-Queue Number Screen} It displays the screen of queue number orderingFig.\ref{fig:UI-QueueNumberScreen}. This screen shown out of the store, which the user in queue can see it, after they see their corresponding number, they can enter the store with their QRCode.~\\
 
-\subsection{Store Manager management System}
+\subsection{Store Manager Management System}
 The store manager can control the people density inside the store. In case of too many/less people in the store or in the same zone, he can do three things: (1) He can adjust the max number inside the store. (2) He can reschedule some users' ticket(only users haven't departed yet) (3) He can reschedule the queue order waiting outside the store. We design the manager UI screen in the following:~\\
 ~\\
 
