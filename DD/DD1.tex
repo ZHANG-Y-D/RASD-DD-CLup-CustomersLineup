@@ -54,13 +54,21 @@
 
 \chapter{INTRODUCTION}\label{ch:introduction}
 
-
 \section{Purpose}
-The purpose of this document is to explain how we design and build CLup application. We demostrate the architecture design of the system, based on the rule of Top-down design approach, we describe the different design characteristics. We explain it from the view of component, deployment and runtime. To be more specific, we also show the user interface design to illustrate the CLup application step by step. The purpose of interface design is user-friendly and efficiently. Our aim is to let other stakeholders can easily understand and know the structure of CLup application.
 
+The purpose of this document is to explain how we design and build the CLup application.
+We demonstrate the system's architecture design, based on the rule of the Top-down design approach, and we describe the different design characteristics.
+We explain it from the view of component, deployment, and runtime.
+Moreover, we also show the user interface design to illustrate the CLup application step by step.
+The purpose of interface design is user-friendly and efficient.
+This document also aims to let other stakeholders easily understand and know the CLup application structure.
 
 \section{Scope}
-Clup is an application aiming to help user reduce the risk of store in the situation of COVID-19. The user need to have the smart phone to book the ticket. Users or need to take the ticket from the ticket machine out of the store. Users need to scan-in and scan-out when they enter the shop and exit the store. Click customer need to specific their desired product when they booking the ticket. User need to follow the ticket route when they shopping. The manager need to monitor the density of store, control the enter number and reschedule the ticket when too many people in the store or in the same zone. After the click customer insert their information, the system need to design the shopping route for users.
+CLup is an application aiming to help customers reduce the risk in the COVID-19 situation.
+The customer needs to have a smart phone to book the visit. Customers also can hand out the ticket from the ticket machine out of the store.
+Customers need to scan-in and scan-out when they enter and exit the store. As the RASD mentioned, we have two kinds of customers - the Click Customer and the Brick Customer.
+The Click customer needed to specify their wanted item list when they were booking the ticket, and the system will project a roadmap in the store for them, so the Click Customer needs to follow the route shown in the ticket when they are shopping.
+The Store Manager needs to monitor the store's density, control the entry number, and reschedule the ticket when too many people in the store or the same zone.
 
 
 \section{Definitions, Acronyms, Abbreviations}
@@ -122,18 +130,26 @@ Clup is an application aiming to help user reduce the risk of store in the situa
 \section{Document Structure}
 Here are the structure of DD document:~\\
 
-\textbf{Architectual Design}
-In this chapter, we describe the architectural design from the view of component, deployment and runtime. We use the Top-down approach. After we specific the component interfaces. We adopted the 3-Tirered architecture style for our system. We also adopt the relational database.~\\
+\textbf{Architectural Design}
+This chapter describes the architectural design of our system.
+We used the Top-down design approach and adopted the 3-Tirered architecture for our system.
+And then, we specified the component interfaces. For the database system, We also adopt the relational database.~\\
 
 \textbf{User Interface Design}
-Here we illustrated the user interface from the view of user and manager. We have presented some main UI in RASD document, here we describe it in details. On the end, we use the UX diagram to show the user process.~\\
+Here we will illustrate the user interface from the view of the customer and manager.
+We have presented some main UI in the RASD document.
+Here we will describe in detail.
+On the end, we use the UX diagram to show the user process.~\\
+
+
 
 \textbf{Requirements traceability}
-In this chapter, we describe G1, G2 and G3. We specific the corresponding requirements, domain assumptions and components.~\\
+In this chapter, we describe G1, G2 and G3.
+We specific the corresponding requirements, domain assumptions and components.~\\
 
 \textbf{Implementation, integration and test plan}
-In this chapter, we introduce the implementation and integration of different components. After, we did the test of them.
-
+In this chapter, we will introduce the implementation and integration of our system.
+Furthermore, we will describe the test plan which we selected.
 
 
 \chapter{ARCHITECTURAL DESIGN}\label{ch:architectural-design}
