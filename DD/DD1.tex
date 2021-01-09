@@ -517,7 +517,7 @@ We illustrated some main UI designs in RASD document, here, we describe more det
 
 \textbf{UI-Notification}  Fig.\ref{fig:UI-Notification} which display the user is available, and also inform the user in case of their ticket was rescheduled. The red point means the unread message. The date and time under means the receive message time.
 
-\textbf{UI-TicketBooking}  Fig.\ref{UI-TicketBooking} shows the users available ticket and history tickets. The available ticket with the red point, the time and date under means the booking time(in which time to enter the store). After the user press the PDF icon, they will open the ticket with PDF reader.~\\
+\textbf{UI-TicketBooking}  Fig.\ref{fig:UI-TicketBooking} shows the users available ticket and history tickets. The available ticket with the red point, the time and date under means the booking time(in which time to enter the store). After the user press the PDF icon, they will open the ticket with PDF reader.~\\
 
 \textbf{UI-TicketPDF} The user ticket include 2 pages, the first page Fig.\ref{fig:UI-TicketPDF} display the QRcode using for scan on the entry. And it also give queue number and the suggestion of departing time from current position to the store.~\\
 
@@ -536,13 +536,13 @@ We illustrated some main UI designs in RASD document, here, we describe more det
 \begin{figure}[H]
 	\begin{minipage}[t]{0.56\linewidth}
 		\centering
-		\includegraphics[scale=0.5]{UI-Date.png}
+		\includegraphics[scale=0.5]{UI-Date}
 		\caption{UI-Date}
 		\label{fig:UI-Date}
 	\end{minipage}%
 	\begin{minipage}[t]{0.56\linewidth}
 		\centering
-		\includegraphics[scale=0.5]{UI-Time.png}
+		\includegraphics[scale=0.5]{UI-Time}
 		\caption{UI-Time}
 		\label{fig:UI-Time}
 	\end{minipage}
@@ -551,13 +551,13 @@ We illustrated some main UI designs in RASD document, here, we describe more det
 \begin{figure}[H]
 	\begin{minipage}[t]{0.56\linewidth}
 		\centering
-		\includegraphics[scale=0.5]{UI-DurationTime.png}
+		\includegraphics[scale=0.5]{UI-DurationTime}
 		\caption{UI-DurationTime}
 		\label{fig:UI-DurationTime}
 	\end{minipage}%
 	\begin{minipage}[t]{0.56\linewidth}
 		\centering
-		\includegraphics[scale=0.5]{UI-Notification.png}
+		\includegraphics[scale=0.5]{UI-Notification}
 		\caption{UI-Notification}
 		\label{fig:UI-Notification}
 	\end{minipage}
@@ -566,13 +566,13 @@ We illustrated some main UI designs in RASD document, here, we describe more det
 \begin{figure}[H]
 	\begin{minipage}[t]{0.56\linewidth}
 		\centering
-		\includegraphics[scale=0.5]{UI-TicketBooking.png}
+		\includegraphics[scale=0.5]{UI-TicketBooking}
 		\caption{UI-TicketBooking}
 		\label{fig:UI-TicketBooking}
 	\end{minipage}%
 	\begin{minipage}[t]{0.56\linewidth}
 		\centering
-		\includegraphics[scale=0.5]{UI-TicketPDF.png}
+		\includegraphics[scale=0.5]{UI-TicketPDF}
 		\caption{UI-TicketPDF}
 		\label{fig:UI-TicketPDF}
 	\end{minipage}
@@ -581,13 +581,13 @@ We illustrated some main UI designs in RASD document, here, we describe more det
 \begin{figure}[H]
 	\begin{minipage}[t]{0.56\linewidth}
 		\centering
-		\includegraphics[scale=0.5]{UI-Route.png}
+		\includegraphics[scale=0.5]{UI-Route}
 		\caption{UI-Route}
 		\label{fig:UI-Route}
 	\end{minipage}%
 	\begin{minipage}[t]{0.56\linewidth}
 		\centering
-		\includegraphics[scale=0.56]{UI-TakeTicket.png}
+		\includegraphics[scale=0.56]{UI-TakeTicket}
 		\caption{UI-TakeTicket}
 		\label{fig:UI-TakeTicket}
 	\end{minipage}
@@ -595,7 +595,7 @@ We illustrated some main UI designs in RASD document, here, we describe more det
 
 
 \begin{figure}[H]
-	\includegraphics[width=0.56\textwidth]{UI-QueueNumberScreen.png}
+	\includegraphics[width=0.56\textwidth]{UI-QueueNumberScreen}
 	\centering
 	\caption{UI-QueueNumberScreen.png}
 	\label{fig:UI-QueueNumberScreen.png}
@@ -603,7 +603,7 @@ We illustrated some main UI designs in RASD document, here, we describe more det
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{UI-Reschedule.png}
+	\includegraphics[scale=0.4]{UI-Reschedule}
 	\caption{UI-Reschedule}
 	\centering
 	\label{fig:UI-Reschedule}
@@ -611,7 +611,7 @@ We illustrated some main UI designs in RASD document, here, we describe more det
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{UI-RescheduleCC.png}
+	\includegraphics[scale=0.4]{UI-RescheduleCC}
 	\caption{UI-RescheduleCC}
 	\centering
 	\label{fig:UI-RescheduleCC}
@@ -619,7 +619,7 @@ We illustrated some main UI designs in RASD document, here, we describe more det
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{UI-QueueOrder.png}
+	\includegraphics[scale=0.4]{UI-QueueOrder}
 	\caption{UI-QueueOrder}
 	\centering
 	\label{fig:UI-QueueOrder}
@@ -758,52 +758,116 @@ In this chapter, we will bind the Goals specified in RASD with the component in 
 
 
 
-%\begin{center}
-%	\begin{tabular}{ |c|c|c| }
-%		\hline
-%		
-%
-%	\end{tabular}
-%\end{center}
+\chapter{IMPLEMENTATION, INTEGRATION AND TEST PLAN} \label{ch:implementation-integration-and-test-plan}
 
-\chapter{IMPLEMENTATION, INTEGRATION AND TEST PLAN}\label{ch:implementation-integration-and-test-plan}
+In this chapter, we will introduce the Implementation, Integration, and Test Plan.
+We used the Top-Down Approach as our design approach, but we will do with the Down-Top way in the Test and Integration phase,
+like the diagram in Fig.\ref{fig:SystemsEngineeringVDiagram}. \cite{SystemsEngineeringforIntelligentTransportationSystems}
 
-
-
-
-\section{Implementation }
-We use the Top-down design approach. When a click customer want to book a ticket, the following modules will be implemented is this order:~\\
-~\\
-$\bullet$ ClickCustomerMobileApp~\\
-$\bullet$ Redirector~\\
-$\bullet$ CRM~\\
-$\bullet$ BookingSchedule~\\
-$\bullet$ DBMSServer~\\
-~\\
-For the store manager management system, the modules sequence is this:~\\
-~\\
-$\bullet$ StoreManagerManagementSystem~\\
-$\bullet$ Redirector~\\
-$\bullet$ QueueSchedule~\\
-$\bullet$ BookingSchedule~\\
-$\bullet$ DBMSServer~\\
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{SystemsEngineeringVDiagram}
+	\centering
+	\caption{Systems Engineering "V" Diagram}
+	\label{fig:SystemsEngineeringVDiagram}
+\end{figure}
 
 
-\section{Integration}
-The aiming od integration testing is at exercising: interface and modules interactions. We need to consider and avoid the different integration faults:~\\
-~\\
-$\bullet$ Side effects on parameters or resources~\\
-$\bullet$ Violations of value domains, capacity, or size limits~\\
-$\bullet$ Omitted or misunderstood functionality~\\
-$\bullet$ Nonfunctional properties~\\
-$\bullet$ Dynamic mismatches\cite{SlidesSE2}~\\
-~\\
-Our integration testing based on the Top-down structure of system with the thread of a portion of several modules offers a user- visible function.~\\
-~\\
+\section{Implementation}\label{sec:Implementation}
+
+In the Implementation phase, We will use the following sequence:
+\begin{itemize}
+	\item First of all, we will implement the Database System because it is the most "Bottom" part.
+	\item And then implement the Application Server component. From Queueschedule, BookingSchedule to CRM.
+	\item Finally, we will implement the Presentation Layer, from our internal device to Click Customer Mobile App.
+\end{itemize}
+
+Specific to each subsystem, as the Sec.\ref{sec:SelectedArchitecturalStylesAndPatterns} mentioned, we used the MVC pattern to build all subsystems.
+In the MVC pattern, we will first implement the "controller" part because we think the controller part defines the way of communication with other systems.
+And then, we will implement the Model part.
+Finally, if this subsystem needs the View part, we will build the View part.
+
+The following subsystems require the View part, the Click Customer Mobile App, Store Manager Management System, Ticket Hand-Out Machine, and the Digital Counterpart.
+
+For the programming language, we chose \textbf{Java 15.0.1} to implement all our systems, including interaction with the database management system and UI.
+To interact with PostgreSQL, we will use the \textbf{JDBC Driver}.
+And for UI, we will use the \textbf{swing} as the GUI widget toolkit.
+
+
+\section{Integration}\label{sec:Integration}
+
+We referred to the SE2 course, so we will combine the integration plan and test plan as Fig.\ref{fig:IntegrationAndTest} shown in the slide.\cite{SlidesSE2}
+
+\vspace{3mm}
+
+There are two ways to achieve integration \& test:
+\begin{itemize}
+	\item Big Bang integration \& testing
+	\item Incremental integration \& testing
+\end{itemize}
+
+For sure, we will pick the second option and avoid the Big Bang.
+Furthermore, in the strategies for integration \& test, we will choose the \textbf{Bottom-up} as said in the Sec.\ref{sec:Implementation} Implementation.
+
+So that, after implemented the Database System and the Queueschedule, we will integrate and test them and then implement the BookingSchedule.
+After integrating \& testing all of them, we can implement CRM and so on.
+
+Finally, we will integrate \& test the Presentation Layer system separately with the Application Server components.
+
+\begin{figure}[H]
+	\includegraphics[width=0.5\textwidth]{IntegrationAndTest}
+	\centering
+	\caption{Integration Plan + Test Plan}
+	\label{fig:IntegrationAndTest}
+\end{figure}
+
+
 \section{Test Plan}
-We will use the black-box testing. We will use modules to devise test cases, and the actural behavior of software under test is checked against the the behavior specified by the model. The prerequisties of performances testing is expected workload and acceptable performance. For system testing, the teams are independent and will test the functional and non-functional requirements. As for the test environment, it need to be as close as possiable to production enviroment. In performance, we need to identify the inefficient algorithms, optimize the query possibilities and hardware/ network issues\cite{SlidesSE2}.
+
+For the Test plan, we will respect all processes and sequences.
+
+\subsection{Unit Test}
+We will do the Unit Test after each function is implemented.
+We will use the \textbf{JUnit 5.6.2} as the unit testing framework.
+There are five Basic coverage criteria:
+\begin{itemize}
+	\item Function coverage
+	\item Statement coverage
+	\item Edge coverage
+	\item Branch coverage
+	\item Condition coverage
+\end{itemize}
+We need to ensure that the Function/Statement coverage more than 95\% and covers all crucial Edge/Branch/Condition in the Control Flow Graph.
 
 
+\subsection{Integration Test}
+
+As the Sec.\ref{sec:Integration} Integration said, we chose the Incremental integration \& testing, so that we must do the integration test immediately after the integration.
+In the Integration test phase, we have to check if the following Integration Faults happened \cite{SlidesSE2}.
+\begin{itemize}
+	\item Side effects on parameters or resources
+	\item Violations of value domains, capacity, or size limits
+	\item Omitted or misunderstood functionality
+	\item Nonfunctional properties
+	\item Dynamic mismatches
+\end{itemize}
+
+
+\subsection{System Test}
+
+After all integration tests passed, we are going to the System Test.
+In this phase, we need to focus on the entire system and use black-box testing to test whether the system meets the functional and non-functional requirements.
+The testing environment should be as close as possible to the production environment.\cite{SlidesSE2}
+
+\vspace{3mm}
+
+There are three types of System Testing:
+\begin{itemize}
+	\item Performance Testing
+	\item Load Testing
+	\item Stress Testing
+\end{itemize}
+
+We will use all the above testing methods to test our system.
 
 \chapter{Effort Spent}
 
@@ -865,6 +929,8 @@ We will use the black-box testing. We will use modules to devise test cases, and
 				\hline
 				2021/01/08 & Finished the architecture part and did the group discussion. & 4h \\
 				\hline
+				2021/01/09 & Updated the Chapter \ref{ch:implementation-integration-and-test-plan}. & 2h \\
+				\hline
 			\end{tabular}}
 	\end{center}
 \end{itemize}
@@ -901,6 +967,17 @@ Politecnico di Milano.
 Paolo Atzeni, Stefano Ceri, Stefano Paraboschi, Riccardo Torlone. \textbf{Database Systems} concepts, languages \& architectures.
 The McGraw-Hill Companies.
 ISBN 007-709500-6.
+	
+\bibitem{SystemsEngineeringforIntelligentTransportationSystems}
+Department of Transportation, Office of Operations. (January 2007)
+\textbf{Systems Engineering for Intelligent Transportation Systems}.
+An Introduction for Transportation Professionls.
+Publication No. FHWA-HOP-07-069.
+EDL-14340.
+\url{https://ops.fhwa.dot.gov/publications/seitsguide/index.htm}
+
+
+
 
 
 \end{thebibliography}
