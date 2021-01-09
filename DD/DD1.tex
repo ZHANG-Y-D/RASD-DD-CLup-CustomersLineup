@@ -60,6 +60,7 @@ The purpose of this document is to explain how we design and build CLup applicat
 
 
 \section{Scope}
+Clup is an application aiming to help user reduce the risk of store in the situation of COVID-19. The user need to have the smart phone to book the ticket. Users or need to take the ticket from the ticket machine out of the store. Users need to scan-in and scan-out when they enter the shop and exit the store. Click customer need to specific their desired product when they booking the ticket. User need to follow the ticket route when they shopping. The manager need to monitor the density of store, control the enter number and reschedule the ticket when too many people in the store or in the same zone. After the click customer insert their information, the system need to design the shopping route for users.
 
 
 \section{Definitions, Acronyms, Abbreviations}
@@ -107,7 +108,11 @@ The purpose of this document is to explain how we design and build CLup applicat
 
 \subsection{Abbreviations}
 \begin{itemize}
-	\item %TODO
+	\item  $R_n$ : n-th functional requirement
+	\item  $NR_n$: n-th non functional requirement
+	\item  $G_n$ : n-th goal
+	\item  $D_n$ : n-th domain assumption
+	\item  $C_n$ : n-th component
 \end{itemize}
 
 
@@ -115,6 +120,20 @@ The purpose of this document is to explain how we design and build CLup applicat
 
 
 \section{Document Structure}
+Here are the structure of DD document:~\\
+
+\textbf{Architectual Design}
+In this chapter, we describe the architectural design from the view of component, deployment and runtime. We use the Top-down approach. After we specific the component interfaces. We adopted the 3-Tirered architecture style for our system. We also adopt the relational database.~\\
+
+\textbf{User Interface Design}
+Here we illustrated the user interface from the view of user and manager. We have presented some main UI in RASD document, here we describe it in details. On the end, we use the UX diagram to show the user process.~\\
+
+\textbf{Requirements traceability}
+In this chapter, we describe G1, G2 and G3. We specific the corresponding requirements, domain assumptions and components.~\\
+
+\textbf{Implementation, integration and test plan}
+In this chapter, we introduce the implementation and integration of different components. After, we did the test of them.
+
 
 
 \chapter{ARCHITECTURAL DESIGN}\label{ch:architectural-design}
@@ -490,17 +509,29 @@ For the deployment issues, as the Sec.\ref{sec:deployment-view} Deployment View 
 \section{UI design}
 We illustrated some main UI designs in RASD document, here, we describe more details for the specific UI button. ~\\
 
-\textbf{UI-Date Time} After enter the booking button, there is an option of date and time, Fig.\ref{fig:UI-DateTime}, the CLup will give the available booking date, which with the deep dark color. And the same method for selecting available booking time.~\\
+\textbf{UI-Date} After enter the booking button, there is an option of date and time, Fig.\ref{fig:UI-Date}, the CLup will give the available booking date, which with the deep dark color. User can choose the date from the available option~\\
 
-\textbf{UI-Duration Time} It needs the user to estimate his shooping time, Fig.\ref{fig:UI-DurationTime}, for long-term users, they can press the "Analysis" button, the system will approximate a duration time depending on his shopping history.~\\
+\textbf{UI-Time} After user fix the date, they need also select the booking time, as shown in Fig.\ref{fig:UI-Time}, it need to point the AM/PM.~\\
 
-\textbf{UI-Ticket}  Fig.\ref{UI-Ticket} shows the users current ticket and history ticket. The current ticket with the red point, to inform the user it is the valid ticket.~\\
+\textbf{UI-DurationTime} It needs the user to estimate his shopping time, Fig.\ref{fig:UI-DurationTime}, for long-term users, the system will also approximate a duration time depending on his shopping history.~\\
 
-\textbf{UI-Ticket PDF} it present the PDF ticket for the user, Fig.\ref{fig:UI-TicketPDF} the QRcode using for scan on the entry. And it also give the suggestion of departing time from current position to the store.~\\
+\textbf{UI-Notification}  Fig.\ref{fig:UI-Notification} which display the user is available, and also inform the user in case of their ticket was rescheduled. The red point means the unread message. The date and time under means the receive message time.
+
+\textbf{UI-TicketBooking}  Fig.\ref{UI-TicketBooking} shows the users available ticket and history tickets. The available ticket with the red point, the time and date under means the booking time(in which time to enter the store). After the user press the PDF icon, they will open the ticket with PDF reader.~\\
+
+\textbf{UI-TicketPDF} The user ticket include 2 pages, the first page Fig.\ref{fig:UI-TicketPDF} display the QRcode using for scan on the entry. And it also give queue number and the suggestion of departing time from current position to the store.~\\
+
+\textbf{UI-Route} This is the second page of user's ticket Fig.\ref{fig:UI-Route} it illustrate the user shopping route in the store. As you can see, in both enter and exit position have the small yellow scan QRCode machine, it needs the user scan-in and scan-out. After, the blue line show the shopping route inside the store, the big yellow cycle point the position of user desired product. The red line show the main map of the store.~\\
  
-\textbf{UI-Notification}  Fig.\ref{fig:ui-notification} which display the notification of rescheduled ticket, the red point means the unread message. And it will also give the new ticket to the user.
+\textbf{UI-TakeTicket} It shows the screen of take ticket machine out of the store Fig.\ref{fig:UI-TakeTicket}. Brick customer can take the ticket from here by pressing the "Ticket" button. It will print automatically a PDF ticket to brick customer. It also present the people inside the store and waiting in queue.~\\
 
+\textbf{UI-Queue Number Screen} It displays the screen of queue number orderingFig.\ref{fig:UI-TakeTicket}. This screen shown out of the store, which the user in queue can see it, after they see their corresponding number, they can enter the store with their QRCode.~\\
 
+\textbf{UI-Reschedule} This displays the screen of manager Fig.\ref{fig:UI-Reschedule}. After the manager press the "Reschedule" button, it will enter to this page, he can search for multiple informations. For example, if he saw too many people in the gelato zone, he can search gelato on searching bar, it will show all the Click customers who want to buy gelato, but haven't departed yet. In advanced, he can also search the specific time slot of the user, etc. ~\\  
+
+\textbf{UI-Reschedule Click Customer} This displays the screen of manager Fig.\ref{fig:UI-RescheduleCC} for reschedule the click customer. Manager has the right of select users to reschedule their booking time.  As shown is search bar, it display the customer whose deired product is gelato, and the booking time is between 11:30 to 12:00. Manager can press the reschedule button to schedule their booking to another time slot, to reduce the people density in specific store zone. ~\\ 
+ 
+\textbf{UI-Reschedule Queue Order} This describe the screen of manager Fig.\ref{fig:UI-QueueOrder} for reschedule the queue order. Here shown all the arriving customer queue number(Click customer and brick customer). The manager can view the desired product of users, after he can adjust the queue order by showing in queue number screen(we mentioned before).~\\
 
 \begin{figure}[H]
 	\begin{minipage}[t]{0.56\linewidth}
@@ -517,12 +548,86 @@ We illustrated some main UI designs in RASD document, here, we describe more det
 	\end{minipage}
 \end{figure}
 
+\begin{figure}[H]
+	\begin{minipage}[t]{0.56\linewidth}
+		\centering
+		\includegraphics[scale=0.5]{UI-DurationTime.png}
+		\caption{UI-DurationTime}
+		\label{fig:UI-DurationTime}
+	\end{minipage}%
+	\begin{minipage}[t]{0.56\linewidth}
+		\centering
+		\includegraphics[scale=0.5]{UI-Notification.png}
+		\caption{UI-Notification}
+		\label{fig:UI-Notification}
+	\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{minipage}[t]{0.56\linewidth}
+		\centering
+		\includegraphics[scale=0.5]{UI-TicketBooking.png}
+		\caption{UI-TicketBooking}
+		\label{fig:UI-TicketBooking}
+	\end{minipage}%
+	\begin{minipage}[t]{0.56\linewidth}
+		\centering
+		\includegraphics[scale=0.5]{UI-TicketPDF.png}
+		\caption{UI-TicketPDF}
+		\label{fig:UI-TicketPDF}
+	\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{minipage}[t]{0.56\linewidth}
+		\centering
+		\includegraphics[scale=0.5]{UI-Route.png}
+		\caption{UI-Route}
+		\label{fig:UI-Route}
+	\end{minipage}%
+	\begin{minipage}[t]{0.56\linewidth}
+		\centering
+		\includegraphics[scale=0.56]{UI-TakeTicket.png}
+		\caption{UI-TakeTicket}
+		\label{fig:UI-TakeTicket}
+	\end{minipage}
+\end{figure}
 
 
+\begin{figure}[H]
+	\includegraphics[width=0.56\textwidth]{UI-QueueNumberScreen.png}
+	\centering
+	\caption{UI-QueueNumberScreen.png}
+	\label{fig:UI-QueueNumberScreen.png}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{UI-Reschedule.png}
+	\caption{UI-Reschedule}
+	\centering
+	\label{fig:UI-Reschedule}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{UI-RescheduleCC.png}
+	\caption{UI-RescheduleCC}
+	\centering
+	\label{fig:UI-RescheduleCC}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{UI-QueueOrder.png}
+	\caption{UI-QueueOrder}
+	\centering
+	\label{fig:UI-QueueOrder}
+\end{figure}
 
 
 \section{UX design}
-We present the UX diagram of user, Fig.\ref{fig:ux-user} the diagram show the proceed of how the user from login to get the valid ticket. Corresponding to the UI design, it show the total user view of the CLup application.~\\
+We present the UX diagram of user, Fig.\ref{fig:ux-user} the diagram show the proceed of how the user from login to get the valid ticket. Corresponding to the UI design, it show the total user view of the CLup application. Of course we cannot show all the details the user proceed, we pick the main point to illustrate the UX for user. And we also add some character aiming to complete the UX, e.t."Logout", which we didn't mention in RASD~\\
 
 
 \begin{figure}[H]
@@ -537,43 +642,135 @@ We present the UX diagram of user, Fig.\ref{fig:ux-user} the diagram show the pr
 
 \chapter{REQUIREMENTS TRACEABILITY}\label{ch:requirements-traceability}
 
+In this chapter, we will bind the Goals specified in RASD with the component in DD.
+
+\section{G1 : Allows store managers to regulate the influx of people in the building}
+\subsection{Requirements}
+\begin{itemize}
+	\item $R_7$: The Store Manager shall be able to Check out the On-Time Store Data.
+	\item $R_8$: The Store Manager shall be able to Adjust the maximum number of people in the store.
+	\item $R_9$: The Store Manager shall be able to Adjust the order of the queue.
+	\item $R_{10}$: The Store Manager shall be able to Check and reschedule the booking.
+	\item $R_{12}$: The Store Back-End System shall be able to received and schedule the click customers' booking. The scheduling must refer to the duration time of each Customer and the categories of items that the Customer intends to buy.
+	\item $R_{15}$: The Store Back-End System shall send a notification and update the E-Ticket to the Customer when their book is rescheduled.
+	\item $R_{17}$: The Store Back-End System shall analyze the historical visit data and calculate the average history duration for the Long-Term Customers.
+	\item $R_{18}$: The Store Back-End System shall be able to Calculate and store the On-Time Store Data.
+	\item $R_{19}$: The Store Back-End System shall schedule or reschedule the queue order from click customer's booking and the brick customer's retrieved ticket.
+	\item $R_{20}$: The Store Back-End System shall be able to Control the Digital Counterpart and display the queue number.
+	\item $R_{21}$: The Store Back-End System shall be able to receive the information from the QR Code Scanned Machine. Receive the information from the Tickets Hand-Out Machine.
+\end{itemize}
+
+\subsection{Domain Assumptions}
+\begin{itemize}
+	\item $D_4$ : If something unexpected happens, the store manager can reasonably adjust the maximum number of people in the store or reschedule the queue \& Customer's book.
+	\item $D_5$ : If someone's booking is rescheduled, he can find the notification in time and set off according to the updated E-Ticket.
+\end{itemize}
+
+\subsection{Components}
+\begin{itemize}
+	\item $C_1$: CRM
+	\item $C_2$: QueueSchedule
+	\item $C_3$: BookingSchedule
+	\item $C_4$: ClickCustomerMobileApp
+	\item $C_5$: DigitalCounterpart
+	\item $C_6$: TicketHandOutMachine
+	\item $C_7$: QRCodeScannedMachine
+	\item $C_{8}$: StoreManagerManagementSystem
+	\item $C_{9}$: DBMSServer
+\end{itemize}
+
+
+\section{$G_2$ : Saves people from having to line up and stand outside of stores for hours on end}
+
+\subsection{Requirements}
+
+\begin{itemize}
+	\item $R_1$: Each Click Customer shall be able to sign-up and Log-in.
+	\item $R_2$: Each Click Customer shall be able to book a visit.
+	\item $R_3$: Each Click Customer shall be able to check on the E-Ticket.
+	\item $R_4$: Each Click Customer shall check on the store manager's notification when their book is rescheduled.
+	\item $R_5$: Each Brick Customer shall be able to retrieve the Ticket from the Tickets Hand-Out Machine and wait for the Digital Counterpart to call them.
+	\item $R_6$: Each Customer shall scan the QR Code at QR Code scanned machine when they enter and leave the store.
+	\item $R_{11}$: The Store Back-End System shall send the available time/date to the click customers.
+	\item $R_{12}$: The Store Back-End System shall be able to received and schedule the click customers' booking. The scheduling must refer to the duration time of each Customer and the categories of items that the Customer intends to buy.
+	\item $R_{13}$: The Store Back-End System shall calculate the time from the click customer's departure place to the store and put the estimated departure time on the E-Ticket.
+	\item $R_{15}$: The Store Back-End System shall send a notification and update the E-Ticket to the Customer when their book is rescheduled.
+	\item $R_{16}$: The Store Back-End System shall be able to store the Customer's data.
+	\item $R_{17}$: The Store Back-End System shall analyze the historical visit data and calculate the average history duration for the Long-Term Customers.
+	\item $NR_1$:The time from the click customer's departure place to the store that calculates from the Store Back-End System must be precise enough to avoid the Customer arriving at the store too early/late.
+	\item $NR_2$:The Store Back-End System must schedule the queue reasonably to minimize the wait time.
+	\item $NR_3$:The Store Back-End System must mix the book and brick customer's retrieved ticket reasonably to allow the click customers to enter the store near the book time by avoiding making the brick customers wait too long.
+	\item $NR_4$:Cause everyone needs to do grocery shopping, the software for the click customer should be simple enough to use.
+\end{itemize}
+
+
+\subsection{Domain Assumptions}
+
+\begin{itemize}
+	\item $D_1$ : Everyone will leave the departure place at the departure time indicated by the system.
+	\item $D_2$ : Everyone who leaves on time can arrive at the store on time.
+	\item $D_3$ : After shopping, everyone can leave the store in time according to their estimated time.
+	\item $D_5$ : If someone's booking is rescheduled, he can find the notification in time and set off according to the updated E-Ticket.
+	\item $D_6$ : Everyone can consciously scan the QR code at the entrance and exit.
+	\item $D_8$ : If possible, everyone tries to book the visit via the application(be a \hyperref[Definitions]{Click Customer}) instead of picking up tickets on the spot(not be a \hyperref[Definitions]{Brick Customer}).
+\end{itemize}
+
+
+\subsection{Components}
+\begin{itemize}
+	\item $C_1$: CRM
+	\item $C_2$: QueueSchedule
+	\item $C_3$: BookingSchedule
+	\item $C_4$: ClickCustomerMobileApp
+	\item $C_5$: DigitalCounterpart
+	\item $C_6$: TicketHandOutMachine
+	\item $C_7$: QRCodeScannedMachine
+	\item $C_{9}$: DBMSServer
+	\item $C_{10}$: GoogleMap Service
+\end{itemize}
+
+
+\section{$G_3$ : The application plan visits in a finer way to allow more people in the store, at the same time, let the customer occupy different spaces in the store to keep enough distance between them}
+
+\subsection{Requirements}
+
+\begin{itemize}
+	\item $R_{12}$: The Store Back-End System shall be able to received and schedule the click customers' booking. The scheduling must refer to the duration time of each Customer and the categories of items that the Customer intends to buy.
+	\item $R_{14}$: The Store Back-End System shall Plan and put the Store Planned Roadmap on the E-Ticket Send the E-Ticket to the click customers.
+	\item $R_{17}$: The Store Back-End System shall analyze the historical visit data and calculate the average history duration for the Long-Term Customers.
+\end{itemize}
+
+\subsection{Domain Assumptions}
+
+\begin{itemize}
+	\item $D_3$ : After shopping, everyone can leave the store in time according to their estimated time.
+	\item $D_7$ : Everyone can follow the \hyperref[Definitions]{Planned Roadmap} in the store.
+\end{itemize}
+
+\subsection{Components}
+
+\begin{itemize}
+	\item $C_1$: CRM
+	\item $C_3$: BookingSchedule
+	\item $C_4$: ClickCustomerMobileApp
+	\item $C_{9}$: DBMSServer
+\end{itemize}
+
+
+
+%\begin{center}
+%	\begin{tabular}{ |c|c|c| }
+%		\hline
+%		
+%
+%	\end{tabular}
+%\end{center}
 
 \chapter{IMPLEMENTATION, INTEGRATION AND TEST PLAN}\label{ch:implementation-integration-and-test-plan}
 
-The system will be implemented, intergrated and tested. For these part are very important and necessary for CLup application. We need to complete it as much as possiable. We can mainly divided into three subsystems: ~\\
-(1) the user mobile~\\
-(2) the manager web server ~\\
-(3) the application server~\\
 
 \section{Implementation }
-We want the implementation of CLup application is efficient.Here are the order of system to be implemented:~\\
-~\\
-(1) The user application will be implemented ~\\
-(2) The database implemented to collect and save the data.~\\
-(3) Now the manager serve will monitor the system and control it~\\
 
-After we will specific the order of modules that the developer need to develop:~\\
-~\\
-$\bullet$ Booking manager~\\
-$\bullet$ Data storage manager~\\
-$\bullet$ Reschedule manager~\\
-$\bullet$ Queue order manager~\\
-$\bullet$ Duration time estimate manager~\\
-
-
-The request application server will implement the following order:~\\
-~\\
-$\bullet$ User application manager~\\
-$\bullet$ Specific information request manager~\\
-$\bullet$ Data storage manager~\\
-$\bullet$ shopping route suggestion manager~\\
-$\bullet$ Depart time suggestion manager~\\
-
-On the User application, there will be the following modules,  it will be implemented in this order:~\\
-~\\
-$\bullet$ Booking manager~\\
-$\bullet$ request manager~\\
-$\bullet$ Data manager~\\
 ~\\
 \section{Integration}
 The aiming od integration testing is at exercising: interface and modules interactions. We need to consider and avoid the different integration faults:~\\
@@ -608,11 +805,9 @@ We will use the black-box testing after the integration. We will use modules to 
 				\hline
 				2021/01/05 & UX design diagram in chapter 3& 2h \\
 				\hline
-				2021/01/06 & Complete UI and UX design in chapter 3& 4h \\
+				2021/01/06 & Complete UI and UX design in chapter 3& 5h \\
 				\hline
-				2021/01/07 &  Complete the chapter 5 implementation, integrate and test & 4h \\
-
-				2021/01/05 & UX design diagram in chapter 3 & 2h \\
+				2021/01/07 &  Did chapter 5 implementation, integrate and test & 4h \\
 				\hline
 				2021/01/08 & Group Discussion & 2h\\
 				\hline

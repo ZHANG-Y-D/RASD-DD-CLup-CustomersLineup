@@ -1,4 +1,5 @@
-\documentclass[a4paper,12pt]{report} 
+%! suppress = FileNotFound
+\documentclass[a4paper,12pt]{report}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{float}
@@ -278,14 +279,14 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end state diag
 
 \begin{figure}[H] 
 	\centering
-	\includegraphics[scale=0.3]{class_diagram.png}
+	\includegraphics[scale=0.3]{class_diagram}
 	\caption{CLup Class Diagram}
 	\label{Class Diagram}
 \end{figure}
 
 \begin{figure}[H]  
 	\centering 
-	\includegraphics[scale=0.62]{State_diagram1.png}
+	\includegraphics[scale=0.62]{State_diagram1}
 	\caption{Customer State Diagram}
 	\centering
 	\label{State Diagram 1}
@@ -293,7 +294,7 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end state diag
 
 \begin{figure}[H] 
 	\centering
-	\includegraphics[scale=0.43]{State_diagram2.png}
+	\includegraphics[scale=0.43]{State_diagram2}
 	\caption{Store Manager State Diagram}
 	\centering
 	\label{State Diagram 2}
@@ -301,7 +302,7 @@ The State diagram Fig.\ref{State Diagram 3} represented the serve end state diag
 
 \begin{figure}[H] 
 	\centering
-	\includegraphics[scale=0.38]{State_diagram3.png}
+	\includegraphics[scale=0.38]{State_diagram3}
 	\caption{Server End to Click-Customer State Diagram}
 	\centering
 	\label{State Diagram 3}
@@ -432,22 +433,22 @@ by customer.\\
 
 \textbf{Booking} After the user enter the booking button, users can see the page Fig.\ref{UI-Booking}, customers need to choose time and date from the given selection. Meanwhile, they need to approximate their duration time, for long-term customers, the system will also shown the estimate duration time rely on his shopping duration time history. After, the customer need to select what categories to buy in the store. On the end, there are two ways to insert the depart address: one is manually insertion of the address by customer, another one is automatic positioning by GPS.\\
 
-\textbf{Category} In this page Fig.\ref{UI-Category}, there are lists of product categories in the Store, the product categories corresponding to the different zone in Store. Users can choose one or more categories which they want to buy during the shopping.\\ 
+\textbf{Category} In this page Fig.\ref{fig:ui-category}, there are lists of product categories in the Store, the product categories corresponding to the different zone in Store. Users can choose one or more categories which they want to buy during the shopping.\\
 
 
-\textbf{Manager Dashboard} In the manager dashboard Fig.\ref{UI-Dashboard}, the Store Manager can see the number of Customers both inside and outside of the Store. He has the right to control the \textbf{Max} number of people inside the Store. If too many or too few people in the same zone of the Store, he can reset the Max number of customer inside the store on web or adjust the Queue. And also if too many people waiting outside the Store, he can click the 'Reschedule booking' button, to reschedule the Click Customer's Booking who haven't departed yet. \\ 
+\textbf{Manager Dashboard} In the manager dashboard Fig.\ref{fig:ui-dashboard}, the Store Manager can see the number of Customers both inside and outside of the Store. He has the right to control the \textbf{Max} number of people inside the Store. If too many or too few people in the same zone of the Store, he can reset the Max number of customer inside the store on web or adjust the Queue. And also if too many people waiting outside the Store, he can click the 'Reschedule booking' button, to reschedule the Click Customer's Booking who haven't departed yet. \\
 
 
 \begin{figure}[H]
 	\begin{minipage}[t]{0.5\linewidth}
 		\centering
-		\includegraphics[scale=0.5]{UI-Login.png}
+		\includegraphics[scale=0.5]{UI-Login}
 		\caption{UI-Login}
 		\label{UI-Login}
 	\end{minipage}%
 	\begin{minipage}[t]{0.5\linewidth}
 		\centering
-		\includegraphics[scale=0.5]{UI-Register.png}
+		\includegraphics[scale=0.5]{UI-Register}
 		\caption{UI-Register}
 		\label{UI-Register}
 	\end{minipage}
@@ -456,13 +457,13 @@ by customer.\\
 \begin{figure}[H]
 	\begin{minipage}[t]{0.5\linewidth}
 		\centering
-		\includegraphics[scale=0.5]{UI-Home.png}
+		\includegraphics[scale=0.5]{UI-Home}
 		\caption{UI-Home}
 		\label{UI-Home}
 	\end{minipage}%
 	\begin{minipage}[t]{0.5\linewidth}
 		\centering
-		\includegraphics[scale=0.5]{UI-Booking.png}
+		\includegraphics[scale=0.5]{UI-Booking}
 		\caption{UI-Booking}
 		\label{UI-Booking}
 	\end{minipage}
@@ -470,18 +471,18 @@ by customer.\\
 
 \begin{figure}[H] 
 	\centering  
-	\includegraphics[scale=0.5]{UI-Category.png}
+	\includegraphics[scale=0.5]{UI-Category}
 	\caption{UI-Category}
 	\centering
-	\label{UI-Category}
+	\label{fig:ui-category}
 \end{figure}
 
 \begin{figure}[H] 
 	\centering  
-	\includegraphics[scale=0.4]{UI-Dashboard.png}
+	\includegraphics[scale=0.4]{UI-Dashboard}
 	\caption{UI-Dashboard}
 	\centering
-	\label{UI-Dashboard}
+	\label{fig:ui-dashboard}
 \end{figure}
 
 
@@ -515,10 +516,10 @@ Finally, two hardware devices: Digital Counterpart and Tickets Hand-Out Machine.
 \subsection{Use Cases}
 
 \begin{figure}
-	\includegraphics[angle=270,scale=0.2]{usecase_diagram.png}
+	\includegraphics[angle=270,scale=0.2]{usecase_diagram}
 	\centering
 	\caption{CLup Use Case Diagram}
-	\label{Use Case}
+	\label{fig:use-case}
 \end{figure}
 
 \subsubsection{Click Customer’s perspective}
@@ -770,23 +771,23 @@ The following tables describe the use cases from the perspective of the \hyperre
 \subsubsection{Sequence Diagram}
 We have integrated the sequence diagrams from the perspective of the customer and store manager, respectively.
 
-From the customer's perspective Fig.\ref{Sequence Diagram Customer}, two kinds of customers are independent and do not interfere. The queue schedule function calls the queue number via the Digital Counterpart, and the customer has to view or listen well their queue number. When their number is called, they scan their QRCode.
+From the customer's perspective Fig.\ref{fig:sequence-diagram-customer}, two kinds of customers are independent and do not interfere. The queue schedule function calls the queue number via the Digital Counterpart, and the customer has to view or listen well their queue number. When their number is called, they scan their QRCode.
 
-From the manager's perspective Fig.\ref{Sequence Diagram Manager}, their four operations are independent and do not interfere with each other.
+From the manager's perspective Fig.\ref{fig:sequence-diagram-manager}, their four operations are independent and do not interfere with each other.
 
 
 \begin{figure}
-	\includegraphics[scale=0.22]{sequence_diagram_customer.png}
+	\includegraphics[scale=0.22]{sequence_diagram_customer}
 	\centering
 	\caption{Customers' Sequence Diagram}
-	\label{Sequence Diagram Customer}
+	\label{fig:sequence-diagram-customer}
 \end{figure}
 
 \begin{figure}
-	\includegraphics[scale=0.18]{sequence_diagram_manager.png}
+	\includegraphics[scale=0.18]{sequence_diagram_manager}
 	\centering
 	\caption{Manager's Sequence Diagram}
-	\label{Sequence Diagram Manager}
+	\label{fig:sequence-diagram-manager}
 \end{figure}
 
 
@@ -810,16 +811,15 @@ Now Leonardo does not have to take the risk any more in Essecorta. Every weekend
 
 \textbf{- Requirements:}
 \begin{itemize}
-	
 	\item $R_7$: The Store Manager shall be able to Check out the On-Time Store Data.
 	\item $R_8$: The Store Manager shall be able to Adjust the maximum number of people in the store. 
 	\item $R_9$: The Store Manager shall be able to Adjust the order of the queue.
 	\item $R_{10}$: The Store Manager shall be able to Check and reschedule the booking. 
-	\item $R_{12}$: The Store Back-End System shall be able to received and schedule the click customers' book. The scheduling must refer to the duration time of each Customer and the categories of items that the Customer intends to buy.
+	\item $R_{12}$: The Store Back-End System shall be able to received and schedule the click customers' booking. The scheduling must refer to the duration time of each Customer and the categories of items that the Customer intends to buy.
 	\item $R_{15}$: The Store Back-End System shall send a notification and update the E-Ticket to the Customer when their book is rescheduled. 
 	\item $R_{17}$: The Store Back-End System shall analyze the historical visit data and calculate the average history duration for the Long-Term Customers. 
 	\item $R_{18}$: The Store Back-End System shall be able to Calculate and store the On-Time Store Data.
-	\item $R_{19}$: The Store Back-End System shall schedule or reschedule the queue order from click customer's book and the brick customer's retrieved ticket.
+	\item $R_{19}$: The Store Back-End System shall schedule or reschedule the queue order from click customer's booking and the brick customer's retrieved ticket.
 	\item $R_{20}$: The Store Back-End System shall be able to Control the Digital Counterpart and display the queue number. 
 	\item $R_{21}$: The Store Back-End System shall be able to receive the information from the QR Code Scanned Machine. Receive the information from the Tickets Hand-Out Machine. 
 \end{itemize}
@@ -847,7 +847,7 @@ Now Leonardo does not have to take the risk any more in Essecorta. Every weekend
 	\item $R_{13}$: The Store Back-End System shall calculate the time from the click customer's departure place to the store and put the estimated departure time on the E-Ticket.
 	\item $R_{15}$: The Store Back-End System shall send a notification and update the E-Ticket to the Customer when their book is rescheduled. 
 	\item $R_{16}$: The Store Back-End System shall be able to store the Customer's data.
-	\item $R_{17}$: The Store Back-End System shall analyze the history visit data and mark the Long-Term Customers. 
+	\item $R_{17}$: The Store Back-End System shall analyze the historical visit data and calculate the average history duration for the Long-Term Customers.
 	\item $NR_1$:The time from the click customer's departure place to the store that calculates from the Store Back-End System must be precise enough to avoid the Customer arriving at the store too early/late.
 	\item $NR_2$:The Store Back-End System must schedule the queue reasonably to minimize the wait time.
 	\item $NR_3$:The Store Back-End System must mix the book and brick customer's retrieved ticket reasonably to allow the click customers to enter the store near the book time by avoiding making the brick customers wait too long.
@@ -869,9 +869,9 @@ Now Leonardo does not have to take the risk any more in Essecorta. Every weekend
 
 \textbf{- Requirements:}
 \begin{itemize}
-	\item $R_{12}$: The Store Back-End System shall be able to received and schedule the click customers' book. The scheduling must refer to the duration time of each Customer and the categories of items that the Customer intends to buy.
+	\item $R_{12}$: The Store Back-End System shall be able to received and schedule the click customers' booking. The scheduling must refer to the duration time of each Customer and the categories of items that the Customer intends to buy.
 	\item $R_{14}$: The Store Back-End System shall Plan and put the Store Planned Roadmap on the E-Ticket Send the E-Ticket to the click customers. 	
-	\item $R_{17}$: The Store Back-End System shall analyze the history visit data and mark the Long-Term Customers. 
+	\item $R_{17}$: The Store Back-End System shall analyze the historical visit data and calculate the average history duration for the Long-Term Customers.
 \end{itemize}
 
 
@@ -882,7 +882,7 @@ Now Leonardo does not have to take the risk any more in Essecorta. Every weekend
 \end{itemize}
 
 
-\subsubsection{Traceability Matrix   }
+\subsubsection{Traceability Matrix}
 
 
 \begin{center}
@@ -999,13 +999,13 @@ From the BrickCutomer's perspective Fig.\ref{BrickCustomerAlloy}, they can retri
 \lstinputlisting[linerange={168-176}]{./AlloyCode/CLupAlloy.als}
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.8]{BrickCustomerRunAlloy.png}
+	\includegraphics[scale=0.8]{BrickCustomerRunAlloy}
 \end{figure}
 
 
 \begin{figure}
 	\centering
-	\includegraphics[ angle = 270, scale=0.45]{BrickCustomerAlloy.png}
+	\includegraphics[ angle = 270, scale=0.45]{BrickCustomerAlloy}
 	\caption{The Alloy world of the Brick Customer's perspective}
 	\centering
 	\label{BrickCustomerAlloy}
@@ -1018,13 +1018,13 @@ Now we ran a case with some different situations.
 \lstinputlisting[linerange={180-193}]{./AlloyCode/CLupAlloy.als}
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.3]{ClickCustomerRunAlloy.png}
+	\includegraphics[scale=0.3]{ClickCustomerRunAlloy}
 \end{figure}
 
 
 \begin{figure}
 	\centering
-	\includegraphics[ angle = 270, scale=0.45]{ClickCustomerAlloy.png}
+	\includegraphics[ angle = 270, scale=0.45]{ClickCustomerAlloy}
 	\caption{The Alloy world of the Click Customer's perspective}
 	\centering
 	\label{CrickCustomerAlloy}
@@ -1039,13 +1039,13 @@ Finally, we are trying to give a "General World" of our Alloy model, shown in Fi
 \lstinputlisting[linerange={196-207}]{./AlloyCode/CLupAlloy.als}
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.35]{GeneralWorldRunAlloy.png}
+	\includegraphics[scale=0.35]{GeneralWorldRunAlloy}
 \end{figure}
 
 
 \begin{figure}
 	\centering
-	\includegraphics[ angle = 270, scale=0.4]{GeneralWorldAlloy.png}
+	\includegraphics[ angle = 270, scale=0.4]{GeneralWorldAlloy}
 	\caption{The Alloy General World}
 	\centering
 	\label{GeneralWorldAlloy}
